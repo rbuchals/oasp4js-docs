@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Angular JS</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient Team">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h2><img style="vertical-align: bottom" class="logo" height="70" src="img/AngularJS-large.png">&nbsp;<span style="vertical-align: top">Basics</span></h2>
+
+    <p>
+        <small>Marek Matczak</small>
+    </p>
+</section>
+
+<section id="modules">
+    <h3>What is a Module?</h3>
+
+    <blockquote>
+        You can think of a module as a <b>container</b> for the different parts of your app – controllers, services,
+        filters, directives, etc.
+    </blockquote>
+</section>
+<section>
+    <h2>How to deal with modules?</h2>
+
+    <p>Module declaration</p>
+            <pre class="fragment"><code class="javascript" contenteditable data-trim>
+angular.module('myFirst', ['dep1','dep2','dep3']);
+                </code></pre>
+    <p class="fragment">Module retrieval</p>
+            <pre class="fragment"><code class="javascript" contenteditable data-trim>
+angular.module('myFirst');
+                </code></pre>
+    <p class="fragment">Application bootstrap</p>
+            <pre class="fragment"><code contenteditable data-trim>
+<div ng-app="myFirst"></div>
+                </code></pre>
+</section>
+<section data-transition="none">
+    <h3>Config vs. Run</h3>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myModule', []).
+    config(function(injectables) {
+      // This is an example of config block.
+      // You can have as many of these as you want.
+      // You can only inject Providers (not instances)
+      // into config blocks.
+    }).
+    run(function(injectables) {
+      // This is an example of a run block.
+      // You can have as many of these as you want.
+      // You can only inject instances (not Providers)
+      // into run blocks
+    });
+                </code></pre>
+</section>
+<section>
+    <h2>Recommended Setup</h2>
+    <ul>
+        <li>A module for each feature</li>
+        <li>A module for each reusable component (especially directives and filters)</li>
+        <li>And an application level module which depends on the above modules and contains any initialization code</li>
+    </ul>
+</section>
+<section id="dep-injection">
+    <section>
+        <h2>Dependency Injection</h2>
+        <blockquote>
+            <b>Dependency injection</b> is a software design pattern that implements <b>inversion of control</b> and
+            allows a program design
+            to
+            follow the <b>dependency inversion principle</b>
+        </blockquote>
+    </section>
+    <section>
+        <h2>Dependency Injection</h2>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', ['mySecond'])
+    .controller('MyFirstCtrl', function (greeting) {
+        //code of controller
+    });
+
+angular.module('mySecond', [])
+    .factory('greeting', function () {
+        //code of service
+    });
+                </code></pre>
+    </section>
+</section>
+<section>
+    <section id="useful-directives">
+        <h2>Useful directives</h2>
+        <h4>ngClick</h4>
+        <pre class="javascript"><code data-trim class="html">
+    &lt;button ng-click=&quot;clickCallback()&quot;&gt;Click me&lt;/button&gt;
+</code><code data-trim>
+$scope.clickCallback = function(){
+    console.log('clicked');
+}
+        </code></pre>
+        <h4>ngShow/ngHide</h4>
+        <pre class="javascript"><code data-trim class="html">
+&lt;button ng-click=&quot;toggle()&quot;&gt;Toggle&lt;/button&gt;
+&lt;span ng-show=&quot;visibie&quot;&gt;Enabled&lt;/span&gt;
+&lt;span ng-hide=&quot;visibie&quot;&gt;Disabled&lt;/span&gt;
+</code><code data-trim>
+$scope.toggle = function(){
+    $scope.visible = !$scope.visible;
+}
+        </code></pre>
+    </section>
+    <section>
+        <h2>Useful directives</h2>
+        <h4>ngRepeat</h4>
+        <pre class="javascript"><code data-trim class="html">
+    &lt;p ng-repeat=&quot;item in items&quot;&gt;{{item.title}}&lt;/p&gt;
+</code><code data-trim>
+$scope.items = [
+  {
+    id: 1,
+    title: 'title 1'
+  },
+  {
+    id: 2,
+    title: 'title 2'
+  }
+]
+        </code></pre>
+        <h4>ngClass</h4>
+        <pre class="javascript"><code data-trim class="html">
+&lt;button ng-class=&quot;{'red':isRed}&quot;&gt;Button&lt;/button&gt;
+</code><code data-trim>
+$scope.isRed = true;
+        </code></pre>
+    </section>
+</section>
+<section id="controllers">
+    <h2>Controller Recipe</h2>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', [])
+    .controller('MyFirstCtrl', function () {
+        var myFirstCtrl = this;
+        myFirstCtrl.user = {
+            name: 'John',
+            surname: 'Nowak'
+        };
+        myFirstCtrl.getFullName = function() {
+            return myFirstCtrl.user.name + ' ' + myFirstCtrl.user.surname;
+        };
+    });
+                </code></pre>
+</section>
+<section>
+    <section data-transition="none">
+        <h2>Value Recipe</h2>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', [])
+    .value('userToken','a12345654321x');
+                </code></pre>
+        <small>Injectable only in the <b>run</b> phase</small>
+    </section>
+    <section data-transition="none">
+        <h2>Constant Recipe</h2>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', [])
+    .constant('USER_TOKEN','a12345654321x');
+                </code></pre>
+        <small>Injectable in both the <b>run</b> and the <b>config</b> phase</small>
+    </section>
+</section>
+<section>
+    <section data-transition="none">
+        <h2>Service Recipe</h2>
+        <h4>(module pattern)</h4>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', [])
+    .controller('MyFirstCtrl', function (userService) {
+        var myFirstCtrl = this;
+        myFirstCtrl.fullName = userService.getFullName();
+    })
+    .factory('userService', function () {
+        var user = {
+            name: 'John',
+            surname: 'Nowak'
+        };
+        return {
+            getFullName: function () {
+                return user.name + ' ' + user.surname;
+            }
+        }
+    });
+                </code></pre>
+    </section>
+    <section data-transition="none">
+        <h2>Service Recipe</h2>
+        <h4>(constructor function)</h4>
+                <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', [])
+    .controller('MyFirstCtrl', function (userService) {
+        var myFirstCtrl = this;
+        myFirstCtrl.fullName = userService.getFullName();
+    })
+    .service('userService', function () {
+        var that = this;
+        that.user = {
+            name: 'John',
+            surname: 'Nowak'
+        };
+        that.getFullName = function () {
+            return that.user.name + ' ' + that.user.surname;
+        };
+    });
+                </code></pre>
+    </section>
+</section>
+<section>
+    <h2>Provider Recipe</h2>
+    <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst', []).provider('userService', function () {
+    var salutation = '';
+    return {
+        setSalutation: function (salutationToSet) {
+            salutation = salutationToSet;
+        },
+        $get: function () {
+            var that = this;
+            that.user = {name: 'John', surname: 'Nowak'};
+            that.getFullName = function () {
+                return salutation + ' ' + that.user.name + ' ' + that.user.surname;
+            };
+        }
+    };
+});
+    </code></pre>
+    <pre class="javascript"><code contenteditable data-trim>
+angular.module('myFirst')
+    .config(function (userServiceProvider) {
+        userServiceProvider.setSalutation('Mr/Mrs');
+    });
+</code></pre>
+</section>
+</div>
+
+</div>
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

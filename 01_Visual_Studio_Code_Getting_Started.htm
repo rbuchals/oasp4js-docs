@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="01_Visual_Studio_Code_Getting_Started-Dateien/linkid.js" async="" type="text/javascript"></script><script src="01_Visual_Studio_Code_Getting_Started-Dateien/widgets.js" id="twitter-wjs"></script><script src="01_Visual_Studio_Code_Getting_Started-Dateien/gtm.js" async=""></script><script src="01_Visual_Studio_Code_Getting_Started-Dateien/analytics.js" async=""></script><script>
+    var isProduction = window.location.hostname === 'code.visualstudio.com';
+    var isHomePage = window.location.pathname === '/';
+    var isDocsIndex = window.location.pathname.toLowerCase() === '/docs';
+    
+    function downloadExperiment(experimentId) {
+        
+        // Copied code from Google analytics
+        // except for experimentId variable
+        function utmx_section(){}function utmx(){}(function(){var
+        k=experimentId,d=document,l=d.location,c=d.cookie;
+        if(l.search.indexOf('utm_expid='+k)>0)return;
+        function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+        indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+        length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+        '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+        '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+        '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+        valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+        '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+    
+    }
+    
+    // Remember to create if statements in lower script as well. 
+    if (isProduction) {
+        if (isHomePage) {
+            downloadExperiment('101350005-25');
+        }
+        if (isDocsIndex) {
+            downloadExperiment('101350005-20');
+        }
+    }
+    </script>
+    <script>
+    // this second script tag matters! Do not remove.
+    if (isProduction) {
+        if (isHomePage) {
+            utmx('url','A/B');
+        }
+        if (isDocsIndex) {
+            utmx('url','A/B');
+        }
+    }
+    
+    </script>    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="cn5-gurGUvjtlzniBhOIPjfKHzuAplh_R9Ju9tuL0DM">
+    <!-- Twitter and Facebook OpenGraph Metadata-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@code">
+    	<meta name="description" content="This topic helps you get acquainted with the Visual Studio Code user interface.">
+	<meta name="keywords" content="">
+    <meta name="ms.prod" content="vs-code">
+    <meta name="ms.TOCTitle" content="The Basics">
+    <meta name="ms.ContentId" content="DE4EAE2F-4542-4363-BB74-BE47D64141E6">
+    <meta name="ms.date" content="8/4/2016">
+    <meta name="ms.topic" content="article">
+	<!-- Twitter and Facebook OpenGraph Metadata-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="http://code.visualstudio.com/docs/editor/codebasics">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Basics of Visual Studio Code">
+    <meta property="og:description" content="This topic helps you get acquainted with the Visual Studio Code user interface.">
+    
+    <meta property="og:image" content="http://code.visualstudio.com/opengraphimg/opengraph-docs.png">
+    
+
+    <link rel="shortcut icon" href="https://code.visualstudio.com/images/favicon.ico">
+    <title>The Basics of Visual Studio Code</title>
+
+    <!-- TOFIX Not sure why bower isn't pulling this in-->
+    <link rel="stylesheet" type="text/css" href="01_Visual_Studio_Code_Getting_Started-Dateien/bootstrap.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="01_Visual_Studio_Code_Getting_Started-Dateien/vendor.css">
+    <link rel="stylesheet" href="01_Visual_Studio_Code_Getting_Started-Dateien/main.css">
+    <!-- endinject -->
+    <!--Google Analytics-->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    </script>
+    <!-- End Google Analytics -->
+    <script>
+    var appInsights=window.appInsights||function(config){
+        function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+    }({
+        instrumentationKey:"f18193ef-b93a-4f73-b640-e2ddd40507ae"
+    });
+    
+    window.appInsights=appInsights;
+    appInsights.trackPageView();
+    </script><script src="01_Visual_Studio_Code_Getting_Started-Dateien/ai.js"></script>
+    
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NK783Z"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NK783Z');</script>
+    <!-- End Google Tag Manager -->
+    
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS Feed for code.visualstudio.com" href="https://code.visualstudio.com/feed.xml">
+<script src="01_Visual_Studio_Code_Getting_Started-Dateien/button.js" async="" charset="utf-8" type="text/javascript"></script></head>
+<body class="win">
+    <!-- WEDCS -->
+    <script type="text/javascript">
+        // Defaults for varAutoFirePV and varCustomerTracking seem to work. varClickTracking doesn't, so called explicitly.
+        var varClickTracking = 1;
+        var Route = "20052";
+        document.write("<script type='text/javascript' src='" + (window.location.protocol) + "//c.microsoft.com/ms.js'" + "'><\/script>");
+    </script><script type="text/javascript" src="01_Visual_Studio_Code_Getting_Started-Dateien/ms.js" '=""></script>
+    <!-- End WEDCS -->
+    <div itemscope="" itemtype="http://schema.org/SoftwareApplication">
+            <a id="skip-to-content" class="link-button" href="#main-content">Skip to content<i>&nbsp;</i><span class="glyphicon glyphicon-menu-down"></span></a>
+            <div class="navbar navbar-inverse ">
+                <nav role="navigation">
+                    <div class="container">
+                        <div class="nav navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            <a class="navbar-brand" href="https://code.visualstudio.com/"><span itemprop="name">Visual Studio Code</span></a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="active"><a id="nav-docs" href="https://code.visualstudio.com/Docs">Docs</a></li>
+                                <li><a id="nav-updates" href="https://code.visualstudio.com/Updates">Updates</a></li>
+                                <li><a id="nav-blogs" href="https://code.visualstudio.com/blogs">Blog</a></li>
+                                <li><a href="https://marketplace.visualstudio.com/VSCode" target="_blank" id="nav-extensions">Extensions</a></li>
+                                <li><a id="nav-faqs" href="https://code.visualstudio.com/Docs/FAQ">FAQ</a></li>
+                                <li class="visible-xs"><a href="https://www.github.com/Microsoft/vscode" target="_blank">GitHub Project</a></li>
+                                <li class="search visible-xs"><a href="https://code.visualstudio.com/Search">Search</a></li>
+                            </ul>
+            
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="https://code.visualstudio.com/Search" title="Search" class="btn search-btn" id="nav-search">
+                                        <img src="01_Visual_Studio_Code_Getting_Started-Dateien/search.svg" alt="Search" height="16px" width="16px">
+                                    </a>
+                                </li>
+                                <li class="search">
+                                    <form class="nav-search search-form">
+                                        <div class="input-group">
+                                            <input name="q" class="search-box form-control" placeholder="Search Docs" type="text">
+                                            <span class="input-group-btn">
+                                                <button tabindex="-1" class="btn" type="submit">
+                                                    <img src="01_Visual_Studio_Code_Getting_Started-Dateien/search.svg" alt="Search" height="16px" width="16px">
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>                    </li>
+                                <!-- this was hiden in the home and download page, keeping it for now -->
+                                <li><a itemprop="downloadUrl" class="link-button" href="https://code.visualstudio.com/Download" id="nav-download"><img src="01_Visual_Studio_Code_Getting_Started-Dateien/download.svg" alt="Download VS Code" height="16px" width="16px"><span class="hidden-sm">Download</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>            <div class="updates-banner  ">
+                <div class="container">
+                    <p class="message"><a href="https://code.visualstudio.com/Updates" id="banner-link-updates">Version <span itemprop="softwareVersion">1.4</span></a> is now available! Read about the new features and fixes in July.</p>
+                </div>
+                <div role="button" title="Dismiss this update" class="dismiss-btn" id="banner-dismiss-btn"><span class="sr-only">Dismiss this update</span><span aria-hidden="true" class="glyph-icon"></span></div>
+            </div>        <div role="main" id="main-content">
+			
+
+<div class="container body-content docs">
+    <div class="row">
+        <div class="col-md-2">
+            <nav id="docs-navbar" class="docs-nav visible-md visible-lg affix">
+            	<ul class="nav" id="main-nav">
+            		<li><a class="docs-home" href="https://code.visualstudio.com/docs">Overview</a></li>
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#setup-articles" data-parent="#main-nav" data-toggle="collapse">Setup</a>
+            					<ul id="setup-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/setup/setup-overview">Overview</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/setup/osx">OS X</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/setup/linux">Linux</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/setup/windows">Windows</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/setup/additional-components">Additional Components</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel active expanded">
+            					<a class="area" href="#editor-articles" data-parent="#main-nav" data-toggle="collapse">Editor</a>
+            					<ul id="editor-articles" class="collapse in">
+            					
+            						<li class="active"><a href="https://code.visualstudio.com/docs/editor/codebasics">The Basics</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/extension-gallery">Extension Marketplace</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/editingevolved">Editing Evolved</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/versioncontrol">Version Control</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/debugging">Debugging</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/tasks">Tasks</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/tabs">Tabs</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/accessibility">Accessibility</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/editor/whyvscode">Why VS Code</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#customization-articles" data-parent="#main-nav" data-toggle="collapse">Customization</a>
+            					<ul id="customization-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/overview">Overview</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/userandworkspace">User and Workspace Settings</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/keybindings">Key Bindings</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/userdefinedsnippets">Snippets</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/colorizer">Colorizer</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/themes">Themes</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/customization/locales">Display Language</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#languages-articles" data-parent="#main-nav" data-toggle="collapse">Languages</a>
+            					<ul id="languages-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/overview">Overview</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/javascript">JavaScript</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/csharp">C#</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/cpp">C++</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/json">JSON</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/html">HTML</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/php">PHP</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/python">Python</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/markdown">Markdown</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/typescript">TypeScript</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/css">CSS, Sass and Less</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/languages/dockerfile">Dockerfile</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#runtimes-articles" data-parent="#main-nav" data-toggle="collapse">Runtimes</a>
+            					<ul id="runtimes-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/runtimes/nodejs">Node.js</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/runtimes/dotnet">.NET Core</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/runtimes/unity">Unity</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/runtimes/office">Office</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#extensions-articles" data-parent="#main-nav" data-toggle="collapse">Extensions</a>
+            					<ul id="extensions-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/overview">Overview</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/example-hello-world">Example-Hello World</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/example-word-count">Example-Word Count</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/example-language-server">Example-Language Server</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/example-debuggers">Example-Debuggers</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/patterns-and-principles">Principles and Patterns</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/debugging-extensions">Running and Debugging Extensions</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/install-extension">Installing Extensions</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/testing-extensions">Testing Extensions</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensions/our-approach">Our Approach</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#extensionapi-articles" data-parent="#main-nav" data-toggle="collapse">Extensibility Reference</a>
+            					<ul id="extensionapi-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/overview">Overview</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/extension-manifest">Extension Manifest</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/extension-points">Contribution Points</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/activation-events">Activation Events</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/vscode-api">API vscode namespace</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/vscode-api-commands">API complex commands</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/extensionAPI/api-debugging">API debugging</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" href="#tools-articles" data-parent="#main-nav" data-toggle="collapse">Tools</a>
+            					<ul id="tools-articles" class="collapse ">
+            					
+            						<li><a href="https://code.visualstudio.com/docs/tools/vscecli">Publishing Tool</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/tools/yocode">Extension Generator</a></li>
+            					
+            						<li><a href="https://code.visualstudio.com/docs/tools/samples">Samples</a></li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            		
+            	</ul>
+            </nav>
+            <nav id="small-nav" class="docs-nav hidden-md hidden-lg">
+            	<h4>Topics</h4>
+            	<select id="small-nav-dropdown">
+            		<option selected="selected" value="/docs">Overview</option>
+            		
+            			
+            				<optgroup label="Setup">
+            				
+            					<option value="/docs/setup/setup-overview">Overview</option>
+            				
+            					<option value="/docs/setup/osx">OS X</option>
+            				
+            					<option value="/docs/setup/linux">Linux</option>
+            				
+            					<option value="/docs/setup/windows">Windows</option>
+            				
+            					<option value="/docs/setup/additional-components">Additional Components</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Editor">
+            				
+            					<option value="/docs/editor/codebasics" "selected"="">The Basics</option>
+            				
+            					<option value="/docs/editor/extension-gallery">Extension Marketplace</option>
+            				
+            					<option value="/docs/editor/editingevolved">Editing Evolved</option>
+            				
+            					<option value="/docs/editor/versioncontrol">Version Control</option>
+            				
+            					<option value="/docs/editor/debugging">Debugging</option>
+            				
+            					<option value="/docs/editor/tasks">Tasks</option>
+            				
+            					<option value="/docs/editor/integrated-terminal">Integrated Terminal</option>
+            				
+            					<option value="/docs/editor/tabs">Tabs</option>
+            				
+            					<option value="/docs/editor/accessibility">Accessibility</option>
+            				
+            					<option value="/docs/editor/whyvscode">Why VS Code</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Customization">
+            				
+            					<option value="/docs/customization/overview">Overview</option>
+            				
+            					<option value="/docs/customization/userandworkspace">User and Workspace Settings</option>
+            				
+            					<option value="/docs/customization/keybindings">Key Bindings</option>
+            				
+            					<option value="/docs/customization/userdefinedsnippets">Snippets</option>
+            				
+            					<option value="/docs/customization/colorizer">Colorizer</option>
+            				
+            					<option value="/docs/customization/themes">Themes</option>
+            				
+            					<option value="/docs/customization/locales">Display Language</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Languages">
+            				
+            					<option value="/docs/languages/overview">Overview</option>
+            				
+            					<option value="/docs/languages/javascript">JavaScript</option>
+            				
+            					<option value="/docs/languages/csharp">C#</option>
+            				
+            					<option value="/docs/languages/cpp">C++</option>
+            				
+            					<option value="/docs/languages/json">JSON</option>
+            				
+            					<option value="/docs/languages/html">HTML</option>
+            				
+            					<option value="/docs/languages/php">PHP</option>
+            				
+            					<option value="/docs/languages/python">Python</option>
+            				
+            					<option value="/docs/languages/markdown">Markdown</option>
+            				
+            					<option value="/docs/languages/typescript">TypeScript</option>
+            				
+            					<option value="/docs/languages/css">CSS, Sass and Less</option>
+            				
+            					<option value="/docs/languages/dockerfile">Dockerfile</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Runtimes">
+            				
+            					<option value="/docs/runtimes/nodejs">Node.js</option>
+            				
+            					<option value="/docs/runtimes/dotnet">.NET Core</option>
+            				
+            					<option value="/docs/runtimes/unity">Unity</option>
+            				
+            					<option value="/docs/runtimes/office">Office</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Extensions">
+            				
+            					<option value="/docs/extensions/overview">Overview</option>
+            				
+            					<option value="/docs/extensions/example-hello-world">Example-Hello World</option>
+            				
+            					<option value="/docs/extensions/example-word-count">Example-Word Count</option>
+            				
+            					<option value="/docs/extensions/example-language-server">Example-Language Server</option>
+            				
+            					<option value="/docs/extensions/example-debuggers">Example-Debuggers</option>
+            				
+            					<option value="/docs/extensions/patterns-and-principles">Principles and Patterns</option>
+            				
+            					<option value="/docs/extensions/debugging-extensions">Running and Debugging Extensions</option>
+            				
+            					<option value="/docs/extensions/install-extension">Installing Extensions</option>
+            				
+            					<option value="/docs/extensions/testing-extensions">Testing Extensions</option>
+            				
+            					<option value="/docs/extensions/our-approach">Our Approach</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Extensibility Reference">
+            				
+            					<option value="/docs/extensionAPI/overview">Overview</option>
+            				
+            					<option value="/docs/extensionAPI/extension-manifest">Extension Manifest</option>
+            				
+            					<option value="/docs/extensionAPI/extension-points">Contribution Points</option>
+            				
+            					<option value="/docs/extensionAPI/activation-events">Activation Events</option>
+            				
+            					<option value="/docs/extensionAPI/vscode-api">API vscode namespace</option>
+            				
+            					<option value="/docs/extensionAPI/vscode-api-commands">API complex commands</option>
+            				
+            					<option value="/docs/extensionAPI/api-debugging">API debugging</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Tools">
+            				
+            					<option value="/docs/tools/vscecli">Publishing Tool</option>
+            				
+            					<option value="/docs/tools/yocode">Extension Generator</option>
+            				
+            					<option value="/docs/tools/samples">Samples</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            		
+            	</select>
+            </nav>		</div>
+		<div class="col-sm-9 col-md-8 body">
+			<div class="edit-github pull-right">
+				<a href="https://github.com/Microsoft/vscode-docs/blob/master/docs/editor/codebasics.md" tabindex="-1">
+					<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span><i>&nbsp;</i><span class="hidden-xs">Edit</span></button>
+				</a>
+			</div>
+			<h1>The Basics of Visual Studio Code</h1>
+<p>At its heart, Visual Studio Code is a code editor. Like many other 
+code editors, VS Code adopts a common user interface and layout of an 
+explorer on the left, showing all of the files and folders you have 
+access to, and an editor on the right, showing the content of the files 
+you have opened.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_hero.png" alt="code basics hero"></p>
+<h2 id="_files-folders-projects" data-needslink="_files-folders-projects">Files, Folders &amp; Projects<a class="hash-link hidden" href="#_files-folders-projects">#</a></h2>
+<p>VS Code is file and folder based - you can get started immediately by opening a file or folder in VS Code.</p>
+<p>On top of this, VS Code can read and take advantage of a variety of 
+project files defined by different frameworks and platforms. For 
+example, if the folder you opened in VS Code contains one or more <code>package.json</code>, <code>project.json</code>, <code>tsconfig.json</code>,
+ or .NET Core Visual Studio solution and project files, VS Code will 
+read these files and use them to provide additional functionality, such 
+as rich IntelliSense in the editor.</p>
+<h2 id="_basic-layout" data-needslink="_basic-layout">Basic Layout<a class="hash-link hidden" href="#_basic-layout">#</a></h2>
+<p>VS Code comes with a simple and intuitive layout that maximizes the 
+space provided for the editor while leaving ample room to browse and 
+access the full context of your folder or project. The UI is divided 
+into five areas:</p>
+<ul>
+<li><strong>Editor</strong> The main area to edit your files. You can open up to three editors side by side.</li>
+<li><strong>Side Bar</strong> Contains different views like the Explorer to assist you while working on your project.</li>
+<li><strong>Status Bar</strong> Information about the opened project and the files you edit.</li>
+<li><strong>View Bar</strong> Located on the far left-hand side, this 
+lets you switch between views and gives you additional context-specific 
+indicators, like the number of outgoing changes when Git is enabled.</li>
+<li><strong>Panels</strong> You can display different panels below the 
+editor region for output or debug information, errors and warnings, or 
+an integrated terminal.</li>
+</ul>
+<p>Each time you start VS Code, it opens up in the same state it was in 
+when you last closed it. The folder, layout, and opened files are 
+preserved.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_layout.png" alt="VS Code Layout"></p>
+<p>VS Code allows up to three visible editors at any one time, allowing 
+you to edit or view up to three files together side by side. The open 
+files in each editor are displayed with tabbed headers (Tabs) at the top
+ of the editor region. To learn more about tabbed headers, see the <a href="https://code.visualstudio.com/docs/editor/tabs">Tabs</a> topic.</p>
+<blockquote>
+<p><strong>Tip:</strong> You can move the Side Bar to the right hand side (<strong>View</strong> &gt; <strong>Move Sidebar</strong>) or toggle its visibility (<span title="OSX: ⌘B, Linux: Ctrl+B" class="dynamic-keybinding keybinding win" data-osx="⌘B" data-win="Ctrl+B" data-linux="Ctrl+B">Ctrl+B</span>).</p>
+</blockquote>
+<h2 id="_side-by-side-editing" data-needslink="_side-by-side-editing">Side by Side Editing<a class="hash-link hidden" href="#_side-by-side-editing">#</a></h2>
+<p>You can have up to three editors open side by side.</p>
+<p>If you already have one editor open, there are multiple ways of opening another editor to the side of the existing one:</p>
+<ul>
+<li><span class="keybinding">Ctrl</span> (Mac: <span class="keybinding">'Cmd'</span>) click on a file in the Explorer.</li>
+<li><span title="OSX: ⌘\, Linux: Ctrl+\" class="dynamic-keybinding keybinding win" data-osx="⌘\" data-win="Ctrl+\" data-linux="Ctrl+\">Ctrl+\</span> to split the active editor into two.</li>
+<li><strong>Open to the Side</strong> from the Explorer context menu on a file.</li>
+<li>Click the <strong>Split Editor</strong> button in the upper right of an editor.</li>
+<li>Drag and drop a file to the either side of the editor region.</li>
+</ul>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_sidebyside.png" alt="Side by Side editing"></p>
+<p>Whenever you open another file, the editor that is active will 
+display the content of that file. So if you have two editors side by 
+side and you want to open file 'foo.cs' into the right hand editor, make
+ sure that editor is active (by clicking inside it) before opening file 
+'foo.cs'.</p>
+<p>When you have more than one editor open you can switch between them quickly by holding the <span class="keybinding">Ctrl</span> (Mac: <span class="keybinding">'Cmd'</span>) key and pressing <span class="keybinding">1</span>, <span class="keybinding">2</span>, or <span class="keybinding">3</span>.</p>
+<blockquote>
+<p><strong>Tip:</strong> You can resize editors and reorder them. Drag and drop the editor title area to reposition or resize the editor.</p>
+</blockquote>
+<h2 id="_explorer" data-needslink="_explorer">Explorer<a class="hash-link hidden" href="#_explorer">#</a></h2>
+<p>The Explorer is used to browse, open, and manage all of the files and folders in your project.</p>
+<p>After opening a folder in VS Code, the contents of the folder are shown in the Explorer. You can do many things from here:</p>
+<ul>
+<li>Create, delete, and rename files and folders.</li>
+<li>Move files and folders with drag and drop.</li>
+<li>Use the context menu to explore all options.</li>
+</ul>
+<blockquote>
+<p><strong>Tip:</strong> You can drag and drop files into the Explorer from outside VS Code to copy them.</p>
+</blockquote>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_explorer_menu.png" alt="Explorer Menu"></p>
+<p>VS Code works very well with other tools that you might use, 
+especially command-line tools. If you want to run a command-line tool in
+ the context of the folder you currently have open in VS Code, 
+right-click the folder and select <strong>Open in Command Prompt</strong> (or <strong>Open in Terminal</strong> on OS X or Linux).</p>
+<p>You can also navigate to the location of a file or folder in the 
+native Explorer by right-clicking on a file or folder and selecting <strong>Reveal in Explorer</strong> (or <strong>Reveal in Finder</strong> on the Mac or <strong>Open Containing Folder</strong> on Linux).</p>
+<blockquote>
+<p><strong>Tip:</strong> Type <span title="OSX: ⌘P, Linux: Ctrl+P" class="dynamic-keybinding keybinding win" data-osx="⌘P" data-win="Ctrl+P" data-linux="Ctrl+P">Ctrl+P</span> (<strong>Quick Open</strong>) to quickly search and open a file by its name.</p>
+</blockquote>
+<p>By default, VS Code excludes some folders from the explorer (for example. <code>.git</code>). Use the <code>files.exclude</code> <a href="https://code.visualstudio.com/docs/customization/userandworkspace">setting</a> to configure rules for hiding files and folders from the explorer.</p>
+<p><strong>Tip:</strong> This is really useful to hide derived resources files, like <code>\*.meta</code> in Unity, or <code>\*.js</code> in a TypeScript project. For Unity to exclude the <code>\*.cs.meta</code> files, the pattern to choose would be: <code>"**/*.cs.meta": true</code>. For TypeScript, you can exclude generated JavaScript for TypeScript files with: <code>"**/*.js": {"when": "$(basename).ts"}</code>.</p>
+<h2 id="_open-editors" data-needslink="_open-editors">Open Editors<a class="hash-link hidden" href="#_open-editors">#</a></h2>
+<p>At the top of the Explorer is a section labeled <strong>OPEN EDITORS</strong>.
+ This is a list of active files or previews. These are files you 
+previously opened in VS Code that you're working on. For example, a file
+ will be listed in the <strong>OPEN EDITORS</strong> section if you:</p>
+<ul>
+<li>Make a change to a file.</li>
+<li>Double-click a file in the Explorer.</li>
+<li>Open a file that is not part of the current folder.</li>
+</ul>
+<p>Just click an item in the <strong>OPEN EDITORS</strong> section, and it becomes active in VS Code.</p>
+<p>Once you are done with your task, you can remove files individually from the <strong>OPEN EDITORS</strong> section, or you can remove all files by using the <strong>View: Close All Editors</strong> or <strong>View: Close All Editors in Group</strong> actions.</p>
+<h2 id="_configuring-the-editor" data-needslink="_configuring-the-editor">Configuring the Editor<a class="hash-link hidden" href="#_configuring-the-editor">#</a></h2>
+<p>VS Code gives you many options to configure the editor. You can set 
+options globally through user settings or per project/folder through 
+workspace settings. Settings values are kept in a <code>settings.json</code> <a href="https://code.visualstudio.com/docs/customization/userandworkspace#_settings-file-locations">file</a>.</p>
+<ul>
+<li>
+<p>Select <strong>File</strong> &gt; <strong>Preferences</strong> &gt; <strong>User Settings</strong> (or press <span title="OSX: ⇧⌘P, Linux: Ctrl+Shift+P" class="dynamic-keybinding keybinding win" data-osx="⇧⌘P" data-win="Ctrl+Shift+P" data-linux="Ctrl+Shift+P">Ctrl+Shift+P</span>, type <code>user</code> and press <code>Enter</code>) to edit the user settings.json file.</p>
+</li>
+<li>
+<p>Select <strong>File</strong> &gt; <strong>Preferences</strong> &gt; <strong>Workspace Settings</strong> (or press <span title="OSX: ⇧⌘P, Linux: Ctrl+Shift+P" class="dynamic-keybinding keybinding win" data-osx="⇧⌘P" data-win="Ctrl+Shift+P" data-linux="Ctrl+Shift+P">Ctrl+Shift+P</span>, type <code>worksp</code> and press <code>Enter</code>) to edit the workspace settings.json file.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note for Mac users:</strong> The <strong>Preferences</strong> menu is under <strong>Code</strong> not <strong>File</strong>. For example, <strong>Code</strong> &gt; <strong>Preferences</strong> &gt; <strong>User Settings</strong>.</p>
+</blockquote>
+<p>You will see the VS Code <a href="https://code.visualstudio.com/docs/customization/userandworkspace#_default-settings">Default Settings</a> in the left window and your editable <code>settings.json</code> on the right. You can easily review and copy settings from <code>Default Settings</code>.</p>
+<p>After editing your settings, type <span title="OSX: ⌘S, Linux: Ctrl+S" class="dynamic-keybinding keybinding win" data-osx="⌘S" data-win="Ctrl+S" data-linux="Ctrl+S">Ctrl+S</span> to save your changes. The changes will take effect immediately.</p>
+<h2 id="_save-auto-save" data-needslink="_save-auto-save">Save / Auto Save<a class="hash-link hidden" href="#_save-auto-save">#</a></h2>
+<p>By default, VS Code requires an explicit action to save your changes to disk, <span title="OSX: ⌘S, Linux: Ctrl+S" class="dynamic-keybinding keybinding win" data-osx="⌘S" data-win="Ctrl+S" data-linux="Ctrl+S">Ctrl+S</span>.</p>
+<p>However, it's easy to turn on <code>Auto Save</code>, which will save
+ your changes after a configured delay or when focus leaves the editor. 
+With this option turned on, there is no need to explicitly save the 
+file.</p>
+<p>To configure <code>Auto Save</code>, open <strong>User Settings</strong> or <strong>Workspace Settings</strong> and find the associated settings:</p>
+<ul>
+<li><code>files.autoSave</code>: Can have the values <code>off</code> to disable auto save, <code>afterDelay</code> to save files after a configured delay and <code>onFocusChange</code> to save files when focus moves out of the editor of the dirty file.</li>
+<li><code>files.autoSaveDelay</code>: Configures the delay in milliseconds when <code>files.autoSave</code> is configured to <code>afterDelay</code>.</li>
+</ul>
+<h2 id="_search-across-files" data-needslink="_search-across-files">Search Across Files<a class="hash-link hidden" href="#_search-across-files">#</a></h2>
+<p>VS Code allows you to quickly search over all files in the currently-opened folder.  Simply type <span title="OSX: ⇧⌘F, Linux: Ctrl+Shift+F" class="dynamic-keybinding keybinding win" data-osx="⇧⌘F" data-win="Ctrl+Shift+F" data-linux="Ctrl+Shift+F">Ctrl+Shift+F</span>
+ and type in your search. Search results are grouped into files 
+containing the search term, with an indication of the hits in each file 
+and its location. Expand a file to see a preview of all of the hits 
+within that file. Then single-click on one of the hits to view it in the
+ editor.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_search.png" alt="A simple text search across files"></p>
+<blockquote>
+<p><strong>Tip:</strong> We support regular expression searching in the search box, too.</p>
+</blockquote>
+<p>You can configure advanced search options by typing <span title="OSX: ⇧⌘J, Linux: Ctrl+Shift+J" class="dynamic-keybinding keybinding win" data-osx="⇧⌘J" data-win="Ctrl+Shift+J" data-linux="Ctrl+Shift+J">Ctrl+Shift+J</span>. This will show additional fields to configure the search.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_searchadvanced.png" alt="Advanced search options"></p>
+<p>In the two input boxes below the search box, you can include and 
+exclude files. Click on the toggle to the right to enable the glob 
+pattern syntax:</p>
+<ul>
+<li><code>*</code> to match one or more characters in a path segment</li>
+<li><code>?</code> to match on one character in a path segment</li>
+<li><code>**</code> to match any number of path segments, including none</li>
+<li><code>{}</code> to group conditions (e.g. <code>{**/*.html,**/*.txt}</code> matches all HTML and text files)</li>
+<li><code>[]</code> to declare a range of characters to match (e.g., <code>example.[0-9]</code> to match on <code>example.0</code>, <code>example.1</code>, …)</li>
+</ul>
+<p>VS Code excludes some folders by default to reduce the number of search results that you are not interested in (for example: <code>node_modules</code>). Open settings to change these rules under the <code>files.exclude</code> and <code>search.exclude</code> section.</p>
+<blockquote>
+<p><strong>Tip:</strong> From the Explorer you can right-click on a folder and select <strong>Find in Folder</strong> to search inside a folder only.</p>
+</blockquote>
+<p>You can also Search and Replace across files. Expand the Search widget to display the Replace text box.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_global-search-replace.png" alt="search and replace"></p>
+<p>When you type text into the Replace text box, you will see a diff 
+display of the pending changes. You can replace across all files from 
+the Replace text box, replace all in one file or replace a single 
+change.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_search-replace-example.png" alt="search and replace diff view"></p>
+<h2 id="_command-palette" data-needslink="_command-palette">Command Palette<a class="hash-link hidden" href="#_command-palette">#</a></h2>
+<p>VS Code is equally accessible from the keyboard. The most important key combination to know is <span title="OSX: ⇧⌘P, Linux: Ctrl+Shift+P" class="dynamic-keybinding keybinding win" data-osx="⇧⌘P" data-win="Ctrl+Shift+P" data-linux="Ctrl+Shift+P">Ctrl+Shift+P</span>, which brings up the <strong>Command Palette</strong>.
+ From here, you have access to all of the functionality of VS Code, 
+including keyboard shortcuts for the most common operations.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_commands.png" alt="Command Palette"></p>
+<p>The Command Palette provides access to many commands. You can execute
+ editor commands, open files, search for symbols, and see a quick 
+outline of a file, all using the same interactive window. Here are a few
+ tips:</p>
+<ul>
+<li><span title="OSX: ⌘P, Linux: Ctrl+P" class="dynamic-keybinding keybinding win" data-osx="⌘P" data-win="Ctrl+P" data-linux="Ctrl+P">Ctrl+P</span> will let you navigate to any file or symbol by simply typing its name</li>
+<li><span title="OSX: ⌃⇧Tab, Linux: Ctrl+Shift+Tab" class="dynamic-keybinding keybinding win" data-osx="⌃⇧Tab" data-win="Ctrl+Shift+Tab" data-linux="Ctrl+Shift+Tab">Ctrl+Shift+Tab</span> will cycle you through the last set of files opened</li>
+<li><span title="OSX: ⇧⌘P, Linux: Ctrl+Shift+P" class="dynamic-keybinding keybinding win" data-osx="⇧⌘P" data-win="Ctrl+Shift+P" data-linux="Ctrl+Shift+P">Ctrl+Shift+P</span> will bring you directly to the editor commands</li>
+<li><span title="OSX: ⇧⌘O, Linux: Ctrl+Shift+O" class="dynamic-keybinding keybinding win" data-osx="⇧⌘O" data-win="Ctrl+Shift+O" data-linux="Ctrl+Shift+O">Ctrl+Shift+O</span> will let you navigate to a specific symbol in a file</li>
+<li><span title="OSX: ⌃G, Linux: Ctrl+G" class="dynamic-keybinding keybinding win" data-osx="⌃G" data-win="Ctrl+G" data-linux="Ctrl+G">Ctrl+G</span> will let you navigate to a specific line in a file</li>
+</ul>
+<p>Type <code>?</code> into the input field to get a list of available commands you can execute from here:</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_quickopenhelp.png" alt="Quick Open Help"></p>
+<h2 id="_quick-file-navigation" data-needslink="_quick-file-navigation">Quick File Navigation<a class="hash-link hidden" href="#_quick-file-navigation">#</a></h2>
+<p>The Explorer is great for navigating between files when you are 
+exploring a project. However, when you are working on a task, you will 
+find yourself quickly jumping between the same set of files. VS Code 
+provides two powerful commands to navigate in and across files with 
+easy-to-use key bindings.</p>
+<p>Hold <span class="keybinding">Ctrl</span> and press <span class="keybinding">Tab</span> to view a list of all files open in an editor group. To open one of these files, use <span class="keybinding">Tab</span> again to pick the file you want to navigate to, then release <span class="keybinding">Ctrl</span> to open it.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_quicknav.png" alt="Quick Navigation"></p>
+<p>Alternatively, you can use <span title="OSX: ⌃-, Linux: Ctrl+Alt+-" class="dynamic-keybinding keybinding win" data-osx="⌃-" data-win="Alt+Left" data-linux="Ctrl+Alt+-">Alt+Left</span> and <span title="OSX: ⌃⇧-, Linux: Ctrl+Shift+-" class="dynamic-keybinding keybinding win" data-osx="⌃⇧-" data-win="Alt+Right" data-linux="Ctrl+Shift+-">Alt+Right</span>
+ to navigate between files and edit locations. If you are jumping around
+ between different lines of the same file, these shortcuts allow you to 
+navigate between those locations easily.</p>
+<blockquote>
+<p><strong>Tip:</strong> You can open any file by its name when you type <span title="OSX: ⌘P, Linux: Ctrl+P" class="dynamic-keybinding keybinding win" data-osx="⌘P" data-win="Ctrl+P" data-linux="Ctrl+P">Ctrl+P</span> (<strong>Quick Open</strong>).</p>
+</blockquote>
+<h2 id="_file-encoding-support" data-needslink="_file-encoding-support">File Encoding Support<a class="hash-link hidden" href="#_file-encoding-support">#</a></h2>
+<p>Set the file encoding globally or per workspace by using the <code>files.encoding</code> setting in <strong>User Settings</strong> or <strong>Workspace Settings</strong>.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_filesencodingsetting.png" alt="files.encoding setting"></p>
+<p>You can view the file encoding in the status bar.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_fileencoding.png" alt="Encoding in status bar"></p>
+<p>Click on the encoding button in the status bar to reopen or save the active file with a different encoding.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_encodingclicked.png" alt="Reopen or save with a different encoding"></p>
+<p>Then choose an encoding.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_encodingselection.png" alt="Select an encoding"></p>
+<h2 id="_launching-from-the-command-line" data-needslink="_launching-from-the-command-line">Launching from the Command Line<a class="hash-link hidden" href="#_launching-from-the-command-line">#</a></h2>
+<p>You can launch VS Code from the command line to quickly open a file, 
+folder, or project. Typically, you open VS Code within the context of a 
+folder. We find the best way to do this is to simply type:</p>
+<pre><code>code .
+</code></pre>
+<blockquote>
+<p><strong>Tip:</strong> We have instructions for Mac users in our <a href="https://code.visualstudio.com/docs/setup/osx">Setup</a> topic that enable you to start VS Code from within a terminal.  We add the VS Code executable to the <code>PATH</code> environment variable on Windows and Linux automatically during installation.</p>
+</blockquote>
+<p>Sometimes you will want to open or create a file. If the specified files does not exist, VS Code will create them for you:</p>
+<pre><code>code index.html style.css readme.md
+</code></pre>
+<blockquote>
+<p><strong>Tip:</strong> You can have as many file names as you want separated by spaces.</p>
+</blockquote>
+<h2 id="_additional-command-line-arguments" data-needslink="_additional-command-line-arguments">Additional Command line arguments<a class="hash-link hidden" href="#_additional-command-line-arguments">#</a></h2>
+<p>Here are optional command line arguments you can use when starting VS Code at the command line via <code>code</code>:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-h</code> or <code>--help</code></td>
+<td>Print usage</td>
+</tr>
+<tr>
+<td><code>-v</code> or <code>--version</code></td>
+<td>Print VS Code version (e.g. 0.10.10)</td>
+</tr>
+<tr>
+<td><code>-n</code> or <code>--new-window</code></td>
+<td>Opens a new session of VS Code instead of restoring the previous session (default).</td>
+</tr>
+<tr>
+<td><code>-r</code> or <code>--reuse-window</code></td>
+<td>Forces opening a file or folder in the last active window.</td>
+</tr>
+<tr>
+<td><code>-g</code> or <code>--goto</code></td>
+<td>When used with <em>file:line:column?</em>, opens a file at a specific line and optional column position. This argument is provided since some operating systems permit <code>:</code> in a file name.</td>
+</tr>
+<tr>
+<td><em>file</em></td>
+<td>Name of a file to open. If the file doesn't exist, it will be 
+created and marked as edited. You can specify multiple files by 
+separating each file name with a space.</td>
+</tr>
+<tr>
+<td><em>file:line:column?</em></td>
+<td>Name of a file to open at the specified line and optional column 
+position. You can specify multiple files in this manner, but you must 
+use the <code>-g</code> argument (once) before using the <em>file:line:column?</em> specifier.</td>
+</tr>
+<tr>
+<td><em>folder</em></td>
+<td>Name of a folder to open. You can specify multiple folders.</td>
+</tr>
+<tr>
+<td><code>-d</code> or <code>--diff</code></td>
+<td>Open a file difference editor. Requires two file paths as arguments.</td>
+</tr>
+<tr>
+<td><code>--locale</code></td>
+<td>Set the display language (locale) for the VS Code session.  Supported locales are: <code>en-US</code>, <code>zh-TW</code>, <code>zh-CN</code>, <code>fr</code>, <code>de</code>, <code>it</code>, <code>ja</code>, <code>ko</code>, <code>ru</code>, <code>es</code></td>
+</tr>
+<tr>
+<td><code>--disable-extensions</code></td>
+<td>Disable all installed extensions. Extensions will still be visible in the <code>Extensions: Show Installed Extensions</code> dropdown but they will never be activated.</td>
+</tr>
+<tr>
+<td><code>--list-extensions</code></td>
+<td>List the installed extensions.</td>
+</tr>
+<tr>
+<td><code>--install-extension</code></td>
+<td>Install an extension. Provide the full extension name <code>publisher.extension</code> as an argument.</td>
+</tr>
+<tr>
+<td><code>--uninstall-extension</code></td>
+<td>Uninstall an extension. Provide the full extension name <code>publisher.extension</code> as an argument.</td>
+</tr>
+<tr>
+<td><code>-w</code> or <code>--wait</code></td>
+<td>Wait for the window to be closed before returning</td>
+</tr>
+</tbody>
+</table>
+<p>For both files and folders, you can use absolute or relative paths. 
+Relative paths are relative to the current directory of the command 
+prompt where you run <code>code</code>.</p>
+<p>If you specify more than one file or folder at the command line, VS Code will open only a single instance.</p>
+<h2 id="_opening-a-project" data-needslink="_opening-a-project">Opening a Project<a class="hash-link hidden" href="#_opening-a-project">#</a></h2>
+<p>VS Code does not distinguish between opening a folder and opening a 
+project. If VS Code detects a project in the folder you opened (for 
+example, a C# project), that project context will be displayed on the 
+Status Bar. If more than one project is found, you can switch projects 
+from there as well.</p>
+<p>To open a project contained in the folder <code>C:\src\WebApp</code>, you would start VS Code like this:</p>
+<pre><code>code C:\src\webapp
+</code></pre>
+<p>After VS Code opens, just open source files and use the Status Bar to switch the active project as needed.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_status.png" alt="Status Bar"></p>
+<h2 id="_window-management" data-needslink="_window-management">Window Management<a class="hash-link hidden" href="#_window-management">#</a></h2>
+<p>VS Code has some options to control how windows should be opened or restored between sessions.</p>
+<p>The <code>window.openFilesInNewWindow</code> setting controls if 
+files should open in a new window instead of reusing an existing VS Code
+ instance. By default, VS Code will open a new window when you 
+double-click on a file outside VS Code or open a file from the command 
+line. Set this to <code>false</code> to reuse the last active instance of VS Code and open files in there.</p>
+<p>The <code>window.reopenFolders</code> setting tells VS Code how to restore the opened windows of your previous session. By default, VS Code will
+reopen the last opened folder you worked on (setting: <code>one</code>). Change this setting to <code>none</code> to never reopen any folders and always start with an empty VS Code instance. Change it to <code>all</code> to restore all folders you worked on during your previous session.</p>
+<h2 id="_next-steps" data-needslink="_next-steps">Next Steps<a class="hash-link hidden" href="#_next-steps">#</a></h2>
+<p>You've covered the basic user interface - there is a lot more to VS Code.  Read on to find out about:</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/customization/userandworkspace">User/Workspace Settings</a> - Learn how to configure VS Code to your preferences through user and workspace settings.</li>
+<li><a href="https://code.visualstudio.com/docs/editor/editingevolved">Editing Evolved</a> - Lint, IntelliSense, Lightbulbs, Peek and Goto Definition, and more</li>
+<li><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">Integrated Terminal</a> - Learn about the integrated terminal for quickly performing command line tasks from within VS Code.</li>
+<li><a href="https://code.visualstudio.com/docs/editor/debugging">Debugging</a> - This is where VS Code really shines</li>
+<li><a href="https://code.visualstudio.com/docs/customization/overview">Customization</a> - Themes, settings, and keyboard bindings</li>
+</ul>
+<h2 id="_common-questions" data-needslink="_common-questions">Common Questions<a class="hash-link hidden" href="#_common-questions">#</a></h2>
+<p><strong>Q: Is it possible to globally search and replace?</strong></p>
+<p><strong>A:</strong> Yes, expand the Search view text box to include a
+ replace text field. You can search and replace across all the files in 
+your workspace.</p>
+<p><img src="01_Visual_Studio_Code_Getting_Started-Dateien/codebasics_global-search-replace.png" alt="global search and replace"></p>
+<p><strong>Q: How do I turn on word wrap?</strong></p>
+<p><strong>A:</strong> You can control word wrap through the <code>editor.wrappingColumn</code> <a href="https://code.visualstudio.com/docs/customization/userandworkspace">setting</a>. By default <code>editor.wrapperingColumn</code> is set to 300 characters.  You can adjust the column width or set the value to zero to wrap on the editor viewport width:</p>
+<pre><code class="json">    <span class="hljs-string">"editor.wrappingColumn"</span>: <span class="hljs-number">0</span>
+</code></pre>
+<p>You can toggle word wrap for the VS Code session with <span title="OSX: ⌥Z, Linux: Alt+Z" class="dynamic-keybinding keybinding win" data-osx="⌥Z" data-win="Alt+Z" data-linux="Alt+Z">Alt+Z</span>.  Restarting VS Code will pick up the persisted <code>editor.wrappingColumn</code> value.</p>
+<p>You can also add vertical column rulers to the editor with the <code>editor.rulers</code> setting which takes an array of column character positions where you'd like vertical rulers.</p>
+<p><strong>Q: How can I show more files in the OPEN EDITORS section?</strong></p>
+<p><strong>A:</strong> You can configure the appearance of <strong>OPEN EDITORS</strong> through your <a href="https://code.visualstudio.com/docs/customization/userandworkspace">settings</a>. For example, you can set the maximum number of visible files before a scroll bar appears via the <code>explorer.openEditors.visible</code> setting and whether the <strong>OPEN EDITORS</strong> section should dynamically set its height via <code>explorer.openEditors.dynamicHeight</code>.</p>
+
+			<div class="feedback"><div class="widget" data-reactroot=""><form><div class="buttons"><h3>Was this documentation helpful?</h3><br><button value="1"><!-- react-text: 7 -->Yes<!-- /react-text --><span class="sr-only"> , this page was helpful</span></button><button value="0"><!-- react-text: 10 -->No<!-- /react-text --><span class="sr-only"> , this page was not helpful</span></button></div></form></div></div>
+			
+			<div class="body-footer">Last updated on 8/4/2016</div>
+			
+		</div>
+        <div class="hidden-xs col-sm-3 col-md-2">
+            <nav class="affix" id="docs-subnavbar">
+				<h4>In this article</h4>
+                <ul class="nav">
+                	
+                		<li class=""><a href="#_files-folders-projects">Files, Folders &amp; Projects</a></li>
+                	
+                		<li class=""><a href="#_basic-layout">Basic Layout</a></li>
+                	
+                		<li class=""><a href="#_side-by-side-editing">Side by Side Editing</a></li>
+                	
+                		<li class=""><a href="#_explorer">Explorer</a></li>
+                	
+                		<li class=""><a href="#_open-editors">Open Editors</a></li>
+                	
+                		<li class=""><a href="#_configuring-the-editor">Configuring the Editor</a></li>
+                	
+                		<li class=""><a href="#_save-auto-save">Save / Auto Save</a></li>
+                	
+                		<li class=""><a href="#_search-across-files">Search Across Files</a></li>
+                	
+                		<li class="active"><a href="#_command-palette">Command Palette</a></li>
+                	
+                		<li><a href="#_quick-file-navigation">Quick File Navigation</a></li>
+                	
+                		<li><a href="#_file-encoding-support">File Encoding Support</a></li>
+                	
+                		<li><a href="#_launching-from-the-command-line">Launching from the Command Line</a></li>
+                	
+                		<li><a href="#_additional-command-line-arguments">Additional Command line arguments</a></li>
+                	
+                		<li><a href="#_opening-a-project">Opening a Project</a></li>
+                	
+                		<li><a href="#_window-management">Window Management</a></li>
+                	
+                		<li><a href="#_next-steps">Next Steps</a></li>
+                	
+                		<li><a href="#_common-questions">Common Questions</a></li>
+                	
+                </ul>
+				<iframe src="01_Visual_Studio_Code_Getting_Started-Dateien/tweet_button.htm" title="Twitter Tweet Button" style="position: static; visibility: visible; width: 61px; height: 20px;" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" allowtransparency="true" scrolling="no" id="twitter-widget-1" frameborder="0"></iframe>
+			</nav>
+        </div>
+	</div>
+</div>
+
+		</div>
+
+        <meta itemprop="applicationCategory" content="Text Editor">
+        <meta itemprop="screenshot" content="http://localhost:7000/home-screenshot-mac-lg.png">
+        <meta itemprop="datePublished" content="2016-04-14">
+        <meta itemprop="operatingSystem" content="Mac, Linux, Windows">
+    </div>
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="left col-md-7">
+                    <span class="message">Hello from Seattle.</span>
+                    <iframe data-screen-name="code" src="01_Visual_Studio_Code_Getting_Started-Dateien/follow_button.htm" title="Twitter Follow Button" style="position: static; visibility: visible; width: 196px; height: 20px;" class="twitter-follow-button twitter-follow-button-rendered" allowtransparency="true" scrolling="no" id="twitter-widget-0" frameborder="0"></iframe>
+                    <div class="github-star-button">
+                        <iframe title="GitHub star button" src="01_Visual_Studio_Code_Getting_Started-Dateien/github-btn.htm" scrolling="0" frameborder="0" height="20px" width="130px"></iframe>
+                    </div>
+    
+                    <script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>
+                </div>
+                <div class="right col-md-5">
+                    <ul class="links">
+                        <li><a id="footer-support-link" href="https://support.microsoft.com/en-us/assistedsupportproducts" target="_blank">Support</a></li>
+                        <li><a id="footer-privacy-link" href="http://www.microsoft.com/privacystatement/en-us/core/default.aspx" target="_blank">Privacy</a></li>
+                        <li><a id="footer-terms-link" href="http://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx" target="_blank">Terms of Use</a></li>
+                        <li><a id="footer-license-link" href="https://code.visualstudio.com/License">License</a></li>
+                    </ul>
+                    <div class="copyright">
+                        <a id="footer-microsoft-link" class="logo" href="http://www.microsoft.com/"><img src="01_Visual_Studio_Code_Getting_Started-Dateien/microsoft-logo.png" alt="Microsoft homepage" height="20"></a>
+                        <span>© 2016 <span itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span itemprop="name">Microsoft</span></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>    <!-- inject:js -->
+    <script src="01_Visual_Studio_Code_Getting_Started-Dateien/vendor.js"></script>
+    <script src="01_Visual_Studio_Code_Getting_Started-Dateien/main.js"></script>
+    <!-- endinject -->
+    
+    <script type="application/ld+json">
+        {
+            "@context" : "http://schema.org",
+            "@type" : "Product",
+            "name" : "Visual Studio Code",
+            "logo": "https://code.visualstudio.com/Content/images/vscode.ico",
+            "url" : "https://code.visualstudio.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://code.visualstudio.com/Search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            },
+            "sameAs" : [
+            "https://en.wikipedia.org/wiki/Visual_Studio_Code",
+            "https://www.facebook.com/visualstudio",
+            "https://twitter.com/code",
+            "http://blogs.msdn.com/b/vscode"
+            ]
+        }
+    </script>
+
+
+<iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe></body></html>

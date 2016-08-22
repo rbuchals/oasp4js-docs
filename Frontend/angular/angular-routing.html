@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Angular JS</title>
+
+    <meta name="description" content="Richwebclient">
+    <meta name="author" content="Richwebclient Team">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../base/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../base/reveal.js/css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../base/reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../base/reveal.js/css/print/pdf.css' : '../base/reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../base/reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <h2><img style="vertical-align: middle" class="logo" height="120" src="img/UI_Shield.png">&nbsp;<span style="vertical-align: middle">Router Basics</span></h2>
+
+    <p>
+        <small>Marek Matczak</small>
+    </p>
+</section>
+
+    <section id="routing">
+        <h2>Why do we need routers?</h2>
+        <img  src="img/route.png">
+    </section>
+    <section>
+        <section>
+            <h2>Simple state</h2>
+            <h4>configuration</h4>
+  <pre class="javascript"><code contenteditable data-trim>
+      angular.module('myFirst', []).config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+          $stateProvider.state('book-details', {
+              url: '/book-mgmt/book',
+              templateUrl: 'book-mgmt/book-details/book-details.html',
+              controller: 'BookDetailsCtrl',
+              controllerAs: 'bookDetailsCtrl'
+          });
+
+          $urlRouterProvider.when('', '/book-mgmt/book'); // set the book-details state as default
+          $locationProvider.html5Mode(false); // set the hash bang mode
+      });
+  </code></pre>
+        </section>
+        <section>
+            <h2>Simple state</h2>
+            <h4>ui-view directive</h4>
+  <pre class="html"><code data-trim>
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;header&gt;My Header&lt;/header&gt;
+        &lt;section data-ui-view&gt;
+            &lt;!-- ui-router puts DOM elements of the current state here --&gt;
+        &lt;/section&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+        </section>
+    </section>
+    <section>
+    <section>
+        <h2>URL Parameters / Resolve</h2>
+<pre class="javascript"><code contenteditable data-trim>
+    angular.module('myFirst', []).config(function ($stateProvider) {
+        $stateProvider.state('book-details', {
+            url: '/book-mgmt/book/bookId',
+            templateUrl: 'book-mgmt/book-details/book-details.html',
+            controller: 'BookDetailsCtrl',
+            controllerAs: 'bookDetailsCtrl',
+            resolve: {
+                currentBook: function($http, $stateParams) {
+                    return $http.get('services/rest/book/' + $stateParams.bookId).then(function (response) {
+                        return response.data;
+                    });
+                }
+            }
+        });
+    });
+</code></pre>
+    </section>
+    <section id="controllers">
+            <h2>Resolved Objects / $state</h2>
+<pre class="javascript"><code contenteditable data-trim>
+    angular.module('myFirst', [])
+        .controller('BookDetailsCtrl', function (currentBook, $state) {
+            var bookDetailsCtrl = this;
+            bookDetailsCtrl.currentBook = currentBook;
+
+            bookDetailsCtrl.goToBookOverview = function () {
+                $state.go('book-overview');
+            }
+    });
+</code></pre>
+    </section>
+        <section>
+            <h2>ui-sref / ui-sref-active</h2>
+  <pre class="html"><code data-trim>
+&lt;header&gt;
+    &lt;ul&gt;
+        &lt;li data-ui-sref-active="active"&gt;&lt;a href data-ui-sref="book-overview"&gt;Book Overview&lt;/a&gt;&lt;/li&gt;
+        &lt;li data-ui-sref-active="active"&gt;&lt;a href data-ui-sref="book-details"&gt;New Book&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/header&gt;
+  </code></pre>
+        </section>
+    </section>
+</div>
+
+</div>
+<script src="../base/reveal.js/lib/js/head.min.js"></script>
+<script src="../base/reveal.js/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            { src: '../base/reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../base/reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../base/reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../base/reveal.js/plugin/zoom-js/zoom.js', async: true },
+            { src: '../base/reveal.js/plugin/notes/notes.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
