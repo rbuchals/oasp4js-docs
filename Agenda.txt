@@ -1,0 +1,136 @@
+1.	IDE i OASP4JS (45-60min)
+1.1.	Na okolo IDE do warsztatu (Visual Studio Code, Eclipse) [RBU]
+	a)	01_ide-tools – porównanie srodowisk developerskich
+	b)	01_Visual_Studio_Code_Getting_Started.htm – wprowadzenie do Visual Studio Code
+	c)	01_Visual_Studio_Code_Key_Bindings.htm – skroty do Visual Studio Code
+		Basic Editing:
+		- Ctrl+Shift+K 	Delete Line
+		- Ctrl+F2 		Select all occurrences of current word (rename)
+		
+		Rich Languages Editing:
+		- Shift+Alt+F	Format Code
+		
+		Navigation:
+		- Ctrl+P 	Go to File..., Quick Open
+
+	d) 	01_Emmet_Cheat_Sheet.htm - emmet w Visual Studio Code
+	
+1.2.	Co sie sklada na OASP4JS (Gulp, Bower, npm, eslint)
+1.2.1.	NPM [LZA]
+	https://www.npmjs.com/package/npm
+	Install module locally and globally
+	--save-dev to update package.json
+	https://docs.npmjs.com/cli/install
+	Search for package:
+	command line: https://docs.npmjs.com/cli/search
+	web: https://www.npmjs.com/package/npm
+	List available modules
+	dependencies vs devDependencies
+	version specification
+	package.json
+
+	NPM tworzy hierarchie zaleznosci dla kazdego modulu.
+	Przeznaczony do zarzadzania pakietami po stronie serwera
+
+
+1.2.2.	Bower [LZA]
+	https://bower.io/
+	http://blog.teamtreehouse.com/getting-started-bower
+	Search for module:
+	command line: bower search <name>
+	web: https://bower.io/search/
+	Install module
+	 --save to update bower.json
+	List available modules
+	bower.json
+	resolutions – force specific version if two other modules requires different versions
+
+	Bower przechowuje modul tylko raz
+	Przeznaczony do zarzadzania pakietami po stronie klienta
+
+
+1.2.3.	Gulp [RBU]
+	https://travismaynard.com/writing/getting-started-with-gulp
+	Gulp methods: task, run, watch, src, and dest.
+	
+
+1.2.4.	ESLint [LZA]
+http://eslint.org/docs/user-guide/configuring
+Configuration file: .eslintrc
+Command Line: eslint app\app.module.js
+VisualStudioCode integration (eslint installed in project or avaialable in PATH)
+•	Markers in code
+Example error - global variable without var keyword
+
+
+1.2.5.	Yeoman (20min) [LZA]
+http://yeoman.io/
+Yo + Gulp + NPM/Bower
+List generators: yo --generators (in any directory)
+generator-oasp - https://github.com/oasp/generator-oasp/wiki/Application-Structure
+oasp:module - https://github.com/oasp/generator-oasp/wiki/Additional-generator
+
+
+2.	Hello World napisany w JavaScript (jQuery) -> programowanie imperatywne
+Zamiana na Angulara + teoria (Angular-basics) (90 min) -> Branch 1 angular basics
+
+
+3.	Testowanie Karma [???]
+TODO
+
+
+4.	Chrome DevTools (20min) [LZA]
+F12
+Elements - show elements on page, ie. Header
+Console - add invalid JS code and show error
+Sources - show loaded JS files and their structure
+Network - show loaded files: CSS, scripts, xhr, etc. Describe status column, ctrl+F5 for full reload.
+Timeline - ?
+Profiles - ?
+Application - show local storage, session storage, cookies
+Security - ?
+Audits - run an audit and show tips for optimization
+
+Device Toolbar - change device
+
+ng-inspector: show scopes
+
+
+5.	Routing  (45min) [LZA]
+https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating
+
+
+6.	Form + Validation (30 min) [RBU]
+
+
+
+7.	Dyrektywa ng-repeat [RBU]
+
+
+
+8.	Custom Directives (45min) [LZA]
+https://docs.angularjs.org/guide/directive
+http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-i-the-fundamentals
+
+1.	Create file app/allSets/legoTable.tpl.html
+2.	Copy table from searchForSet.tpl.html
+3.	Add DIV with message
+4.	Add „ng-show” directives with contditions
+5.	Change „searchResults” to „results” In template
+6.	Add directive definition to allSets.module.js
+a.	Restrict to element
+b.	Scope with bound „results” variable
+c.	templateUrl
+d.	link function – copy the „openModalWantedItem”, „markWanted”, „displaySetParts” functions from app.searchSets.controller.js
+e.	Add parameters to directive function: $location, $modal, currentContextPath
+7.	Replace table with „lego-table” directive In searchForSet.tpl.html
+
+
+
+9.	Communication (20min) [RBU]
+$http
+
+
+10.	Backend Spring Boot (90min) [RBU]
+
+
