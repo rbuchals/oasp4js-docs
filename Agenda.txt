@@ -73,7 +73,7 @@ oasp:module - https://github.com/oasp/generator-oasp/wiki/Additional-generator
 
 2.	Hello World napisany w JavaScript (jQuery) -> programowanie imperatywne
 Zamiana na Angulara + teoria (Angular-basics) (90 min) -> Branch 1 angular basics
-
+ a) 02_angular-basics
 
 3.	Testowanie Karma [???]
 TODO
@@ -101,7 +101,7 @@ https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templati
 
 
 6.	Form + Validation (30 min) [RBU]
-
+	a) 06_form_validation
 
 
 7.	Dyrektywa ng-repeat [RBU]
@@ -128,9 +128,13 @@ e.	Add parameters to directive function: $location, $modal, currentContextPath
 
 
 9.	Communication (20min) [RBU]
-$http
+	a) 09_AngularJS_API_http.htm
 
 
 10.	Backend Spring Boot (90min) [RBU]
-
+	a) 10_Spring_Overview-htm - Spring overview
+	b) 10_Spring_Web_MVC.htm - Spring Web MVC
+	c) 10_Spring_Dependency_Injection.htm - Dependency injection
+	TODO: Backend slides 
+	
 

@@ -1,0 +1,64 @@
+<html><head><script src="10_Spring_Dependency_Injection-Dateien/docsearchbarspring.txt" async="" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>17.&nbsp;Spring Beans and dependency injection</title><link rel="stylesheet" type="text/css" href="10_Spring_Dependency_Injection-Dateien/manual-multipage.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="http://docs.spring.io/spring-boot/docs/current/reference/html/index.html" title="Spring Boot Reference Guide"><link rel="up" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot.html" title="Part&nbsp;III.&nbsp;Using Spring Boot"><link rel="prev" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-auto-configuration.html" title="16.&nbsp;Auto-configuration"><link rel="next" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-using-springbootapplication-annotation.html" title="18.&nbsp;Using the @SpringBootApplication annotation"><script id="undefined" src="10_Spring_Dependency_Injection-Dateien/inpage_linkid.js" async="" type="text/javascript"></script><script type="text/javascript" src="10_Spring_Dependency_Injection-Dateien/jquery-1.js"></script><link rel="stylesheet" href="10_Spring_Dependency_Injection-Dateien/searchtool.css" type="text/css"><link rel="stylesheet" href="10_Spring_Dependency_Injection-Dateien/searchtool_spring.css" type="text/css"></head><body alink="#0000FF" bgcolor="white" link="#0000FF" text="black" vlink="#840084"><div class="navheader"><table summary="Navigation header" width="100%"><tbody><tr><th colspan="3" align="center">17.&nbsp;Spring Beans and dependency injection</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-auto-configuration.html">Prev</a>&nbsp;</td><th align="center" width="60%">Part&nbsp;III.&nbsp;Using Spring Boot</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-using-springbootapplication-annotation.html">Next</a></td></tr></tbody></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h2 class="title"><a name="using-boot-spring-beans-and-dependency-injection" href="#using-boot-spring-beans-and-dependency-injection"></a>17.&nbsp;Spring Beans and dependency injection</h2></div></div></div><p>You are free to use any of the standard Spring Framework techniques to define your beans
+and their injected dependencies. For simplicity, we often find that using <code class="literal">@ComponentScan</code>
+to find your beans, in combination with <code class="literal">@Autowired</code> constructor injection works well.</p><p>If you structure your code as suggested above (locating your application class in a root
+package), you can add <code class="literal">@ComponentScan</code> without any arguments. All of your application
+components (<code class="literal">@Component</code>, <code class="literal">@Service</code>, <code class="literal">@Repository</code>, <code class="literal">@Controller</code> etc.) will be
+automatically registered as Spring Beans.</p><p>Here is an example <code class="literal">@Service</code> Bean that uses constructor injection to obtain a
+required <code class="literal">RiskAssessor</code> bean.</p><pre class="programlisting"><span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">package</span> com.example.service;
+
+<span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">import</span> org.springframework.stereotype.Service;
+
+<em><span class="hl-annotation" style="color: gray">@Service</span></em>
+<span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">public</span> <span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">class</span> DatabaseAccountService <span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">implements</span> AccountService {
+
+    <span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">private</span> <span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">final</span> RiskAssessor riskAssessor;
+
+    <em><span class="hl-annotation" style="color: gray">@Autowired</span></em>
+    <span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">public</span> DatabaseAccountService(RiskAssessor riskAssessor) {
+        <span xmlns:d="http://docbook.org/ns/docbook" class="hl-keyword">this</span>.riskAssessor = riskAssessor;
+    }
+
+    <span xmlns:d="http://docbook.org/ns/docbook" class="hl-comment">// ...</span>
+
+}</pre><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table summary="Tip" border="0"><tbody><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="10_Spring_Dependency_Injection-Dateien/tip.png"></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p>Notice how using constructor injection allows the <code class="literal">riskAssessor</code> field to be marked
+as <code class="literal">final</code>, indicating that it cannot be subsequently changed.</p></td></tr></tbody></table></div></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tbody><tr><td align="left" width="40%"><a accesskey="p" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-auto-configuration.html">Prev</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot.html">Up</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-using-springbootapplication-annotation.html">Next</a></td></tr><tr><td align="left" valign="top" width="40%">16.&nbsp;Auto-configuration&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="http://docs.spring.io/spring-boot/docs/current/reference/html/index.html">Home</a></td><td align="right" valign="top" width="40%">&nbsp;18.&nbsp;Using the @SpringBootApplication annotation</td></tr></tbody></table></div> 
+<script src="10_Spring_Dependency_Injection-Dateien/ga.js" async="" type="text/javascript"></script><script type="text/javascript">
+        var _gaq = _gaq || [];
+        var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+        _gaq.push(
+            ['_require', 'inpage_linkid', pluginUrl],
+            ['_setAccount', 'UA-2728886-23'],
+            ['_trackPageview'],
+            ['b._require', 'inpage_linkid', pluginUrl],
+            ['b._setAccount', 'UA-2728886-19'],
+            ['b._trackPageview']
+        );
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+ 
+<script type="text/javascript">
+
+function detectLastFrame() {
+   var thisF = this.window;
+   var allF = parent.top.frames;
+   return allF[allF.length - 1] == thisF; }
+
+// Only inject the following code if this is a normal page or the last // frame of a frameset.
+if (parent.top.frames.length == 0 || detectLastFrame()) {
+    // Inject the SpringSource search widget too.
+    document.write(unescape("%3Cscript src='http://search.springsource.org/widget/searchtool.js' type='text/javascript'%3E%3C/script%3E"));
+    // Inject the Eloqua code
+    //document.write(unescape("%3Cscript src='/elqNow/elqCfg.js' type='text/javascript'%3E%3C/script%3E"));
+    //document.write(unescape("%3Cscript src='/elqNow/elqImg.js' type='text/javascript'%3E%3C/script%3E"));
+
+}
+</script><script src="10_Spring_Dependency_Injection-Dateien/searchtool.js" type="text/javascript"></script>
+
+<div id="bodyEmptyFiller">&nbsp;</div><div id="searchBar">  <div style="left:-1px;bottom:1px;" id="collapseLink"><a href="javascript:void(0);"><img class="springClass" src="10_Spring_Dependency_Injection-Dateien/ArrowLeft_spring.png" border="0"></a></div>  <div id="logoSpan" class="springClass"><a target="_new" href="http://spring.io/"><img class="springClass" src="10_Spring_Dependency_Injection-Dateien/Logo_spring_SearchBar.png" border="0"></a></div>  <div id="searchFields">    <input style="color: rgb(204, 204, 204);" name="searchKeys" id="searchKeys" value="Search Documentation" type="text">    <select name="searchWhat" id="searchWhat"><option selected="selected" value="Spring">Spring</option></select>    <img title="Search Documentation" src="10_Spring_Dependency_Injection-Dateien/Btn_Search_spring.png" id="searchLens">  </div>  <div id="resultsDiv"></div> <div id="daAd">    <div class="PivotalAdBannerDiv"></div>      </div></div></body></html>
