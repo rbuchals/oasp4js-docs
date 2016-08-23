@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html itemscope itemtype="http://schema.org/Article" id="ie6" class="ie ie-old" lang="en-US"><![endif]-->
+<!--[if IE 7 ]>   <html itemscope itemtype="http://schema.org/Article" id="ie7" class="ie ie-old" lang="en-US"><![endif]-->
+<!--[if IE 8 ]>   <html itemscope itemtype="http://schema.org/Article" id="ie8" class="ie ie-old" lang="en-US"><![endif]-->
+<!--[if IE 9 ]>   <html itemscope itemtype="http://schema.org/Article" id="ie9" class="ie" lang="en-US"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html itemscope="" itemtype="http://schema.org/Article" lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+ 
+<meta charset="utf-8">
+ 
+<title>Single Page Apps with AngularJS Routing and Templating | Scotch</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="google-site-verification" content="NoKkRtzSguNO3Xd1cuhpVkUoh7n8mz-aofV9Ch4aS8w">
+<meta name="theme-color" content="#222222">
+ 
+<script src="05_Routing_pliki/osd.js"></script><script src="05_Routing_pliki/gpt.js" type="text/javascript" async=""></script><script src="//www.googletagmanager.com/gtm.js?id=GTM-WZL83C" async=""></script><script src="//connect.facebook.net/en_US/fbevents.js" async=""></script><script src="//www.googleadservices.com/pagead/conversion_async.js" async="" type="text/javascript"></script><script data-rocketoptimized="true" data-rocketsrc="https://www.googletagservices.com/tag/js/gpt.js" type="text/javascript" async=""></script><script data-rocketoptimized="true" data-rocketsrc="https://pagead2.googlesyndication.com/pub-config/r20160601/ca-pub-4625466825098355.js"></script><script data-rocketoptimized="true" data-rocketsrc="//www.google-analytics.com/analytics.js" async=""></script><script src="05_Routing_pliki/fbevents.js" async=""></script><script src="05_Routing_pliki/conversion_async.js" async="" type="text/javascript"></script><script src="05_Routing_pliki/gtm.js" async=""></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:1471940118,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"6562928e45ffdaefa8f316d09e90a3bd",petok:"90b149aa564009fa2d7c7e598990d08b764c772b-1471952286-86400",zone:"scotch.io",rocket:"a",apps:{},sha2test:0}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=0489c402f5/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script><script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=0489c402f5/cloudflare.min.js"></script><script type="text/javascript" src="05_Routing_pliki/cloudflare.js"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><script data-module="cloudflare/rocket" id="cfjs_block_12f979ecdeb" onload="CloudFlare.__cfjs_block_12f979ecdeb_load()" onerror="CloudFlare.__cfjs_block_12f979ecdeb_error()" onreadystatechange="CloudFlare.__cfjs_block_12f979ecdeb_readystatechange()" type="text/javascript" src="file:///cdn-cgi/nexp/dok3v=1613a3a185/cloudflare/rocket.js"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><script data-module="cloudflare/rocket" id="cfjs_block_114bd088cc1" onload="CloudFlare.__cfjs_block_114bd088cc1_load()" onerror="CloudFlare.__cfjs_block_114bd088cc1_error()" onreadystatechange="CloudFlare.__cfjs_block_114bd088cc1_readystatechange()" type="text/javascript" src="05_Routing_pliki/rocket.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Scotch ♥ Developers bringing fire to the people." href="https://scotch.io/feed">
+ 
+<link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64 96x96" href="https://scotch.io/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-76.png">
+<link rel="apple-touch-icon" sizes="96x96" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-96.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-180.png">
+<link rel="apple-touch-icon" sizes="192x192" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-192.png">
+<link rel="apple-touch-icon" sizes="194x194" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-194.png">
+<link rel="apple-touch-icon" sizes="228x228" href="https://scotch.io/wp-content/themes/scotchpress/img/favicons/favicon-228.png">
+<meta name="application-name" content="Scotch">
+<meta name="msapplication-TileImage" content="/wp-content/themes/scotchpress/img/favicons/favicon-144.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+ 
+ 
+<meta name="author" content="chris">
+<meta name="description" content="OverviewSingle page apps are becoming increasingly popular. Sites that mimic the single page app behavior are able to provide the feel of a phone/tablet...">
+<link rel="canonical" href="file:///C:/Users/lzajac/Desktop/Pages/Single%20Page%20Apps%20with%20AngularJS%20Routing%20and%20Templating%20_%20Scotch_pliki/single-page-apps-with-angularjs-routing-and-templating_002.htm">
+ 
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@scotch_io">
+<meta name="twitter:creator" content="sevilayha">
+<meta name="twitter:title" content="Single Page Apps with AngularJS Routing and Templating">
+<meta name="twitter:url" content="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating">
+<meta name="twitter:description" content="OverviewSingle page apps are becoming increasingly popular. Sites that mimic the single page app behavior are able to provide the feel of a phone/tablet...">
+<meta name="twitter:image:src" content="https://scotch.io/wp-content/uploads/2013/11/angular-routing.jpg">
+ 
+<meta property="fb:admins" content="579622216,709634581">
+<meta property="fb:app_id" content="1389892087910588">
+<meta property="og:url" content="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Single Page Apps with AngularJS Routing and Templating">
+<meta property="og:image" content="https://scotch.io/wp-content/uploads/2013/11/angular-routing.jpg">
+<meta property="og:description" content="OverviewSingle page apps are becoming increasingly popular. Sites that mimic the single page app behavior are able to provide the feel of a phone/tablet...">
+<meta property="og:site_name" content="Scotch">
+<meta property="article:author" content="sevilayha">
+<meta property="article:publisher" content="https://www.facebook.com/scotchdevelopment">
+ 
+<meta itemprop="name" content="Single Page Apps with AngularJS Routing and Templating">
+<meta itemprop="description" content="Overview Single page apps are becoming increasingly popular. Sites that mimic the single page app behavior are able to provide the feel of a phone/tablet application. Angular helps to create applications like this easily. Our Simple App We’re just going to make a simple site with a home, about, and contact page. Angular is built […]">
+<meta itemprop="image" content="https://scotch.io/wp-content/uploads/2013/11/angular-routing.jpg">
+ 
+<link rel="stylesheet" href="05_Routing_pliki/style.css">
+ 
+<script data-rocketoptimized="true" type="text/rocketscript">var disqus_shortname = 'scotchwebdevelopment';</script>
+<script src="05_Routing_pliki/count-data.js"></script><script async="async" data-rocketoptimized="true" data-rocketsrc="//s3.buysellads.com/r/s_8321ee0e3825ae084dc5408db80d21db.js?v=1471950000000" id="_bsap_js_8321ee0e3825ae084dc5408db80d21db" type="text/javascript"></script><script id="_bsap_premium_pro" data-rocketoptimized="true" data-rocketsrc="//s3.buysellads.com/ac/pro.js" type="text/javascript"></script><script async="async" data-rocketoptimized="true" data-rocketsrc="//srv.buysellads.com/ads/get/ids/CAAIP2T;CA7D52E/?r=1471950000000" id="_bsaPRO_js" type="text/javascript"></script><script src="//undefined.disqus.com/count-data.js?2=https%3A%2F%2Fscotch.io%2Ftutorials%2Fsingle-page-apps-with-angularjs-routing-and-templating"></script><script async="" src="05_Routing_pliki/pubads_impl_94_002.js"></script><link href="http://tpc.googlesyndication.com/safeframe/1-0-4/html/container.html" rel="prefetch"></head>
+<body class="single single-post postid-447 single-format-standard">
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WZL83C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WZL83C');</script>
+<script id="" type="text/javascript">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","//connect.facebook.net/en_US/fbevents.js");fbq("init","417778941754366");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=417778941754366&amp;ev=PageView&amp;noscript=1"></noscript>
+
+
+<script id="" type="text/javascript">var google_conversion_id=956542766,google_custom_params=window.google_tag_params,google_remarketing_only=!0;</script>
+<script src="//www.googleadservices.com/pagead/conversion.js" id="" type="text/javascript"></script>
+<div class="site-wrap">
+<div class="site-canvas">
+<div class="site-side">
+<div class="scotch-logos">
+<a href="https://scotch.io/">
+<img src="05_Routing_pliki/logo-large.png" class="img-responsive">
+<h1>scotch.io</h1>
+<p>code neat and clean</p>
+</a>
+</div>
+<nav class="side-nav">
+<ul class="list-unstyled nav-text">
+<li class="divider">Learn</li>
+<li><a href="https://scotch.io/tutorials" class="tutorials">
+<span class="iconic iconic-terminal"></span>
+Tutorials
+</a></li>
+<li><a href="https://scotch.io/bar-talk">
+<span class="iconic iconic-laptop"></span>
+Bar Talk
+</a></li>
+ 
+<li><a href="https://school.scotch.io/" class="school-link">
+<span class="iconic iconic-media-play-circle"></span>
+Courses
+</a></li>
+<li class="divider">Our Stuff</li>
+<li><a href="https://scotch.io/about">About</a></li>
+ 
+<li><a id="slack-link" href="http://slack.scotch.io/">Join Us On Slack</a></li>
+<li><a id="digital-link" href="http://digital.scotch.io/">Hire Us</a></li>
+</ul>
+</nav>
+<a id="side-promo" href="https://school.scotch.io/enroll">
+<img src="05_Routing_pliki/logo-gold-small.png">
+<h4>Scotch School</h4>
+<span class="text">50% Off</span>
+</a>
+</div>
+<header class="site-header">
+<div class="banner">
+<div class="family-dropdown hidden-lg">
+<a href="https://scotch.io/" class="brand magazine current">
+<span class="logo-img"></span>
+<span class="text">
+<span class="logo-img-text"></span>
+</span>
+</a>
+ 
+</div>
+<nav class="main-nav hidden-lg">
+<ul>
+<li>
+<a href="https://scotch.io/tutorials" class="tutorials">
+<span class="iconic iconic-code"></span>
+Tutorials
+</a>
+</li>
+<li>
+<a href="https://scotch.io/bar-talk">
+<span class="iconic iconic-pencil"></span>
+Bar Talk
+</a>
+</li>
+<li class="visible-lg">
+ 
+</li><li class="visible-lg">
+<a href="https://school.scotch.io/">
+<span class="iconic iconic-media-play-circle"></span>
+Courses
+</a>
+</li>
+</ul>
+</nav>
+</div>
+<nav class="fancy-grid-links tutorial-links">
+<ul>
+<li>
+<a href="https://scotch.io/tag/vue-js" class="vue">
+<div class="fancy-logo"></div>
+<span>Vue.js</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/react" class="react">
+<div class="fancy-logo"></div>
+<span>React</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/angular-js" class="angular">
+<div class="fancy-logo"></div>
+<span>Angular</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/node-js" class="node">
+<div class="fancy-logo"></div>
+<span>Node</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/laravel" class="laravel">
+<div class="fancy-logo"></div>
+<span>Laravel</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/mean" class="mean">
+<div class="fancy-logo"></div>
+<span>MEAN</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/css" class="css">
+<div class="fancy-logo"></div>
+<span>CSS</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/bootstrap" class="bootstrap">
+<div class="fancy-logo"></div>
+<span>Bootstrap</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/sublime-text" class="sublime-text">
+<div class="fancy-logo"></div>
+<span>Sublime Text</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/gulp,bower,docker,elixir,git,grunt,vagrant" class="dev-tools">
+<div class="fancy-logo"></div>
+<span>Dev Tools</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/foundation" class="foundation">
+<div class="fancy-logo"></div>
+<span>Foundation</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/wordpress" class="wordpress">
+<div class="fancy-logo"></div>
+<span>WordPress</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/less" class="less">
+<div class="fancy-logo"></div>
+<span>LESS</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/sass" class="sass">
+<div class="fancy-logo"></div>
+<span>Sass</span>
+</a>
+</li>
+<li>
+<a href="https://scotch.io/tag/javascript" class="javascript">
+<div class="fancy-logo"></div>
+<span>JavaScript</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<div class="super-search">
+<a href="#" class="toggle-super-search">
+<span class="iconic iconic iconic-x-thin"></span>
+</a>
+<form id="search-form" role="search" action="https://search.scotch.io/" method="GET">
+<div class="search-icon">
+<span class="iconic iconic-magnifying-glass"></span>
+</div>
+<input id="search-input" name="query" placeholder="Search Scotch for Cool Stuff" autocomplete="off" type="search">
+<div class="wrap">
+<button type="submit">
+<span class="iconic iconic-magnifying-glass"></span>
+</button>
+</div>
+</form>
+<div class="quick-links">
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-4 group">
+<div class="button-list">
+<h4 class="hidden"><span class="iconic iconic-heart"></span> From Scotch.io</h4>
+<ul id="primary-search-list">
+</ul>
+</div>
+</div>
+<div class="col-sm-4 group">
+<div class="button-list">
+<h4 class="hidden"><span class="iconic iconic-pencil"></span> From The Pub</h4>
+<ul id="secondary-search-list">
+</ul>
+</div>
+</div>
+<div class="col-sm-4 group">
+<div class="button-list">
+<h4 class="hidden"><span class="iconic iconic-fire"></span> What's Hot</h4>
+<ul id="tertiary-search-list">
+</ul>
+</div>
+</div>
+</div>
+</div>
+<ul id="search-item-placeholder" class="hidden">
+<li>
+<a href="#" class="squared has-image">
+<span class="img"></span>
+<span class="spoofer">Getting Started with Vue.js</span>
+<span class="visible">Getting Started with Vue.js</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<nav class="misc-nav">
+<ul class="list-inline">
+<li class="hidden-sm hidden-md hidden-lg small-search-link">
+<a href="https://search.scotch.io/"><span class="iconic iconic-magnifying-glass"></span>
+</a></li>
+<li class="hidden-xs hidden-sm login-link"><a href="#login-modal" class="open-login-popup" data-effect="mfp-zoom-in">Login / Sign Up</a></li>
+<li class="hidden-xs hidden-sm write-link"><a href="https://pub.scotch.io/about" class="visible-lg">Write a Post</a></li>
+<li>
+<a href="#" class="toggle-misc-nav">
+<span class="text">More</span>
+<span class="icon iconic iconic-grid-two-up"></span>
+</a>
+</li>
+</ul>
+</nav>
+<main>
+<div class="single-top-scotcherisment">
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-4625466825098355" data-ad-slot="2772961029"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" width="970" frameborder="0" height="90"></iframe></ins></ins></ins>
+<script data-rocketoptimized="true" type="text/rocketscript">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+</div>
+<article style="min-height: 3048px;" class="">
+<div class="container">
+<div class="single-wrap">
+<div class="inner-guts guts no-top-margin ">
+<div class="featured-image-guts">
+<img src="05_Routing_pliki/angular-routing.jpg">
+</div>
+<div class="row">
+<div class="col-md-12">
+<aside class="top">
+<div class="link-buttons">
+<a href="http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview" target="_blank" class="alternative"><span class="iconic iconic-social-github"></span> Code</a>
+<a href="http://embed.plnkr.co/dd8Nk9PDFotCQu4yrnDg/" target="_blank" class="boring"><span class="iconic iconic-beaker"></span> Demo</a>
+</div>
+<div class="tags">
+<a href="https://scotch.io/tag/angular-js">angularJS</a>
+<a href="https://scotch.io/tag/routing">routing</a>
+</div>
+</aside>
+<header>
+<h1 itemprop="headline">Single Page Apps with AngularJS Routing and Templating</h1>
+</header>
+<aside class="bottom">
+<div class="author">
+<a href="https://pub.scotch.io/@chris" class="profile-spot no-border">
+<span class="img" style="background-image: url('//gravatar.com/avatar/8a8bf3a2c952984defbd6bb48304b38e?s=200&amp;d=https%3A%2F%2Fscotch.io%2Fwp-content%2Fthemes%2Fscotchpress%2Fimg%2Flogo-large.png');"></span>
+</a>
+</div>
+<div class="meta-info">
+<a href="https://pub.scotch.io/@chris" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+<span itemprop="name">Chris Sevilleja</span>
+</a>
+<span class="separator"></span>
+<span>Nov 04, 2013</span>
+<span class="separator"></span>
+<a href="https://scotch.io/tutorials">Tutorials</a>
+<span class="separator"></span>
+<a href="https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating#disqus_thread">Comments</a>
+</div>
+<div class="hotness hint--top" data-segment="single-page-apps-with-angularjs-routing-and-templating" data-hint="Approximate Love">
+<span class="count" id="update-counter">708,208</span>
+<span class="iconic iconic-fire"></span>
+</div>
+</aside>
+<div class="scotcherisment">
+<div data-serve="CAAIP2T" id="bsap_1300582" class="bsap bsap_1300582">
+<style type="text/css">
+div.bsap_1300582{width:100%;display:block;}div.bsap_1300582 a{width:728px;}div.bsap_1300582 a img{padding:0;}div.bsap_1300582 a em{font-style:normal;}div.bsap_1300582 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}
+div.bsap_1300582 img{border:0;clear:right;}
+div.bsap_1300582 a.adhere{display:block;color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;margin-top:8px !important;}
+div.bsap_1300582 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}
+div.bsap_1300582 iframe{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1300582 a{line-height:100%;}div.bsap_1300582 a.adhere{width:728px;height:90px;line-height:720%;}html>body div.bsap_1300582 a.adhere{width:726px;height:88px;}div.bsap_1300582 img.s{height:0;width:0;}div.bsap_1300582{line-height:9px;}div.bsap_1300582 .bsap_adhere2,div.bsap_1300582 iframe{float:left;}div.bsap_1300582 .bsap_adhere2 a{height:90px;width:20px;background:url(http:\/\/s3.buysellads.com\/ac\/ah20x90_1.gif) no-repeat 0 0;text-indent:-9999px;}
+</style>
+<!--INLINE--><script class="ignoreme" id="auto_1" type="text/javascript">
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function() {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+      '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+</script>
+
+<script class="ignoreme" id="auto_2" type="text/javascript">
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/8691100/61307860', [728, 90], 'div-gpt-ad-1429788398272-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<!-- /8691100/61307860 -->
+<div data-google-query-id="CJ2f4ZrP184CFUePGwodGoACZA" id="div-gpt-ad-1429788398272-0" style="height: 90px; width: 728px;">
+<script class="ignoreme" id="auto_3" type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1429788398272-0'); });
+</script>
+<div style="border: 0pt none;" id="google_ads_iframe_/8691100/61307860_0__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/8691100/61307860_0" title="3rd party ad content" id="google_ads_iframe_/8691100/61307860_0" width="728" frameborder="0" height="90"></iframe></div><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" marginheight="0" marginwidth="0" scrolling="no" name="google_ads_iframe_/8691100/61307860_0__hidden__" title="" id="google_ads_iframe_/8691100/61307860_0__hidden__" width="0" frameborder="0" height="0"></iframe></div>
+
+<script class="ignoreme" id="auto_4" type="text/javascript"> if (typeof(_bsap_serving_callback) !== 'undefined') _bsap_serving_callback(31019, 'CAAIP2T', ''); </script>
+<script class="ignoreme" id="auto_5" type="text/javascript"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+</div>
+<div class="content">
+<div class="inner-action-links text-center" style="margin-top: 10px; margin-bottom: 30px;">
+<a href="http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview" class="btn-base make-big fill-out btn-action" target="_blank">
+<span class="icon" style="margin-right: 10px;">
+<span class="iconic iconic-social-github"></span>
+</span>
+<span class="text">Code</span>
+</a>
+<a href="http://embed.plnkr.co/dd8Nk9PDFotCQu4yrnDg/" class="btn-base make-big fill-out btn-bad" target="_blank">
+<span class="icon" style="margin-right: 10px;">
+<span class="iconic iconic-beaker"></span>
+</span>
+<span class="text">Demo</span>
+</a>
+</div>
+<h2 id="-overview"><a href="#-overview"><span class="icon">#</span> # Overview</a></h2>
+<p>Single page apps are becoming increasingly popular. Sites that mimic 
+the single page app behavior are able to provide the feel of a 
+phone/tablet application. Angular helps to create applications like this
+ easily.</p>
+<h2 id="-our-simple-app"><a href="#-our-simple-app"><span class="icon">#</span> # Our Simple App</a></h2>
+<p>We’re just going to make a simple site with a home, about, and 
+contact page. Angular is built for much more advanced applications than 
+this, but this tutorial will show many of the concepts needed for those 
+larger projects.</p>
+<h3>Goals</h3>
+<ul>
+<li>Single page application</li>
+<li>No page refresh on page change</li>
+<li>Different data on each page</li>
+</ul>
+<div class="alert alert-info">
+<i class="icon-bolt"></i> While this can be done with just Javascript and AJAX calls, Angular will make this process easier as our app starts growing.
+</div>
+<h3>File Structure</h3>
+<pre class="  language-markup" data-title="markup"><code class="  language-markup">
+    - script.js             <span class="token comment" spellcheck="true">&lt;!-- stores all our angular code --&gt;</span>
+    - index.html            <span class="token comment" spellcheck="true">&lt;!-- main layout --&gt;</span>
+    - pages                 <span class="token comment" spellcheck="true">&lt;!-- the pages that will be injected into the main layout --&gt;</span>
+    ----- home.html
+    ----- about.html
+    ----- contact.html
+</code>
+</pre>
+<h2 id="-html"><a href="#-html"><span class="icon">#</span> # HTML</a></h2>
+<p>This is the simple part. We’re using <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>. Open up your <code>index.html</code> file and we’ll add a simple layout with a navigation bar.</p>
+<pre class="  language-markup" data-title="markup"><code class="  language-markup"><span class="token comment" spellcheck="true">&lt;!-- index.html --&gt;</span>
+    <span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+      <span class="token comment" spellcheck="true">&lt;!-- SCROLLS --&gt;</span>
+      <span class="token comment" spellcheck="true">&lt;!-- load bootstrap and fontawesome via CDN --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+
+      <span class="token comment" spellcheck="true">&lt;!-- SPELLS --&gt;</span>
+      <span class="token comment" spellcheck="true">&lt;!-- load angular and angular route via CDN --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token comment" spellcheck="true">&lt;!-- HEADER AND NAVBAR --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navbar navbar-default<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navbar-header<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>navbar-brand<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Angular Routing Example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nav navbar-nav navbar-right<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fa fa-home<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span> Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#about<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fa fa-shield<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span> About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#contact<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>fa fa-comment<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span> Contact<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token comment" spellcheck="true">&lt;!-- MAIN CONTENT AND INJECTED VIEWS --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+            <span class="token comment" spellcheck="true">&lt;!-- angular templating --&gt;</span>
+            <span class="token comment" spellcheck="true">&lt;!-- this is where content will be injected --&gt;</span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code>
+</pre>
+<p>For linking to pages, we’ll use the <code>#</code>. We don’t want the browser to think we are actually travelling to <strong>about.html</strong> or <strong>contact.html</strong>.</p>
+<h2 id="-angular-application"><a href="#-angular-application"><span class="icon">#</span> # Angular Application</a></h2>
+<h3>Module and Controller</h3>
+<p>We’re going to setup our application. Let’s create the angular <a href="http://docs.angularjs.org/guide/module" target="_blank">module</a> and <a href="http://docs.angularjs.org/guide/dev_guide.mvc.understanding_controller" target="_blank">controller</a>. Check out the docs for more information on each.</p>
+<p>First, we have to create our module and controller in javascript. We will do that now in <code>script.js</code>.</p>
+<pre class="  language-javascript" data-title="javascript"><code class="  language-javascript"><span class="token comment" spellcheck="true">// script.js</span>
+
+    <span class="token comment" spellcheck="true">// create the module and name it scotchApp</span>
+    <span class="token keyword">var</span> scotchApp <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'scotchApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// create the controller and inject Angular's $scope</span>
+    scotchApp<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'mainController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// create a message to display in our view</span>
+        $scope<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Everyone come and see how good I look!'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code>
+</pre>
+<p>Let’s add the module and controller to our HTML so that Angular knows
+ how to bootstrap our application. To test that everything is working, 
+we will also show the <code>$scope.message</code> variable that we created.</p>
+<pre class="  language-markup" data-title="markup" data-line="5, 21, 27"><code class="  language-markup"><span class="token comment" spellcheck="true">&lt;!-- index.html --&gt;</span>
+    <span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- define angular app --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>scotchApp<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+      <span class="token comment" spellcheck="true">&lt;!-- SCROLLS --&gt;</span>
+      <span class="token comment" spellcheck="true">&lt;!-- load bootstrap and fontawesome via CDN --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+
+      <span class="token comment" spellcheck="true">&lt;!-- SPELLS --&gt;</span>
+      <span class="token comment" spellcheck="true">&lt;!-- load angular via CDN --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- define angular controller --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mainController<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+    ...
+
+    <span class="token comment" spellcheck="true">&lt;!-- MAIN CONTENT AND INJECTED VIEWS --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        {{ message }}
+
+        <span class="token comment" spellcheck="true">&lt;!-- angular templating --&gt;</span>
+        <span class="token comment" spellcheck="true">&lt;!-- this is where content will be injected --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code>
+</pre>
+<p>Inside of our <code>main</code> div, we will now see the message that
+ we created. Since we have our module and controller set up and we know 
+that Angular is working properly, we will start working on using this 
+layout to show the different pages.</p>
+<h3>Injecting Pages into the Main Layout</h3>
+<p><code>ng-view</code> is an Angular directive that will include the 
+template of the current route (/home, /about, or /contact) in the main 
+layout file. In plain words, it takes the file we want based on the 
+route and injects it into our main layout (<code>index.html</code>).</p>
+<p>We will add the <code>ng-view</code> code to our site in the <code>div#main</code> to tell Angular where to place our rendered pages.</p>
+<pre class="  language-markup" data-title="markup" data-line="9"><code class="  language-markup"><span class="token comment" spellcheck="true">&lt;!-- index.html --&gt;</span>
+    ...
+
+    <span class="token comment" spellcheck="true">&lt;!-- MAIN CONTENT AND INJECTED VIEWS --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token comment" spellcheck="true">&lt;!-- angular templating --&gt;</span>
+        <span class="token comment" spellcheck="true">&lt;!-- this is where content will be injected --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+    ...
+</code>
+</pre>
+<h2 id="-configure-routes-and-views"><a href="#-configure-routes-and-views"><span class="icon">#</span> # Configure Routes and Views</a></h2>
+<p>Since we are making a single page application and we don’t want any page refreshes, we’ll use Angular’s routing capabilities.</p>
+<p>Let’s look in our Angular file and add to our application. We will be using <a href="http://docs.angularjs.org/api/ngRoute.$routeProvider" target="_blank">$routeProvider</a>
+ in Angular to handle our routing. This way, Angular will handle all of 
+the magic required to go get a new file and inject it into our layout.</p>
+<div class="alert alert-info">
+<strong>AngularJS 1.2 and Routing</strong> The ngRoute module is no 
+longer included in Angular after version 1.1.6. You will need to call 
+the module and add it to the head of your document to use it. This 
+tutorial has been updated for <strong>AngularJS 1.2</strong>
+</div>
+<pre class="  language-javascript" data-title="javascript"><code class="  language-javascript"><span class="token comment" spellcheck="true">// script.js</span>
+
+    <span class="token comment" spellcheck="true">// create the module and name it scotchApp</span>
+        <span class="token comment" spellcheck="true">// also include ngRoute for all our routing needs</span>
+    <span class="token keyword">var</span> scotchApp <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'scotchApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'ngRoute'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// configure our routes</span>
+    scotchApp<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>$routeProvider<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $routeProvider
+
+            <span class="token comment" spellcheck="true">// route for the home page</span>
+            <span class="token punctuation">.</span><span class="token function">when</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                templateUrl <span class="token punctuation">:</span> <span class="token string">'pages/home.html'</span><span class="token punctuation">,</span>
+                controller  <span class="token punctuation">:</span> <span class="token string">'mainController'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+            <span class="token comment" spellcheck="true">// route for the about page</span>
+            <span class="token punctuation">.</span><span class="token function">when</span><span class="token punctuation">(</span><span class="token string">'/about'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                templateUrl <span class="token punctuation">:</span> <span class="token string">'pages/about.html'</span><span class="token punctuation">,</span>
+                controller  <span class="token punctuation">:</span> <span class="token string">'aboutController'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+            <span class="token comment" spellcheck="true">// route for the contact page</span>
+            <span class="token punctuation">.</span><span class="token function">when</span><span class="token punctuation">(</span><span class="token string">'/contact'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                templateUrl <span class="token punctuation">:</span> <span class="token string">'pages/contact.html'</span><span class="token punctuation">,</span>
+                controller  <span class="token punctuation">:</span> <span class="token string">'contactController'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// create the controller and inject Angular's $scope</span>
+    scotchApp<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'mainController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// create a message to display in our view</span>
+        $scope<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Everyone come and see how good I look!'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    scotchApp<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'aboutController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Look! I am an about page.'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    scotchApp<span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'contactController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $scope<span class="token punctuation">.</span>message <span class="token operator">=</span> <span class="token string">'Contact us! JK. This is just a demo.'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code>
+</pre>
+<p>Now we have defined our routes with <strong>$routeProvider</strong>. As you can see by the configuration, you can specify the <strong>route</strong>, the <strong>template</strong> file to use, and even a <strong>controller</strong>. This way, each part of our application will use its own view and Angular controller.</p>
+<div class="alert alert-info">
+<strong>Clean URLs</strong>: By default, Angular will throw a hash (#) into the URL. To get rid of this, we will need to use <code>$locationProvider</code> to enable the HTML History API. This will remove the hash and make pretty URLs. For more information: <a href="https://scotch.io/quick-tips/js/angular/pretty-urls-in-angularjs-removing-the-hashtag" class="alert-link">Pretty URLs in AngularJS: Removing the #</a>.
+</div>
+<p>Our home page will pull the <code>home.html</code> file. About and 
+contact will pull their respective files. Now if we view our app, and 
+click through the navigation, our content will change just how we 
+wanted.</p>
+<p>To finish off this tutorial, we just need to define the pages that 
+will be injected. We will also have them each display a message from its
+ respectiive controller.</p>
+<pre class="  language-markup" data-title="markup"><code class="  language-markup"><span class="token comment" spellcheck="true">&lt;!-- home.html --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Home Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code>
+</pre>
+<pre class="  language-markup" data-title="markup"><code class="  language-markup"><span class="token comment" spellcheck="true">&lt;!-- about.html --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>About Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code>
+</pre>
+<pre class="  language-markup" data-title="markup"><code class="  language-markup"><span class="token comment" spellcheck="true">&lt;!-- contact.html --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Contact Page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>{{ message }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code>
+</pre>
+<div class="alert alert-warning">
+<strong>Working Locally</strong>: Angular routing will only work if you have an environment set for it. Make sure you are using <code>http://localhost</code> or some sort of environment. Otherwise Angular will spit out a <strong>Cross origin requests are only supported for HTTP</strong>.
+</div>
+<h2 id="-animating-angular-apps"><a href="#-animating-angular-apps"><span class="icon">#</span> # Animating Angular Apps</a></h2>
+<p>Once you have all the routing done, you can start to get really fancy
+ with your site and add in animations. To do this, you will need the <a href="http://docs.angularjs.org/api/ngAnimate" target="_blank">ngAnimate</a> module provided by Angular. After that you can animate your pages into view with CSS animations.</p>
+<p>For a tutorial on how to get animations in your site, read: <a href="https://scotch.io/tutorials/javascript/animating-angularjs-apps-ngview">Animating AngularJS Apps: ngView</a>.</p>
+<h2 id="-seo-on-single-page-apps"><a href="#-seo-on-single-page-apps"><span class="icon">#</span> # SEO on Single Page Apps</a></h2>
+<p>Ideally, this technique would be used for an application after a 
+person has signed in. You wouldn’t really want those pages indexed since
+ they are personalized to that specific user. For example, you wouldn’t 
+want your Reader account, Facebook logged in pages, or Blog CMS pages 
+indexed.</p>
+<p>If you did want SEO for you application though, how does SEO work for
+ applications/sites that get their pages built with Javascript? Search 
+engines have a difficult time processing these applications because the 
+content is built dynamically by the browser and not visible to crawlers.</p>
+<h3>Making Your App SEO Friendly</h3>
+<p>Techniques to make Javascript single page applications SEO friendly require regular maintenance. According to the official <a href="https://developers.google.com/webmasters/ajax-crawling/" target="_blank">Google suggestions</a>, you would create HTML snapshots. The basic overview of how it would work is that:</p>
+<ol>
+<li>A crawler would find a pretty URL (<code>https://scotch.io/seofriendly#key=value</code>)</li>
+<li>The crawler would then ask the server for the contents of this URL (in a special modified way)</li>
+<li>Web server returns content using an HTML snapshot</li>
+<li>HTML snapshot is processed by the crawler</li>
+<li>Search results then show the original URL</li>
+</ol>
+<p>For more information on this process, be sure to look at Google’s <a href="https://developers.google.com/webmasters/ajax-crawling/docs/getting-started" target="_blank">AJAX Crawling</a> and their guide on <a href="https://developers.google.com/webmasters/ajax-crawling/docs/html-snapshot" target="_blank">creating HTML snapshots</a>.</p>
+<div class="alert alert-info">
+<strong>SEO Article</strong>: We’ve written up a tutorial on how to make Angular SEO friendly. Give it a read if you’re interested: <a href="https://scotch.io/tutorials/javascript/angularjs-seo-with-prerender-io" class="alert-link">AngularJS SEO with Prerender.io</a>.
+</div>
+<h2 id="-conclusion"><a href="#-conclusion"><span class="icon">#</span> # Conclusion</a></h2>
+<p>This was a very simple tutorial on how to get Angular routing to work
+ with a layout and separate views. Now you can go ahead and create 
+larger single page applications. There is much more to learn with 
+Angular and I’ll keep writing about different features along my learning
+ journey of Angular.</p>
+<p>If anyone has any suggestions for future Angular articles or 
+different ways to do what we’ve just done here (there are so many ways 
+to write the same thing, it can drive a person insane), sound off in the
+ comments.</p>
+<h3>Further Reading If you are looking for more flexibility in routing 
+like nested views and state based templating instead of route based, 
+then you’ll definitely be interested in</h3>
+<p><a href="https://github.com/angular-ui/ui-router" target="_blank">UI Router</a>. For an article on UI Router: <a href="https://scotch.io/tutorials/javascript/angular-routing-using-ui-router">AngularJS Routing Using UI-Router</a></p>
+<div class="alert alert-info">
+<i class="icon-lightbulb"></i> <strong>Edit:</strong> Added information on SEO for using this technique. <strong>Edit:</strong> Updated article for AngularJS 1.2
+</div>
+</div>
+<footer class="aside">
+<div class="link-buttons">
+<a href="http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview" target="_blank" class="alternative"><span class="iconic iconic-social-github"></span> Code</a>
+<a href="http://embed.plnkr.co/dd8Nk9PDFotCQu4yrnDg/" target="_blank" class="boring"><span class="iconic iconic-beaker"></span> Demo</a>
+</div>
+<div class="tags">
+<a href="https://scotch.io/tag/angular-js">angularJS</a>
+<a href="https://scotch.io/tag/routing">routing</a>
+</div>
+</footer>
+</div>
+</div>
+<div class="sidebar">
+<div class="not-fixed">
+<div class="block custom-form">
+<h2 class="title">
+<span>Subscribe &amp; get our FREE eBook</span>
+Build Your First Node.js App
+</h2>
+<div class="row baby-gutter">
+<div class="col-xs-4">
+<img src="05_Routing_pliki/first-node-app-small.png" alt="Free Node Book">
+</div>
+<div class="col-xs-8">
+ 
+<div id="mc_embed_signup">
+<form action="https://scotch.us3.list-manage.com/subscribe/post?u=1c412c864c03eadaf07ccd61e&amp;id=a818d504d4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+<input name="LOCATION" id="LOCATION" value="sidebar_fixed" type="hidden">
+<div class="mc-field-group form-group">
+<input name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email Address" type="email">
+</div>
+<div id="mce-responses" class="clear">
+<div class="response" id="mce-error-response" style="display:none"></div>
+<div class="response" id="mce-success-response" style="display:none"></div>
+</div>
+<div style="position: absolute; left: -5000px;"><input name="b_1c412c864c03eadaf07ccd61e_a818d504d4" type="text"></div>
+<div class="clear text-center"><input value="Free Node Book" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary btn-sm btn-block" type="submit"></div>
+</form>
+</div>
+ 
+</div>
+</div>
+</div>
+<div class="block sidebar-promo">
+<a href="https://school.scotch.io/enroll">
+<img src="05_Routing_pliki/school-logo-sticker.png">
+<h4>Scotch School</h4>
+<p>Top shelf courses coming August 30th. 50% off for early enrollment!</p>
+</a>
+</div>
+<div class="block 
+                 
+                ">
+<div data-serve="CA7D52E" id="bsap_1291897" class="bsap bsap_1291897">
+<style type="text/css">
+div.bsap_1291897{width:300px;display:block;}div.bsap_1291897 a{width:300px;}div.bsap_1291897 a img{padding:0;}div.bsap_1291897 a em{font-style:normal;}div.bsap_1291897 a{}
+div.bsap_1291897 img{border:0;clear:right;border-radius:5px;margin-bottom:20px !important;}
+div.bsap_1291897 a.adhere{color:#666;font-weight:bold;font-size:12px;text-align:center;width:100% !important;display:block !important;}
+div.bsap_1291897 a.adhere:hover{color:#333;}
+div.bsap_1291897 iframe{}div.bsap_1291897 a{line-height:100%;}div.bsap_1291897 a.adhere{width:300px;height:250px;line-height:2000%;}html>body div.bsap_1291897 a.adhere{width:298px;height:248px;}div.bsap_1291897 img.s{height:0;width:0;}div.bsap_1291897{line-height:9px;}div.bsap_1291897 .bsap_adhere a{height:19px !important;width:298px !important;font-size:10px;background:#f1f1f1;border:1px solid #e1e1e1;border-top:none;border-radius: 0 0 2px 2px;line-height:16px;}.bsap_backfillframe{border:0;}
+</style>
+<a href="https://srv.buysellads.com/ads/click/x/GTND423UC6AIPKQECYA4YKQWCAYIL2JNF6AIPZ3JCESI45Q7CTAIE2JKC6BD5KQ7CWYDTK3EHJNCLSIZ" class="ad0 odd " title="GoJS is a fast and powerful JavaScript library for implementing interactive diagrams in web applications. " id="bsa_5858549" target="_blank" rel="nofollow">
+<img src="05_Routing_pliki/272691-1433948044.png" alt="" width="300" height="250"></a>
+<div class="document_write" id="write_auto_6"><script id="gpt-impl-0.8124989884707798" src="05_Routing_pliki/pubads_impl_94.js"></script></div><script class="ignoreme" id="auto_6" type="text/javascript"> if (typeof(BSACallback) !== 'undefined') BSACallback(); </script></div>
+</div>
+<div class="block 
+                 
+                ">
+<h2 class="title">Popular Scotchers</h2>
+<div class="button-list">
+<ul>
+<li>
+<a style="display: block; height: 72px;" href="https://scotch.io/author/chris" class="round has-image">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/02/8a8bf3a2c952984defbd6bb48304b38e.jpeg');"></span>
+<span class="spoofer">Chris Sevilleja</span>
+<span class="visible">Chris Sevilleja</span>
+</a>
+</li>
+<li>
+<a style="display: block; height: 72px;" href="https://scotch.io/author/nick" class="round has-image">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/02/5d0008252214234c609144ff3adf62cf.jpeg');"></span>
+<span class="spoofer">Nicholas Cerminara</span>
+<span class="visible">Nicholas Cerminara</span>
+</a>
+</li>
+<li>
+<a style="display: block; height: 72px;" href="https://scotch.io/author/holly" class="round has-image">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/02/5e074956ee8ba1fea26e30d28c190495.jpeg');"></span>
+<span class="spoofer">Holly Lloyd</span>
+<span class="visible">Holly Lloyd</span>
+</a>
+</li>
+<li>
+<a style="display: block; height: 72px;" href="https://scotch.io/author/ado" class="round has-image">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/02/99c4080f412ccf46b9b564db7f482907.jpeg');"></span>
+<span class="spoofer">Ado Kukic</span>
+<span class="visible">Ado Kukic</span>
+</a>
+</li>
+<li>
+<a style="display: block; height: 72px;" href="https://scotch.io/author/ryan" class="round has-image">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/02/7f4ec37467f2f7db6fffc7b4d2cc8dc2-1.jpeg');"></span>
+<span class="spoofer">Ryan Chenkie</span>
+<span class="visible">Ryan Chenkie</span>
+</a>
+</li>
+<li>
+<a style="display: block; height: 72px;" href="https://scotch.io/author/chris92" class="round has-image">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/02/ffeece649256f09f8d52ebc17a8cc5e3.jpeg');"></span>
+<span class="spoofer">Chris Nwamba</span>
+<span class="visible">Chris Nwamba</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="block 
+                social 
+                ">
+<h2 class="title">Stalk Us</h2>
+<a href="https://twitter.com/scotch_io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-twitter"></span> </span>
+</a>
+<a href="https://www.facebook.com/scotchdevelopment" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-facebook"></span> </span>
+</a>
+<a href="https://github.com/scotch-io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-github"></span> </span>
+</a>
+<a href="https://feeds.feedblitz.com/scotch_io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic iconic-rss-alt"></span> </span>
+</a>
+</div>
+<div class="block last">
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-4625466825098355" data-ad-slot="8619471422"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" width="300" frameborder="0" height="250"></iframe></ins></ins></ins>
+<script data-rocketoptimized="true" type="text/rocketscript">
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+</div>
+<div class="fixed-sidebar">
+<div class="block puppy-dog-package">
+<a href="https://auth0.com/?utm_source=scotchio&amp;utm_campaign=side_banners" target="_blank">
+<img src="05_Routing_pliki/auth0-rectangle.png">
+<p style="
+                            font-size: 13px;
+                            text-align: center;
+                            margin: 0;
+                            letter-spacing: 0.02em;
+                        ">Single Sign On &amp; Token Based Authentication</p>
+</a>
+</div>
+<div class="block bunch-of-posts">
+<div class="card ">
+<a style="display: block; height: 293px;" href="http://synd.co/2aB059j" class="tile " target="_blank">
+<span class="img" style="background-image: url('/wp-content/uploads/2016/08/mayhem_graphic.png');"></span>
+<div class="text">
+<h3 class="h2">Rescue your app from crap code. Developer-driven security gives you a fighting chance.</h3>
+</div>
+</a>
+<a href="http://synd.co/11VHVYP" class="type sponsorships">
+<span>Advertise Here</span>
+</a>
+</div> </div>
+<div class="block custom-form">
+<h2 class="title">
+<span>Subscribe &amp; get our FREE eBook</span>
+Build Your First Node.js App
+</h2>
+<div class="row baby-gutter">
+<div class="col-xs-4">
+<img src="05_Routing_pliki/first-node-app-small.png" alt="Free Node Book">
+</div>
+<div class="col-xs-8">
+ 
+<div id="mc_embed_signup">
+<form action="https://scotch.us3.list-manage.com/subscribe/post?u=1c412c864c03eadaf07ccd61e&amp;id=a818d504d4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+<input name="LOCATION" id="LOCATION" value="sidebar_fixed" type="hidden">
+<div class="mc-field-group form-group">
+<input name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email Address" type="email">
+</div>
+<div id="mce-responses" class="clear">
+<div class="response" id="mce-error-response" style="display:none"></div>
+<div class="response" id="mce-success-response" style="display:none"></div>
+</div>
+<div style="position: absolute; left: -5000px;"><input name="b_1c412c864c03eadaf07ccd61e_a818d504d4" type="text"></div>
+<div class="clear text-center"><input value="Free Node Book" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary btn-sm btn-block" type="submit"></div>
+</form>
+</div>
+ 
+</div>
+</div>
+</div>
+ 
+</div>
+</div>
+</div>
+</div>
+<div class="author-guts guts">
+<div class="row">
+<div class="col-sm-3">
+<a href="https://pub.scotch.io/@chris" class="profile-spot no-border">
+<span class="img" style="background-image: url('//gravatar.com/avatar/8a8bf3a2c952984defbd6bb48304b38e?s=200&amp;d=https%3A%2F%2Fscotch.io%2Fwp-content%2Fthemes%2Fscotchpress%2Fimg%2Flogo-large.png');"></span>
+<span class="text">My Scotch Posts</span>
+</a>
+</div>
+<div class="col-sm-9">
+<div class="meta">
+<h3>
+<a href="https://pub.scotch.io/@chris">
+Chris Sevilleja </a>
+</h3>
+<p></p><p>Co-founder of Scotch.io. Slapping the keyboard until something good happens.</p><p></p>
+<div class="links">
+<a href="https://thepub.io/@chris" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-heart"></span>
+</span>
+</a>
+<a href="https://twitter.com/sevilayha" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-twitter"></span>
+</span>
+</a>
+<a href="https://facebook.com/sevilayha" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-facebook"></span>
+</span>
+</a>
+<a href="https://github.com/sevilayha" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-github"></span>
+</span>
+</a>
+<a href="https://plus.google.com/+ChrisSevilleja-scotch" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-google-plus"></span>
+</span>
+</a>
+<a href="https://instagram.com/sevilayha" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-instagram"></span>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="bunch-of-posts next-guts guts">
+<div class="row title">
+<div class="col-md-12">
+<h4>Next Up</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-a">
+<div class="card ">
+<a style="display: block; height: 444px;" href="https://scotch.io/tutorials/quick-tip-using-laravel-blade-with-angularjs" class="tile ">
+<div class="text">
+<h3 class="h2">Using Laravel Blade with AngularJS</h3>
+<p>OverviewSingle page apps are becoming increasingly popular. Sites that mimic the single page app behavior are able to provide...</p>
+</div>
+</a>
+<div class="tags">
+<a href="https://scotch.io/tag/angular-js">angularJS</a>
+<a href="https://scotch.io/tag/laravel">laravel</a>
+</div>
+<a href="https://pub.scotch.io/@chris" class="profile-spot no-border">
+<span class="img" style="background-image: url('//gravatar.com/avatar/8a8bf3a2c952984defbd6bb48304b38e?s=200&amp;d=https%3A%2F%2Fscotch.io%2Fwp-content%2Fthemes%2Fscotchpress%2Fimg%2Flogo-large.png');"></span>
+<span class="text">Chris Sevilleja</span>
+</a>
+</div>
+</div>
+<div class="col-md-6 col-b">
+<div class="card ">
+<a style="display: block; height: 444px;" href="https://scotch.io/bar-talk/css-selectors-you-might-not-know-about" class="tile ">
+<span class="img" style="background-image: url('/wp-content/uploads/2013/10/css-selectors.jpg');"></span>
+<div class="text">
+<h3 class="h2">CSS Selectors You Might Not Know About</h3>
+<p>OverviewSingle page apps are becoming increasingly popular. Sites that mimic the single page app behavior are able to provide...</p>
+</div>
+</a>
+<div class="tags">
+<a href="https://scotch.io/tag/css">css</a>
+</div>
+<a href="https://pub.scotch.io/@chris" class="profile-spot no-border">
+<span class="img" style="background-image: url('//gravatar.com/avatar/8a8bf3a2c952984defbd6bb48304b38e?s=200&amp;d=https%3A%2F%2Fscotch.io%2Fwp-content%2Fthemes%2Fscotchpress%2Fimg%2Flogo-large.png');"></span>
+<span class="text">Chris Sevilleja</span>
+</a>
+</div> </div>
+</div>
+</div> <div class="comments-guts guts">
+<div class="row">
+<div class="col-md-12">
+<div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="05_Routing_pliki/a_003.htm" style="width: 1px ! important; min-width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 7354px ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" name="dsq-app2" id="dsq-app2" width="100%" frameborder="0"></iframe></div>
+</div>
+</div>
+</div> <div style="left: 139.6px;" class="page-friend">
+<div class="nav-stuff stuff">
+<div class="custom-select">
+<label>Space Jump</label>
+<select><option selected="selected" value="overview">Overview</option><option value="our-simple-app">Our Simple App</option><option value="html">HTML</option><option value="angular-application">Angular Application</option><option value="configure-routes-and-views">Configure Routes and Views</option><option value="animating-angular-apps">Animating Angular Apps</option><option value="seo-on-single-page-apps">SEO on Single Page Apps</option><option value="conclusion">Conclusion</option><option value="-overview"># Overview</option><option value="-our-simple-app"># Our Simple App</option><option value="-html"># HTML</option><option value="-angular-application"># Angular Application</option><option value="-configure-routes-and-views"># Configure Routes and Views</option><option value="-animating-angular-apps"># Animating Angular Apps</option><option value="-seo-on-single-page-apps"># SEO on Single Page Apps</option><option value="-conclusion"># Conclusion</option></select>
+</div>
+</div>
+<div class="share-stuff stuff">
+<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fscotch.io%2Ftutorials%2Fsingle-page-apps-with-angularjs-routing-and-templating&amp;text=Single+Page+Apps+with+AngularJS+Routing+and+Templating&amp;via=scotch_io&amp;related=scotch_io" class="icon-spot twitter">
+<span style="transform: rotate(88.4deg);" class="icon">
+<span class="iconic iconic-social-twitter"></span>
+</span>
+<span class="text">Chirp Chirp</span>
+</a>
+<a href="#" class="icon-spot facebook" onclick="window.open(
+                'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating'),
+                'facebook-share-dialog',
+                'width=626,height=436');
+            return false;">
+<span style="transform: rotate(88.4deg);" class="icon">
+<span class="iconic iconic-social-facebook"></span>
+</span>
+<span class="text">Zuck It</span>
+</a>
+</div>
+<div class="link-stuff stuff">
+<a href="http://embed.plnkr.co/dd8Nk9PDFotCQu4yrnDg/" class="icon-spot boring" target="_blank">
+<span class="icon">
+<span class="iconic iconic-beaker"></span>
+</span>
+<span class="text">Demo</span>
+</a>
+<a href="http://plnkr.co/edit/dd8Nk9PDFotCQu4yrnDg?p=preview" class="icon-spot alternative" target="_blank">
+<span class="icon">
+<span class="iconic iconic-social-github"></span>
+</span>
+<span class="text">Code</span>
+</a>
+</div>
+<div class="like-stuff stuff">
+<a href="#login-modal" data-api-url="//pub.scotch.io/api/posts/447/like/wordpress" data-id="447" class="icon-spot like-it-love-it open-login-popup" target="_blank">
+<span class="icon">
+<span class="iconic iconic-heart"></span>
+</span>
+<span class="text">Like</span>
+</a>
+<a href="#login-modal" data-api-url="//pub.scotch.io/api/posts/447/bookmark/wordpress" class="icon-spot book-it-to-the-moon open-login-popup" target="_blank">
+<span class="icon">
+<span class="iconic iconic-bookmark"></span>
+</span>
+<span class="text">Bookmark</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="newsletter">
+<form class="is-for-newsletter">
+<span class="iconic iconic-envelope-closed"></span>
+<input placeholder="Subscribe to the Scotch Newsletter" required="" type="email">
+<button type="submit">More Scotch Please</button>
+</form>
+</div>
+<div class="bottom-stuff">
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+<a href="https://scotch.io/" class="profile-spot">
+<span class="img"></span>
+</a>
+</div>
+<div class="col-md-8">
+<nav>
+<ul>
+<li>
+<a href="https://scotch.io/">Scotch.io</a>
+<ul>
+<li><a href="https://scotch.io/tutorials">Tutorials</a></li>
+<li><a href="https://scotch.io/bar-talk">Bar Talk</a></li>
+<li><a href="https://twitter.com/sevilayha" target="_blank">@sevilayha</a></li>
+<li><a href="https://twitter.com/whatnicktweets" target="_blank">@whatnicktweets</a></li>
+<li><a href="https://twitter.com/hollylawly" target="_blank">@hollylawly</a></li>
+</ul>
+</li>
+<li>
+<a href="https://pub.scotch.io/" target="_blank">The Pub</a>
+<ul>
+<li><a href="https://pub.scotch.io/register" target="_blank">Write a Post</a></li>
+<li><a href="https://pub.scotch.io/" target="_blank">Community Posts</a></li>
+</ul>
+</li>
+<li>
+<a href="https://digital.scotch.io/" target="_blank">Our Stuff</a>
+<ul>
+<li><a href="https://leanpub.com/mean-machine" target="_blank">MEAN Machine</a></li>
+<li><a href="https://spudpress.com/" target="_blank">SpudPress</a></li>
+<li><a href="https://box.scotch.io/" target="_blank">Scotch Box</a></li>
+<li><a href="https://panels.scotch.io/" target="_blank">Scotch Panels</a></li>
+</ul>
+</li>
+<li>
+<a href="https://scotch.io/about">About Us</a>
+<ul>
+<li><a href="https://school.scotch.io/" target="_blank">Scotch School</a></li>
+<li><a href="https://digital.scotch.io/" target="_blank">Scotch Digital</a></li>
+<li><a href="https://shop.scotch.io/" target="_blank">Scotch Store</a></li>
+<li><a href="https://scotch-slack.herokuapp.com/" target="_blank">Scotch Slack</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class="row social">
+<div class="col-md-12">
+<a href="https://twitter.com/scotch_io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-twitter"></span>
+</span>
+</a>
+<a href="https://facebook.com/scotchdevelopment" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-facebook"></span>
+</span>
+</a>
+<a href="https://github.com/scotch-io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-github"></span>
+</span>
+</a>
+<a href="https://feeds.feedblitz.com/scotch_io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic iconic-rss-alt"></span>
+</span>
+</a>
+<a href="https://pub.scotch.io/" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-pencil"></span>
+</span>
+</a>
+</div>
+</div>
+<div class="row misc">
+<div class="col-md-12">
+<p>SSBsb3ZlIHNjb3RjaC4gU2NvdGNoeSBzY290Y2ggc2NvdGNoLg==</p>
+<p>v40.13378133781337 / <a href="https://scotch.io/advertise">Advertise</a> / <a href="https://scotch.io/contact">Contact</a> / <a href="https://scotch.io/license">License</a></p>
+<p>© 2016 Scotch.io, LLC. All Rights Super Duper Reserved.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="spudpress">
+<p><strong>Pain free</strong> and <strong>100% static</strong> hosting by <a href="https://spudpress.com/" target="_blank">SpudPress</a> <span class="iconic iconic-heart"></span></p>
+</div>
+</footer>
+</div> 
+<div class="misc-links">
+<a href="https://pub.scotch.io/register" class="profile-spot">
+<span class="img"></span>
+<span class="text">Login / Register</span>
+</a><a href="http://pub.scotch.io/logout" class="text logout hidden">Logout</a>
+
+<hr>
+<div class="container-fluid logged-in-menu hidden">
+<div class="row" style="margin-bottom:20px">
+<div class="col-xs-6 col-sm-4 col-sm-offset-2">
+<a href="http://pub.scotch.io/my/home" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-heart"></span>
+</span>
+<span class="text">Likes</span>
+</a>
+</div>
+<div class="col-xs-6 col-sm-4">
+<a href="http://pub.scotch.io/my/home" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-bookmark"></span>
+</span>
+<span class="text">Bookmarks</span>
+</a>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-6 col-sm-4">
+<a href="http://pub.scotch.io/my/posts" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-copywriting"></span>
+</span>
+<span class="text">My Posts</span>
+</a>
+</div>
+<div class="col-xs-6 col-sm-4">
+<a href="http://pub.scotch.io/my/earnings" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-dollar"></span>
+</span>
+<span class="text">Earnings</span>
+</a>
+</div>
+<div class="col-xs-6 col-sm-4">
+<a href="http://pub.scotch.io/my/profile" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-person-genderless"></span>
+</span>
+<span class="text">Profile</span>
+</a>
+</div>
+</div>
+<hr>
+</div>
+<div class="container-fluid">
+<h4>The Scotch.io Family</h4>
+<div class="row">
+<div class="col-sm-4 col-xs-4">
+<a href="https://scotch.io/" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-heart"></span>
+</span>
+<span class="text">Scotch.io</span>
+</a>
+</div>
+<div class="col-sm-4 col-xs-4">
+<a href="https://pub.scotch.io/" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-pencil"></span>
+</span>
+<span class="text">The Pub</span>
+</a>
+</div>
+<div class="col-sm-4 col-xs-4">
+<a href="https://school.scotch.io/" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic iconic-monitor"></span>
+</span>
+<span class="text">School</span>
+</a>
+</div>
+</div>
+</div>
+<hr>
+<form class="is-for-newsletter">
+<input placeholder="kylo-ren@hoth-topic.com" required="" type="email">
+<button type="submit">Get Scotch in your inbox</button>
+</form>
+<hr>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3 col-xs-6">
+<a href="https://twitter.com/scotch_io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-twitter"></span>
+</span>
+<span class="text">Twitter</span>
+</a>
+</div>
+<div class="col-sm-3 col-xs-6">
+<a href="https://facebook.com/scotchdevelopment" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-facebook"></span>
+</span>
+<span class="text">Facebook</span>
+</a>
+</div>
+<div class="col-sm-3 col-xs-6">
+<a href="https://github.com/scotch-io" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-social-github"></span>
+</span>
+<span class="text">GitHub</span>
+</a>
+</div>
+<div class="col-sm-3 col-xs-6">
+<a href="https://scotch.io/feed" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic iconic-rss-alt"></span>
+</span>
+<span class="text">RSS</span>
+</a>
+</div>
+</div>
+</div>
+<hr>
+<div class="container-fluid projects">
+<div class="row">
+<div class="col-sm-4 col-xs-12">
+<a href="https://leanpub.com/mean-machine" target="_blank" class="profile-spot no-border">
+<span class="img" style="background-image: url('/wp-content/themes/scotchpress/img/spot-mean-machine.png');"></span>
+<span class="text">MEAN Machine</span>
+</a>
+</div>
+<div class="col-sm-4 col-xs-12">
+<a href="https://spudpress.com/" target="_blank" class="profile-spot no-border">
+<span class="img" style="background-image: url('/wp-content/themes/scotchpress/img/spot-spudpress.png');"></span>
+<span class="text">SpudPress</span>
+</a>
+</div>
+<div class="col-sm-4 col-xs-12">
+<a href="https://box.scotch.io/" target="_blank" class="profile-spot no-border">
+<span class="img" style="background-image: url('/wp-content/themes/scotchpress/img/spot-vagrant.png');"></span>
+<span class="text">Scotch Box</span>
+</a>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4 col-xs-12">
+<a href="https://panels.scotch.io/" target="_blank" class="profile-spot no-border bottom">
+<span class="img" style="background-image: url('/wp-content/themes/scotchpress/img/spot-panels.png');"></span>
+<span class="text">Panels</span>
+</a>
+</div>
+<div class="col-sm-4 col-xs-12">
+<a href="https://digital.scotch.io/" target="_blank" class="profile-spot no-border bottom">
+<span class="img" style="background-image: url('/wp-content/themes/scotchpress/img/spot-digital.png');"></span>
+<span class="text">Digital</span>
+</a>
+</div>
+<div class="col-sm-4 col-xs-12">
+<a href="https://pub.scotch.io/" class="profile-spot no-border bottom">
+<span class="img" style="background-image: url('/wp-content/themes/scotchpress/img/logo-pub.png');"></span>
+<span class="text">The Pub</span>
+</a>
+</div>
+</div>
+</div>
+<hr>
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-4">
+<a href="https://scotch.io/advertise" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-dollar"></span>
+</span>
+<span class="text">Advertise</span>
+</a>
+</div>
+<div class="col-xs-4">
+<a href="https://scotch.io/contact" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-envelope-open"></span>
+</span>
+<span class="text">Contact</span>
+</a>
+</div>
+<div class="col-xs-4">
+<a href="https://scotch.io/write-for-us" target="_blank" class="icon-spot">
+<span class="icon">
+<span class="iconic iconic-pencil"></span>
+</span>
+<span class="text">Write for Us</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="login-modal" class="base-popup white-popup mfp-with-anim mfp-hide">
+<div class="auth-modal auth-modal-login">
+<div class="vertical-center">
+<div class="page-header text-center">
+<h3>Login</h3>
+<small>or <a href="#" class="auth-show-signup">Sign Up</a></small>
+</div>
+<form id="login-form" class="login-form text-left" method="POST" action="//pub.scotch.io/api/auth/login">
+<div class="form-group">
+<input class="form-control" name="email" placeholder="Email" type="email">
+</div>
+<div class="form-group">
+<input class="form-control" name="password" placeholder="******" type="password">
+</div>
+<label class="custom-checkbox active m-b">
+Remember Me
+<div class="field">
+<input name="remember" value="1" checked="checked" type="checkbox">
+</div>
+</label>
+<div class="form-group">
+<button type="submit" class="btn btn-success btn-lg make-big btn-block">Login</button>
+</div>
+</form>
+<p class="text-right extra-text-small">
+<a href="http://pub.scotch.io/password/reset">Forgot Your Password?</a>
+</p>
+</div>
+</div>
+ 
+<div class="auth-modal auth-modal-signup">
+<div class="page-header text-center">
+<h3>Sign Up</h3>
+<small>or <a href="#" class="auth-show-login">Login</a></small>
+</div>
+<div class="form-group row text-center">
+<div class="col-xs-4">
+<span class="iconic iconic-heart iconic-sm"></span>
+<h5 class="text-muted">Like</h5>
+</div>
+<div class="col-xs-4">
+<span class="iconic iconic-bookmark iconic-sm"></span>
+<h5 class="text-muted">Bookmark</h5>
+</div>
+<div class="col-xs-4">
+<span class="iconic iconic-pencil iconic-sm"></span>
+<h5 class="text-muted">Write</h5>
+</div>
+</div>
+<form id="signup-form" method="POST" action="//pub.scotch.io/api/auth/register" class="text-left">
+ 
+<div class="hidden">
+<input name="my_name" id="my_name" type="text">
+</div>
+<div class="form-group scotch-unique-group unique-group">
+<input class="form-control unique-check" data-base="//pub.scotch.io" name="username" placeholder="Username" type="text">
+</div>
+<div class="form-group scotch-unique-group unique-group">
+<input class="form-control unique-check" data-base="//pub.scotch.io" name="email" placeholder="Email" type="email">
+</div>
+<div class="form-group">
+<input class="form-control" name="password" placeholder="Password" type="password">
+</div>
+<label class="custom-checkbox active m-b">
+Subscribe
+<div class="field">
+<input name="newsletter" value="1" checked="checked" type="checkbox">
+</div>
+</label>
+<div class="form-group">
+<button type="submit" class="btn btn-success btn-lg make-big btn-block">Join Scotch</button>
+</div>
+</form>
+</div>
+</div>
+</div> 
+ 
+<script data-cfasync="false" src="05_Routing_pliki/superpower.js"></script>
+<script data-rocketoptimized="true" type="text/rocketscript">
+        // GOOGALYTICS 
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-36045075-1', 'auto');
+        if (docCookies.getItem('is_scotcher')) {
+            ga('set', {
+                userId: docCookies.getItem('user_id'),  // signed in id
+                             // author
+                dimension1: 'Chris Sevilleja',
+                metric1: 'Chris Sevilleja',
+                                dimension2: true,                       // logged in or not
+                dimension3: false                       // pro user
+            });
+        }
+        ga('send', 'pageview');
+
+        // Facebook Pixel Code 
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '992053144150851');
+        fbq('track', "PageView");    
+    </script>
+ 
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=992053144150851&ev=PageView&noscript=1"/></noscript>
+<script data-rocketoptimized="true" async="" data-rocketsrc="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="text/rocketscript"></script>
+<script data-rocketoptimized="true" async="" data-rocketsrc="https://s3.buysellads.com/ac/bsa.js" type="text/rocketscript"></script>
+<script data-rocketoptimized="true" async="" data-rocketsrc="//scotchwebdevelopment.disqus.com/embed.js" type="text/rocketscript"></script><p style="transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); margin: 0px;"></p>
+
+
+ 
+ 
+ 
+<script id="" type="text/javascript">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","//connect.facebook.net/en_US/fbevents.js");fbq("init","417778941754366");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=417778941754366&amp;ev=PageView&amp;noscript=1"></noscript>
+
+
+<script id="" type="text/javascript">var google_conversion_id=956542766,google_custom_params=window.google_tag_params,google_remarketing_only=!0;</script>
+<script src="05_Routing_pliki/conversion.js" id="" type="text/javascript"></script><iframe name="google_conversion_frame" title="Google conversion frame" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/956542766/?random=1471958093170&amp;cv=8&amp;fst=1471958093170&amp;num=1&amp;fmt=1&amp;guid=ON&amp;u_h=960&amp;u_w=1536&amp;u_ah=922&amp;u_aw=1536&amp;u_cd=24&amp;u_his=1&amp;u_tz=120&amp;u_java=true&amp;u_nplug=14&amp;u_nmime=69&amp;frm=0&amp;url=file%3A%2F%2F%2FC%3A%2FUsers%2Flzajac%2FDesktop%2FPages%2FSingle%2520Page%2520Apps%2520with%2520AngularJS%2520Routing%2520and%2520Templating%2520_%2520Scotch.htm&amp;tiba=Single%20Page%20Apps%20with%20AngularJS%20Routing%20and%20Templating%20%7C%20Scotch" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" width="300" frameborder="0" height="13"></iframe><iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/956542766/?value=0&amp;guid=ON&amp;script=0">
+</div>
+</noscript><div style="display: none; visibility: hidden;">
+
+<script type="text/javascript"></script>
+<script data-rocketoptimized="true" data-rocketsrc="//www.googleadservices.com/pagead/conversion.js" type="text/javascript"></script><img alt="" src="05_Routing_pliki/a_003_002.htm" style="display:none" border="0" width="1" height="1">
+<noscript></noscript></div><p style="transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); margin: 0px;"></p><div style="display: none; visibility: hidden;">
+
+<script type="text/javascript">var google_conversion_id=956542766,google_custom_params=window.google_tag_params,google_remarketing_only=!0;</script>
+<script src="//www.googleadservices.com/pagead/conversion.js" type="text/javascript"></script></div><iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe><iframe style="display: none; width: 0px; height: 0px;" name="google_osd_static_frame" id="google_osd_static_frame_5967253079238"></iframe></body></html>

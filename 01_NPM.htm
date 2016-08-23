@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths wf-proximanova-n7-active wf-proximanova-n8-active wf-inconsolata-n5-active wf-proximanova-n1-active wf-proximanova-n4-active wf-proximanova-i4-active wf-proximanova-n3-active wf-active js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><!--<![endif]--><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>NPM – Node.js package manager - Semaphore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" media="all" href="01_NPM_pliki/application-c0b2439f6bb67b2fa87491685d4eb3fdcc9da2c9ad65d95b.css">
+
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="x33GQ8rScmHmejTc3GP6FZ9wHMJzqSoYeOCIeIeh5Wg825QKxis/Y6mFA7u6pRkICgAqhhEN6E9d4ZSUNF0HeQ==">
+
+    <link rel="shortcut icon" href="https://semaphoreci.com/assets/favicons/favicon.ico" type="image/x-ico">
+<link rel="apple-touch-icon" href="https://semaphoreci.com/assets/favicons/apple-touch-icon.png">
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://semaphoreci.com/assets/favicons/apple-touch-icon-152x152.png">
+
+    <!-- Google Analytics -->
+<script src="//s.swiftypecdn.com/install/v2/st.js" async=""></script><script src="//www.google-analytics.com/analytics.js" async=""></script><script src="01_NPM_pliki/widgets.js" id="twitter-wjs"></script><script src="01_NPM_pliki/2358052.js" id="hs-analytics"></script><script src="01_NPM_pliki/st.js" async=""></script><script src="01_NPM_pliki/analytics.js" async=""></script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-28072419-1', 'auto', {'cookieDomain': 'semaphoreci.com', 'legacyCookieDomain': 'semaphoreci.com'});
+ga('send', 'pageview');
+
+// Trigger an event 5 seconds after a scroll.
+// When it goes out, closing the page will not count as a bounce.
+setTimeout(function() {
+  window.onscroll = function() {
+    window.onscroll = null; // Only track the event once
+    ga('send', 'event', 'scroll', 'read', {'page': window.location.pathname });
+  }
+}, 5000);
+
+</script>
+<!-- End Google Analytics -->
+
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+      _st('install','RbFV7fCCJRFrhxKo7XGr','2.0.0');
+</script>
+
+    <script type="text/javascript">
+  (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+      var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+      n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/2358052.js';
+      e.parentNode.insertBefore(n, e);
+  })(document,"script","hs-analytics",300000);
+</script>
+
+
+      <meta property="og:url" content="https://semaphoreci.com/community/tutorials/npm-node-js-package-manager">
+  <meta property="og:title" content="NPM – Node.js package manager">
+  <meta property="og:description" content="NPM is the official package manager for Node.js. This article shows you the most important things you need to know in order to use it effectively.">
+  <meta property="og:image" content="https://d1dkupr86d302v.cloudfront.net/community/assets/social-media-icons/icon-tag-node-js-16b5599d3c86c2b8617a80711a8abc8bc30947ca399ae4151ce1f8ca33e257cc.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@semaphoreci">
+  <meta name="twitter:title" content="NPM – Node.js package manager">
+  <meta name="twitter:description" content="NPM is the official package manager for Node.js. This article shows you the most important things you need to know in order to use it effectively.">
+  <meta name="twitter:image" content="https://d1dkupr86d302v.cloudfront.net/community/assets/social-media-icons/icon-tag-node-js-16b5599d3c86c2b8617a80711a8abc8bc30947ca399ae4151ce1f8ca33e257cc.png">
+  <meta name="twitter:url" content="https://semaphoreci.com/community/tutorials/npm-node-js-package-manager">
+
+  <link rel="alternate" type="application/atom+xml" title="Semaphore CI Community Tutorials" href="https://semaphoreci.com/community/tutorials.atom">
+
+    <link rel="alternate" type="application/atom+xml" title="Semaphore CI Community Tutorials on Node.js" href="https://semaphoreci.com/community/tags/node-js.atom">
+<link rel="canonical" href="https://semaphoreci.com/community/tutorials/npm-node-js-package-manager"><style type="text/css">.tk-inconsolata{font-family:"inconsolata",monospace;}.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}</style><style type="text/css">@font-face{font-family:inconsolata;src:url(https://fonts.typekit.net/af/6eb605/000000000000000000012ace/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5) format("woff2");font-weight:500;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/03034e/00000000000000003b9ad1b1/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7) format("woff2");font-weight:700;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/6b4e48/00000000000000003b9ad1b3/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8) format("woff2");font-weight:800;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/b18774/00000000000000003b9ad1bd/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1) format("woff2");font-weight:100;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/edab9a/00000000000000003b9ad1b9/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4) format("woff2");font-weight:400;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/1b9fb4/00000000000000003b9ad1ba/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4) format("woff2");font-weight:400;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/015ec8/00000000000000003b9ad1b5/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3) format("woff2");font-weight:300;font-style:normal;}</style>
+  <script src="01_NPM_pliki/button.js" async="" charset="utf-8" type="text/javascript"></script><link href="01_NPM_pliki/new_embed-28251278dfbb54588d68fbd8d7cc72ba.css" type="text/css" rel="stylesheet"><style type="text/css">.tk-inconsolata{font-family:"inconsolata",monospace;}.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}</style><style type="text/css">@font-face{font-family:inconsolata;src:url(https://fonts.typekit.net/af/6eb605/000000000000000000012ace/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5) format("woff2");font-weight:500;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/03034e/00000000000000003b9ad1b1/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7) format("woff2");font-weight:700;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/6b4e48/00000000000000003b9ad1b3/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8) format("woff2");font-weight:800;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/b18774/00000000000000003b9ad1bd/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1) format("woff2");font-weight:100;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/edab9a/00000000000000003b9ad1b9/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4) format("woff2");font-weight:400;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/1b9fb4/00000000000000003b9ad1ba/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4) format("woff2");font-weight:400;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://fonts.typekit.net/af/015ec8/00000000000000003b9ad1b5/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3) format("woff2");font-weight:300;font-style:normal;}</style><style type="text/css">.st-install-RbFV7fCCJRFrhxKo7XGr .st-ui-result .st-ui-type-heading { color:#0089d7 !important }
+.st-install-RbFV7fCCJRFrhxKo7XGr .st-ui-result em {font-style:normal; font-weight:bold; background-color:#f6fcfe !important}</style></head>
+
+  <body data-prefix="tutorial" data-signed-in="false" data-current-user-id="" data-root="https://semaphoreci.com/community">
+
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="https://semaphoreci.com/?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653"><img alt="Semaphore - Continuous Integration, Deployment, TDD, DevOps tutorials" src="01_NPM_pliki/logo-semaphore-f219995f65abb14a7760cafb0c37f909b4241debca2c8.svg" width="140" height="35"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="" href="https://semaphoreci.com/product?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Product</a></li>
+          <li><a class="" href="https://semaphoreci.com/enterprise?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Enterprise</a></li>
+          <li><a href="https://semaphoreci.com/pricing?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Pricing</a></li>
+          <li><a href="https://semaphoreci.com/docs?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Documentation</a></li>
+          <li><a href="https://semaphoreci.com/community/tutorials?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Tutorials</a></li>
+          <li><a href="https://semaphoreci.com/blog?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Blog</a></li>
+            <li><a href="https://semaphoreci.com/users/sign_in?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Sign In</a></li>
+            <li><span><a class="btn btn-primary navbar-button" href="https://semaphoreci.com/users/sign_up?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653" role="button">Sign Up</a></span></li>
+        </ul>
+      </div><!-- navbar -->
+    </div> <!-- container -->
+  </nav>
+</header>
+
+
+    
+
+<script>
+
+  var _newCommentPath = "/community/tutorials/npm-node-js-package-manager/comments";
+  var _comments = [];
+
+    var _tag = {"id":4,"name":"Node.js","type":"ActsAsTaggableOn::Tag","subscribed":null,"path":"/community/subscription"};
+  var _tutorial = {"id":8,"name":"NPM – Node.js package manager","type":"Tutorial","subscribed":null,"path":"/community/subscription"};
+
+  var _like = {"path":"/community/tutorials/npm-node-js-package-manager/likes","count":2,"liked":null};
+</script>
+
+
+
+<div class="page-illustration page-illustration-none">
+
+  <div class="container">
+    <nav class="navigation navigation-top">
+
+  <div class="navigation-group navigation-group--search">
+  <form class="search-form" role="search">
+    <input autocapitalize="off" autocorrect="off" autocomplete="off" class="form-control search-input" placeholder="Search tutorials" type="text">
+  </form>
+</div>
+
+  <div class="navigation-group"><a class="explore tags" href="https://semaphoreci.com/community/tags?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Explore tags</a></div>
+
+  <div class="navigation-group">
+  <a href="https://semaphoreci.com/community/tutorials.atom?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653"><span class="icons-share icon-rss">RSS</span>RSS</a>
+</div>
+
+  <div class="navigation-group navigation-group-floated-oposite">
+  <a class="nav-link-back" href="https://semaphoreci.com/community/tutorials?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">All tutorials</a>
+</div>
+
+
+    <div class="navigation-group navigation-group-fluid">
+  <span class="earn">Earn up to $200</span>
+  <a class="btn btn-primary pull-right" href="https://semaphoreci.com/community/write-for-us?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Write a tutorial</a>
+</div>
+
+
+</nav>
+
+  </div>
+
+  <div class="post-photo text-center">
+    
+  </div> <!-- post-photo -->
+
+  <div ng-app="commentsApp" ng-controller="CommentListController as commentListController" class="container ng-scope">
+
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+
+        <article class="single-item block-longform" itemscope="" itemtype="http://schema.org/Article">
+
+          <header class="post-header">
+            <div class="media">
+    <a class="media-left" itemprop="author" itescope="" itemtype="http://schema.org/Person" href="https://semaphoreci.com/community/authors/malizmaj?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">
+      <img class="avatar" itemprop="image" itescope="" itemtype="http://schema.org/ImageObject" src="01_NPM_pliki/810eea55396d48f2ce15710d3fce5b14.jpg" alt="810eea55396d48f2ce15710d3fce5b14" width="88" height="88">
+</a>
+  <div class="media-body">
+    <ul class="list-inline post-info">
+        <li itemprop="author" itemscope="" itemtype="http://schema.org/Person"><a itemprop="name" href="https://semaphoreci.com/community/authors/malizmaj?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Aleksandar Olić</a></li>
+
+      <li>
+        <a href="https://semaphoreci.com/community/tutorials/npm-node-js-package-manager?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653#comments">
+          <span itemprop="commentCount">
+            <ng-pluralize count="commentListController.comments.length" when="{'one': '1 comment', 'other': '{} comments'}">0 comments</ng-pluralize>
+          </span>
+</a>      </li>
+
+      <li itemprop="keywords">
+        Tagged as
+          <a href="https://semaphoreci.com/community/tags/node-js?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Node.js</a>
+      </li>
+    </ul>
+  </div>
+  <div class="media-right media-twitter">
+  <iframe src="01_NPM_pliki/tweet_button.htm" title="Twitter Tweet Button" style="position: static; visibility: visible; width: 61px; height: 20px;" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" allowtransparency="true" scrolling="no" id="twitter-widget-0" frameborder="0"></iframe>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div> 
+
+</div>
+
+          </header>
+
+          
+            <h1 class="page-title" itemprop="name">NPM – Node.js package manager</h1>
+
+            <p class="page-subtitle page-intro" itemprop="about">NPM is 
+the official package manager for Node.js. This article shows you the 
+most important things you need to know in order to use it effectively.</p>
+
+          <div class="jumbotron post-meta block-subscribe-to-tag">
+  <img class="jumbotron_img" itemprop="image" title="node-js" alt="node-js" src="01_NPM_pliki/icon-tag-node-js-20393d95372150f790bea71195cab37cc1c04eb96f3.svg" width="40" height="40">
+  <span class="subscription-tag subscription-tag-top">  <a href="#" class="btn btn-primary btn-sm" id="subscribe-tag">Subscribe to new Node.js tutorials</a>
+</span>
+  <div class="tutorial-like pull-right"><div class="likes ">
+    <a data-toggle="modal" href="#modal-log-in-like" class="like modal-login-like" id="like" title="Heart this article, show the appreciation to the author"></a>
+  <span class="likes-count">
+    2
+  </span>
+</div></div>
+</div>
+
+
+          
+            <div class="side-block-brought-to-you text-center" itemprop="sourceOrganization" itemscope="" itemtype="http://schema.org/Organization">
+  <strong>Brought to you by</strong>
+  <span itemprop="logo"><img alt="" src="01_NPM_pliki/logo-c76e6b47ed66c2dec1bf75bc14e383d5e789a880c4322de5f17db3a.svg" width="44"></span>
+  <h3 itemprop="name">Semaphore</h3>
+  <a id="semaphore-learn-more" class="btn btn-primary" itemprop="url" href="https://semaphoreci.com/?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Learn More</a>
+</div>
+
+
+            <section id="tutorial-content" class="block-center-img" itemprop="text" ng-non-bindable="">
+              <p><a href="https://www.npmjs.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">NPM</a> is a <a href="http://nodejs.org/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Node.js</a> package manager
+that comes bundled with the installation of Node.js. It keeps track of
+all dependencies for your Node.js projects and gives you full control
+over managing them.</p>
+
+<p>NPM makes is easy to reuse thousands of existing open source packages that
+solve a multitude of common problems, as well as share your own code with
+the community through the NPM registry.</p>
+
+<p>Since JavaScript is now being used both for client and server-side code,
+there are lots of different packages: some for server side, some that are
+in fact command line programs and some that are made for front-end
+development. All those packages are listed on the official NPM website
+and in the NPM registry, the database of all available the open source
+packages.</p>
+
+<p>This tutorial is an introduction to what you can do with NPM and a reference
+to its most frequently used commands.</p>
+
+<h2>Initializing a project</h2>
+
+<p>When you start a new project utilizing Node.js, you need to create a
+<code>package.json</code> file. It is a manifest file which tracks your dependencies,
+provides some metadata for your project and can optionally define some
+project-specific tasks to perform from command line.</p>
+
+<p>If you have Node.js installed, <code>npm</code> command will be available. To check if it
+is installed just run:</p>
+
+<pre><code>npm -v
+</code></pre>
+
+<p>You can create a <code>package.json</code> file manually or bootstrap it interactively from
+the command line. The process will guide you through some common questions about
+the project, let you preview the file and then generate it.</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>mkdir ~/myproject
+<span class="nv">$ </span><span class="nb">cd</span> ~/myproject
+<span class="nv">$ </span>npm init
+name: <span class="o">(</span>a<span class="o">)</span> myapp
+version: <span class="o">(</span>1.0.0<span class="o">)</span> 
+description: A very cool app
+entry point: <span class="o">(</span>index.js<span class="o">)</span> 
+<span class="nb">test command</span>: 
+git repository: 
+keywords:
+author: mrfoo@acme.com
+license: <span class="o">(</span>ISC<span class="o">)</span> 
+About to write to /home/mrfoo/myproject/package.json:
+
+<span class="o">{</span>
+  <span class="s2">"name"</span>: <span class="s2">"myapp"</span>,
+  <span class="s2">"version"</span>: <span class="s2">"1.0.0"</span>,
+  <span class="s2">"description"</span>: <span class="s2">"A very cool app"</span>,
+  <span class="s2">"main"</span>: <span class="s2">"index.js"</span>,
+  <span class="s2">"scripts"</span>: <span class="o">{</span>
+    <span class="s2">"test"</span>: <span class="s2">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  <span class="o">}</span>,
+  <span class="s2">"author"</span>: <span class="s2">"Mr Foo &lt;mrfoo@acme.com&gt;"</span>,
+  <span class="s2">"license"</span>: <span class="s2">"ISC"</span>
+<span class="o">}</span>
+
+Is this ok? <span class="o">(</span>yes<span class="o">)</span> 
+</pre></div>
+
+<p><strong>Note</strong>: mark the application as private if you don’t plan to put it in an
+actual repository by adding the "private" property to <code>package.json</code>:</p>
+
+<div class="highlight highlight-json"><pre><span class="s2">"private"</span><span class="err">:</span> <span class="kc">true</span>
+</pre></div>
+
+<p>The <a href="https://docs.npmjs.com/files/package.json?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">official documentation</a> provides
+a good overview of all the available properties in <code>package.json</code>. We will touch
+upon the most useful ones.</p>
+
+<p>You can also check out an
+<a href="http://browsenpm.org/package.json?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">interactive example of a full <code>package.json</code></a>.</p>
+
+<h2>Installing dependencies</h2>
+
+<p>You can find over 100,000 projects available on <a href="https://www.npmjs.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">the official NPM website</a>
+where they are ranked by different criteria. A common thing to do is check
+if a package is actively maintained.</p>
+
+<p>You can also search for packages from the command line:</p>
+
+<pre><code>npm search &lt;search term&gt;
+</code></pre>
+
+<p>You can visit the homepage of the package in your default browser by running:</p>
+
+<pre><code>npm home &lt;package name&gt;
+</code></pre>
+
+<h3>Local installation</h3>
+
+<p>Now that you have a <code>package.json</code>, you can add a <code>dependencies</code> section and
+list everything you need:</p>
+
+<div class="highlight highlight-json"><pre><span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nt">"express"</span><span class="p">:</span> <span class="s2">"*"</span><span class="p">,</span>
+  <span class="nt">"grunt"</span><span class="p">:</span> <span class="s2">"*"</span><span class="p">,</span>
+  <span class="nt">"bower"</span><span class="p">:</span> <span class="s2">"*"</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>To install all packages listed in <code>package.json</code> and their dependencies,
+navigate to your project directory and run the <code>install</code> command which will
+create a <code>node_modules</code> directory and download all packages there:</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>You can also install new packages and record them from the terminal by running:</p>
+
+<pre><code>npm install --save &lt;package name&gt;
+</code></pre>
+
+<p>Some other useful options:</p>
+
+<ul>
+<li>Uninstall package and remove it from <code>package.json</code>: 
+<code>npm uninstall --save &lt;packagename&gt;</code>
+</li>
+<li>Install directly from the git repository: 
+<code>npm install git://github.com/mrfoo/mypackage.git</code>
+</li>
+<li>Install a specific version of the package: 
+<code>npm install somepackage@1.1.0</code> or <code>npm install somepackage@latest</code>
+</li>
+</ul>
+
+<p>It's important to note that the above method will install packages <strong>locally</strong>,
+meaning they will be stored and be usable only inside your project. This is good
+as it lets each project define its modules, their specific version and download
+them separately.</p>
+
+<h3>Global instalation</h3>
+
+<p>Another way to install a package is by doing a <strong>global</strong> installation. It is
+commonly used for packages that provide command line functionality, such as
+<code>grunt</code>,<code>bower</code> and <code>yo</code>.</p>
+
+<p>For example, to install <a href="https://www.npmjs.com/package/jshint?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">JSHint</a> globally,
+run the <code>install</code> command with <code>-g</code> flag and root privilege:</p>
+
+<pre><code>sudo npm install -g jshint 
+</code></pre>
+
+<p>JShint should now be installed as a global package on the computer and can be
+ran from anywhere on a JavaScript file to lint it in a terminal.</p>
+
+<pre><code>jshint hello.js
+</code></pre>
+
+<p>It's not advised to install every package globally. That method is reserved 
+mostly for command line utilities.</p>
+
+<h2>Managing dependencies</h2>
+
+<p>NPM lets you manage your project dependencies and the versions you need.
+Open source projects often move fast, and versions change frequently. You
+can control which kind of updates your project accepts in the <code>package.json</code>
+file. </p>
+
+<p>NPM uses <a href="http://semver.org/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">semantic versioning</a>, a standard to communicate 
+what kind of changes are implemented in the release as it affects code
+stability.</p>
+
+<p>A release number typically contains three elements: </p>
+
+<ul>
+<li>Major release which breaks backwards compatibility, e.g. 2.0.0</li>
+<li>Minor release with new features that don't break existing features, e.g. 1.1.0</li>
+<li>Patch release with bug fixes and other minor changes, e.g. 1.0.1</li>
+</ul>
+
+<h3>Defining package versions</h3>
+
+<p>Let's say you start developing with certain versions of the packages. You can
+update them and still preserve compatibility by specifying the range of accepted
+updates.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="s2">"dependencies"</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">"package1"</span><span class="o">:</span> <span class="s2">"1.0.0"</span><span class="p">,</span>         <span class="c1">// accepts only 1.0.0 version</span>
+  <span class="s2">"package2"</span><span class="o">:</span> <span class="s2">"1.0.x"</span><span class="p">,</span>         <span class="c1">// any patch release in version 1.0 </span>
+  <span class="s2">"package3"</span><span class="o">:</span> <span class="s2">"*"</span><span class="p">,</span>             <span class="c1">// latest version, not recommended</span>
+  <span class="s2">"package4"</span><span class="o">:</span> <span class="s2">"&gt;=1.0.0"</span><span class="p">,</span>       <span class="c1">// any changes after 1.0.0</span>
+  <span class="s2">"package5"</span><span class="o">:</span> <span class="s2">"&lt;1.9.0"</span><span class="p">,</span>        <span class="c1">// anything less than 1.9.0</span>
+  <span class="s2">"package6"</span><span class="o">:</span> <span class="s2">"~1.8.0"</span><span class="p">,</span>        <span class="c1">// shorthand for &gt;= 1.8.0 &lt; 1.9.0</span>
+  <span class="s2">"package7"</span><span class="o">:</span> <span class="s2">"^1.1.0"</span><span class="p">,</span>        <span class="c1">// shorthand for &gt;=1.1.0 &lt; 2.0.0</span>
+  <span class="s2">"package8"</span><span class="o">:</span> <span class="s2">"latest"</span><span class="p">,</span>        <span class="c1">// tag name for latest version</span>
+  <span class="s2">"package9"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>              <span class="c1">// same as * i.e. latest version</span>
+  <span class="s2">"packageX"</span><span class="o">:</span> <span class="s2">"&lt;1.0.0 || &gt;=2.3.1 &lt;2.4.5 || &gt;=2.5.2 &lt;3.0.0"</span>  
+<span class="p">}</span>
+</pre></div>
+
+<p>For a more granular approach consult the <a href="https://docs.npmjs.com/misc/semver?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">NPM semantic version documentation</a>.</p>
+
+<p>Be sure to follow <a href="http://blog.nodejitsu.com/package-dependencies-done-right/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">best-practices</a> 
+and patch versions of the packages so your code won't break.</p>
+
+<p><strong>Note</strong>: If you are not sure which version to use, just put <code>"*"</code> and run 
+<code>npm update --save</code>. It will install the modules and change the asterisks to 
+installed version number with <code>^</code> allowing for minor and patch updates.</p>
+
+<h3>Upgrading packages</h3>
+
+<p>To see all locally installed packages use <code>ls</code> command and add <code>-l</code> flag for
+short description and <code>--depth=0</code> for brevity and scope (add <code>-g</code> flag if you
+wish to see global packages):</p>
+
+<pre><code>npm ls -l --depth=0
+</code></pre>
+
+<p>To check out which packages can be updated locally and globally,
+run respectively:</p>
+
+<pre><code>npm outdated 
+npm outdated -g --depth=0
+</code></pre>
+
+<p>To <strong>upgrade</strong> to the highest acceptable version locally just run (to update
+globally just add <code>-g</code> flag and run as root):</p>
+
+<pre><code>npm update
+</code></pre>
+
+<p>If you removed a package in <code>package.json</code> just run the <code>prune</code> command to
+delete it from <code>node_modules</code> directory too.</p>
+
+<pre><code>npm prune
+</code></pre>
+
+<p>To upgrade NPM itself you need to install it as a global module again.</p>
+
+<pre><code>sudo npm install -g npm@latest
+</code></pre>
+
+<p>You can even update Node.js with NPM itself by installing a special module <code>n</code>
+and running it with either  or <code>stable</code> as argument.</p>
+
+<pre><code>sudo npm install n -g 
+sudo n stable
+</code></pre>
+
+<p>You can run just <code>npm</code> to get a list of all available commands and help, or
+consult the <a href="https://docs.npmjs.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">official website for documentation</a>.</p>
+
+<h2>Setting up NPM scripts</h2>
+
+<p>NPM has a built-in <code>run-script</code> command (or <code>npm run</code> for short). It works
+similarly to an alias in an operating system. </p>
+
+<p>You define alias name as a property in <code>scripts</code> object which will execute the
+property's value as a command in the operating system's default shell.</p>
+
+<p>You define you custom scripts in <code>package.json</code> like this (assuming you have the
+necessary dependencies listed and installed):</p>
+
+<div class="highlight highlight-json"><pre><span class="s2">"scripts"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">"lint"</span><span class="p">:</span> <span class="s2">"jshint **.js"</span><span class="p">,</span>
+    <span class="nt">"test"</span><span class="p">:</span> <span class="s2">"mocha test/"</span>
+  <span class="p">}</span>
+</pre></div>
+
+<p>So if we run <code>npm run lint</code> in the terminal now, it will be the same as we
+executed <code>jshint **.js</code> in the terminal. This makes <code>scripts</code> property very
+flexible for programming, chaining commands, calling other modules, using system
+commands or anything just as you would do in a regular shell script.</p>
+
+<p>There are some shortcuts available in NPM: <code>npm test</code>, <code>npm start</code>, <code>npm stop</code>
+and <code>npm restart</code>.</p>
+
+<p>If we run <code>npm test</code> it's the same as if we ran in default system shell 
+<code>npm run-script test</code>, or <code>npm run test</code>, i.e. <code>mocha test/</code>.</p>
+
+<p>Start scripts are usually defined so that they start main <code>app.js</code> file in
+Node.js <code>"start": "node app.js"</code>.</p>
+
+<p>When we run <code>npm run lint</code> (or any other custom scipt) NPM also runs the command
+with <em>pre-</em> and <em>post-</em> hooks like this: <code>npm run prelint</code>, <code>npm run postlint</code>.
+This gives us a chance to programmatically control what happens before the
+command and after.</p>
+
+<p>You can even eliminate the need of build tools like <a href="http://gruntjs.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Grunt</a>
+or <a href="http://gulpjs.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Gulp</a> by configuring the scripts. You can check out an 
+<a href="http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">article on how to use NPM as a build tool here</a>.</p>
+
+<h2>Development only dependencies</h2>
+
+<p>You can add a property for separately listing dependencies which are only used
+for development:</p>
+
+<div class="highlight highlight-json"><pre><span class="err">devDependencies</span> <span class="err">:</span> <span class="p">{</span>
+  <span class="nt">"packageX"</span><span class="p">:</span> <span class="s2">"*"</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><code>devDependencies</code> are meant to be used during development of a package, like
+unit testing, linting, minification and similar. In most cases if you are an 
+end-user of a package, you just need <code>dependencies</code>.</p>
+
+<p>By default when you run <code>npm install</code> from a project directory it installs both
+<code>dependencies</code> as well as <code>devDependencies</code> (as it assumes you are in source
+directory so you must be the developer). </p>
+
+<p>If you add <code>--production</code> flag it will install only <code>dependencies</code>.</p>
+
+<pre><code>npm install --production
+</code></pre>
+
+<p>If you install from the public registry with <code>npm install &lt;package&gt;</code> it will
+install only <code>dependencies</code> (becasue you are just a user of the package).</p>
+
+<p>To install a package from the terminal and save it in <code>package.json</code> under
+<code>devDependencies</code>, add <code>--save-dev</code> flag.</p>
+
+<pre><code>npm install --save-dev &lt;package&gt;
+</code></pre>
+
+<p>Stackoverflow provides a good 
+<a href="http://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">clarification on a difference between <code>dependencies</code> and <code>devDependencies</code></a>.</p>
+
+<h2>Publishing Node.js packages</h2>
+
+<p>Because every package is just a directory with <code>package.json</code> file and some
+other files, you can package your project, share it with the community and
+collaborate.</p>
+
+<p>First you need to register yourself within NPM registry from the terminal and
+provide username, password and email address.</p>
+
+<pre><code>npm adduser
+</code></pre>
+
+<p>Now that you have an account you go to root of your to-be-published project and 
+do:</p>
+
+<pre><code>npm publish
+</code></pre>
+
+<h2>Summary</h2>
+
+<p>NPM makes it easy to install, manage and publish your packages. You start a new
+project by creating a <code>package.json</code> file, listing all the dependencies and
+installing them. For command line tools install packages globally.</p>
+
+<p>While you work periodicaly check for updates, add new dependencies and write
+custom scripts. You can also segregate your dependencies into <code>devDependencies</code>
+and <code>dependencies</code> making a distinction between production and development 
+environment.</p>
+
+<p>After finishing you can publish your project in the NPM registry for others to 
+use.</p>
+
+<p>For more information consult:</p>
+
+<ul>
+<li><a href="https://docs.npmjs.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">The official NPM documentation</a></li>
+<li><a href="https://docs.npmjs.com/files/package.json?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Properties specification for a <code>package.json</code></a></li>
+<li><a href="http://browsenpm.org/package.json?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Interactive <code>package.json</code></a></li>
+<li><a href="https://docs.npmjs.com/misc/semver?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Semantic versioner for NPM</a></li>
+<li><a href="https://www.npmjs.com/browse/depended?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Most depended-upon packages</a></li>
+</ul>
+            </section>
+
+        </article>
+
+        <section class="page-block text-center block-author">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 author-bio">
+      <div class="title-image"><img class="img-circle" src="01_NPM_pliki/810eea55396d48f2ce15710d3fce5b14.jpg" alt="810eea55396d48f2ce15710d3fce5b14"></div>
+      <strong>Aleksandar Olić</strong>
+      <p></p><p>Loves connecting wild ideas into a harmonious unit. 
+Writer fusing classical thought with tech soul. You will find him either
+ chilling or researching some new exciting concept.</p><p></p>
+    </div>
+  </div>
+</section>
+
+
+        
+          
+          <div class="jumbotron post-meta block-subscribe-to-tag">
+  <img class="jumbotron_img" itemprop="image" title="node-js" alt="node-js" src="01_NPM_pliki/icon-tag-node-js-20393d95372150f790bea71195cab37cc1c04eb96f3.svg" width="40" height="40">
+  <span class="subscription-tag subscription-tag-bottom">  <a href="#" class="btn btn-primary btn-sm" id="subscribe-tag">Subscribe to new Node.js tutorials</a>
+</span>
+  <div class="tutorial-like likes"><div class="likes ">
+    <a data-toggle="modal" href="#modal-log-in-like" class="like modal-login-like" id="like" title="Heart this article, show the appreciation to the author"></a>
+  <span class="likes-count">
+    2
+  </span>
+</div></div>
+</div>
+
+
+        
+
+        <div class="row">
+  <div class="col-xs-12 text-center">
+    <div class="banner-funnel block-longform">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <h3>Set up continuous integration and delivery for your project in a minute.</h3>
+          <p>Fast. Scalable. Easy to use.</p>
+        </div> <!-- col-sm-8 col-sm-offset-2 -->
+      </div> <!-- row -->
+      <a id="semaphore-try-for-free" class="btn btn-success btn-lg" href="https://semaphoreci.com/users/sign_up?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Try Semaphore for Free</a>
+    </div>
+  </div>
+</div>
+
+
+        <div class="row c-related-articles">
+  <div class="col-xs-12">
+    <h3 class="h4 c-related-articles_headline"><strong>You May Also Like</strong></h3>
+    <ul class="list-unstyled">
+        <li class="listing-item--related"><a class="c-related-articles_link community-related-article" href="https://semaphoreci.com/community/tutorials/mocking-external-http-requests-in-node-tests-with-nock?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Mocking External HTTP Requests in Node Tests with Nock</a></li>
+        <li class="listing-item--related"><a class="c-related-articles_link community-related-article" href="https://semaphoreci.com/community/tutorials/a-tdd-approach-to-building-a-todo-api-using-node-js-and-mongodb?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">A TDD Approach to Building a Todo API Using Node.js and MongoDB</a></li>
+        <li class="listing-item--related"><a class="c-related-articles_link community-related-article" href="https://semaphoreci.com/community/tutorials/building-and-deploying-microservices-with-aws-lambda-and-semaphore?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Building and Deploying Microservices with AWS Lambda and Semaphore</a></li>
+    </ul>
+  </div>
+</div>
+
+
+        <section class="comments">
+
+  <div class="comments-meta">
+    <div class="row">
+      <div class="col-xs-8 text-left">
+        <div class="comments-count">
+          <span itemprop="commentCount">
+            <ng-pluralize count="commentListController.comments.length" when="{'one': '1 comment', 'other': '{} comments'}">0 comments</ng-pluralize>
+          </span>
+          on this tutorial so far.
+          <span class="subscription-tutorial">  <a href="#modal-log-in-subscribe" data-toggle="modal" class="modal-login-subscription" id="subscribe">Subscribe to new comments</a>
+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="media" id="comments">
+    <!-- ngRepeat: comment in commentListController.comments --><!-- ng-repeat -->
+  </div>
+
+
+
+    <div class="well">
+  <a href="#modal-log-in-comment" class="btn btn-primary btn-xs pull-right" data-toggle="modal">Sign In</a>
+  You must be logged in to comment.
+</div>
+
+
+</section>
+
+
+        
+  <div class="block-creative-commons text-center">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653"><img alt="Creative Commons License" rel="license" src="01_NPM_pliki/88x31.png"></a>
+    <p>This work is licensed under a <span itemprop="license"><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></span>
+  </p></div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="modal-log-in-comment">
+  <div class="modal-dialog modal-dialog-prompt modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="media">
+          <figure class="media-left">
+            <img alt="" src="01_NPM_pliki/icon-alert.svg" width="44" height="44">
+          </figure>
+          <div class="media-body">
+            <h3 class="media-heading">To comment you need to have a Semaphore account.</h3>
+
+            <p>With a Semaphore account you can also test and deploy your open source and private projects for free.</p>
+          </div>
+        </div>
+        <div class="modal-dialog-prompt-actions">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="btn btn-primary btn-lg-alt btn-block community-create-account" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/npm-node-js-package-manager&amp;__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Create Account</a>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-default btn-lg-alt btn-block community-sign-in" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/npm-node-js-package-manager&amp;__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modal-log-in-like">
+  <div class="modal-dialog modal-dialog-prompt modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="media">
+          <figure class="media-left">
+            <img alt="" src="01_NPM_pliki/icon-alert.svg" width="44" height="44">
+          </figure>
+          <div class="media-body">
+            <h3 class="media-heading">To like a tutorial you need to have a Semaphore account.</h3>
+
+            <p>With a Semaphore account you can also test and deploy your open source and private projects for free.</p>
+          </div>
+        </div>
+        <div class="modal-dialog-prompt-actions">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="btn btn-primary btn-lg-alt btn-block community-create-account" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/npm-node-js-package-manager&amp;__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Create Account</a>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-default btn-lg-alt btn-block community-sign-in" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/npm-node-js-package-manager&amp;__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modal-log-in-subscribe">
+  <div class="modal-dialog modal-dialog-prompt modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="media">
+          <figure class="media-left">
+            <img alt="" src="01_NPM_pliki/icon-alert.svg" width="44" height="44">
+          </figure>
+          <div class="media-body">
+            <h3 class="media-heading">To subscribe you need to have a Semaphore account.</h3>
+
+            <p>With a Semaphore account you can also test and deploy your open source and private projects for free.</p>
+          </div>
+        </div>
+        <div class="modal-dialog-prompt-actions">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="btn btn-primary btn-lg-alt btn-block community-create-account" href="https://semaphoreci.com/users/sign_up?redirect_path=/community/tutorials/npm-node-js-package-manager&amp;__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Create Account</a>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-default btn-lg-alt btn-block community-sign-in" href="https://semaphoreci.com/users/sign_in?redirect_path=/community/tutorials/npm-node-js-package-manager&amp;__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+    <footer class="c-footer u-mb-xs-20 u-mb-60">
+  <div class="container">
+    <div class="row">
+      <div class="c-footer__border"></div>
+      <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+        <h4 class="u-text-normal text-uppercase">Subscribe to our newsletter</h4>
+
+        <form role="newsletter" class="" action="http://semaphoreapp.us5.list-manage.com/subscribe/post?u=72b30480e518914855ca55a85&amp;id=d442447559" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
+          <div class="input-group u-mb-20 u-pt-5">
+            <input name="EMAIL" class="form-control" placeholder="Enter your email address" type="text">
+
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;"><input name="b_72b30480e518914855ca55a85_d442447559" type="text"></div>
+
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-semaphore-green" name="subscribe" id="mc-embedded-subscribe" onclick="
+                var _this = this;
+                ga.('send', ('event', 'Blog sidebar', 'Newsletter signup');
+                setTimeout(function() {$(_this).parents('form').submit()}, 150);
+                return false;">Subscribe</button>
+            </span>
+          </div>
+        </form>
+
+        <div class="btn-group u-mb-20" role="group" aria-label="...">
+          <a class="btn btn-muted" href="https://twitter.com/semaphoreci?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653" role="button">
+            <img alt="Follow @semaphoreci on Twitter" src="01_NPM_pliki/social-twitter-0c64ec7805ca9a5862d8c8bd81bee01e80f456771f720.svg" width="14">
+          </a>
+          <a class="btn btn-muted" href="https://www.facebook.com/SemaphoreCI?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653" role="button">
+            <img alt="Follow SemaphoreCI on Facebook" src="01_NPM_pliki/social-facebook-2a36f7c6cbdd15290491cd5ef703afe2e7b9fca6ec60.svg" width="7">
+          </a>
+          <a class="btn btn-muted" href="https://semaphoreci.com/blog/feed.xml?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653" role="button">
+            <img alt="Subscribe to blog RSS feed" src="01_NPM_pliki/social-rss-0703421fcbc17c514812d8e695b3e48e4aec67775882c48b9.svg" width="14">
+          </a>
+        </div>
+
+        <p class="hidden-xs">© 2009-2016 Rendered Text. All rights reserved.</p>
+      </div>
+
+      <div class="col-xs-4 col-sm-2 col-md-2 col-md-offset-1 col-lg-offset-2">
+        <h4 class="u-text-normal text-uppercase">Semaphore</h4>
+        <ul class="list-unstyled">
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/product?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Product</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/enterprise?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Enterprise</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/renderedtext/semaphoreci/changelog?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Changelog</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/pricing?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-2">
+        <h4 class="u-text-normal text-uppercase">Resources</h4>
+        <ul class="list-unstyled">
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/contact?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Contact us</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/docs?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Documentation</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/community/tutorials?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Tutorials</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/blog?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Blog</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/docs/api.html?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">API</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-4 col-sm-2">
+        <h4 class="u-text-normal text-uppercase">About</h4>
+        <ul class="list-unstyled">
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/about?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Our story</a></li>
+          <li><a class="u-link-quiet" href="http://renderedtext.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Company</a></li>
+          <li><a class="u-link-quiet" href="https://renderedtext.workable.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Jobs</a></li>
+          <!--<li><a class="u-link-quiet" href="#">Media kit</a></li>-->
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/tos?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Terms</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/privacy?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Privacy</a></li>
+          <li><a class="u-link-quiet" href="https://semaphoreci.com/security?__hstc=753710.0362e8f1be7b8ad7cb385c963a4fcc52.1471954323864.1471954323864.1471957326426.2&amp;__hssc=753710.2.1471957326426&amp;__hsfp=238931653">Security</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 visible-xs u-mt-20">
+        <p>© 2009-2016 <a href="http://renderedtext.com/?__hstc=233161921.367a97c8cdacec673853569f18c3a6de.1471896343827.1471896343827.1471896343827.1&amp;__hssc=233161921.1.1471896343827&amp;__hsfp=238931653">Rendered Text</a>. All rights reserved.</p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+
+    <script src="01_NPM_pliki/angular.js"></script><script src="01_NPM_pliki/angular-sanitize.js"></script>
+    
+      <script src="01_NPM_pliki/huv6nfe.js"></script>
+      <script>try{Typekit.load();}catch(e){}</script>
+    
+    <script src="01_NPM_pliki/application-dbaf7e5fca45c3b8726918924a1d3df30cbd2d4aa710b021f.js"></script>
+  
+
+
+<div id="st-injected-content" data-st-install-key="RbFV7fCCJRFrhxKo7XGr" class="st-injected-content-generated st-install-RbFV7fCCJRFrhxKo7XGr">
+<div class="st-ui-embed st-search-chrome-overlay-output st-search-escape-hide-outputs st-search-zoom-on-mobile" style="display: none;">
+    <div class="st-ui-overlay st-search-hide-outputs"></div>
+  <!-- Swiftype input and results overlay -->
+  <div class="st-ui-container st-ui-container-overlay  st-ui-injected-overlay-container ">
+    <!-- HEADER -->
+    <div class="st-ui-container-header_bar st-position-container">
+        <section class="st-ui-header">
+          <form>
+            <input autocapitalize="off" autocorrect="off" autocomplete="off" class="st-default-search-input st-search-set-focus" placeholder="Search this site" id="st-overlay-search-input" type="text">
+          </form>
+          <span class="st-ui-search-icon"></span>
+
+            <a class="st-ui-close-button st-search-hide-outputs">Close</a>
+
+        </section>
+    </div>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="st-ui-container-left_sidebar st-position-container">
+      <div class="st-ui-injected-search-controls">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="st-ui-container-right_sidebar st-position-container">
+      <div class="st-ui-injected-container-right_sidebar">
+        <div class="st-ui-injected-search-controls">
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY CONTENT -->
+    <div class="st-ui-container-primary_content st-position-container">
+        <section style="display: none;" class="st-ui-slide-autocomplete st-autocomplete-keyboard-navigable st-autocomplete-transient-on-select-and-results" data-st-target-element="#st-overlay-search-input" data-st-active-query-class="active">
+          <span class="st-ui-type-heading-small">suggested results</span>
+          <div class="st-autocomplete-results"><div style="display: none;" class="st-query-present"></div></div>
+        </section>
+
+        <section class="st-ui-content st-search-results"><div class="st-query-not-present">
+          <span class="st-ui-fallback"></span>
+        </div><div style="display: none;" class="st-query-present"></div></section>
+
+      <section class="st-ui-no-results st-search-suggestions"><div class="st-query-not-present">
+      </div></section>
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <div class="st-ui-container-footer_bar st-position-container">
+      <section class="st-ui-footer">
+          <span class="st-ui-search-summary st-search-summary"></span>
+        <span class="st-ui-pagination st-search-pagination"></span>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="st-default-autocomplete" data-st-target-element=".st-default-search-input" style="display: none; position: absolute; top: 49px; left: 0px; z-index: 999999;">
+  <div class="st-autocomplete-results st-ui-autocomplete"><div style="display: none;" class="st-query-present"></div></div>
+</div>
+<div class="st-default-autocomplete" data-st-target-element=".search-input" style="display: none;">
+  <div class="st-autocomplete-results st-ui-autocomplete"><div style="display: none;" class="st-query-present"></div></div>
+</div>
+</div><iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe><iframe style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" allowfullscreen="true" allowtransparency="true" scrolling="no" id="rufous-sandbox" frameborder="0"></iframe></body></html>
