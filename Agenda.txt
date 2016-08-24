@@ -74,10 +74,22 @@ oasp:module - https://github.com/oasp/generator-oasp/wiki/Additional-generator
 2.	Hello World napisany w JavaScript (jQuery) -> programowanie imperatywne
 Zamiana na Angulara + teoria (Angular-basics) (90 min) -> Branch 1 angular basics
  a) 02_angular-basics
-
-3.	Testowanie Karma [???]
-TODO
-
+ b) 02_phases_registration_methods.PNG
+ 
+ Can a service defined in one AngularJS module depend on services in another module? 
+ Can services defined in a child module depend on a service in a parent module, or only on services defined in child modules?
+ 
+ A service defined in one of the application's module is visible to all the other modules. Hierarchy of modules doesn't influence service's visibility. When AngularJS bootstraps an application, it combines all the services defined across all the modules into ine application, that ist global namespace.
+ 
+ Can we have module-private services visible only in a certain module?
+ There is no support provided for module-private services.
+ 
+ Can we have several services with the same name defined in different modules?
+ No, there can be one and only one service with a given name. Services defined in the modules closer to the root of modules will override those defined in child modules.
+ 
+3.	Bootstrap
+	a) hashBank vs. HTML 5 Mode
+	b) 03_Bootstrap_Components.htm - Bootstrap components
 
 4.	Chrome DevTools (20min) [LZA]
 F12
@@ -105,7 +117,7 @@ https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templati
 
 
 7.	Dyrektywa ng-repeat [RBU]
-
+	a) https://docs.angularjs.org/api/ng/directive/ngRepeat
 
 
 8.	Custom Directives (45min) [LZA]
@@ -128,7 +140,7 @@ e.	Add parameters to directive function: $location, $modal, currentContextPath
 
 
 9.	Communication (20min) [RBU]
-	a) 09_AngularJS_API_http.htm
+	a) https://docs.angularjs.org/api/ng/service/$http
 
 
 10.	Backend Spring Boot (90min) [RBU]

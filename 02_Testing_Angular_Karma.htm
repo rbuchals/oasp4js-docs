@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html class="ng-scope pw-locale-en ra1-pw-desktop" prefix="og: http://ogp.me/ns#" ng-app="AP" ng-strict-di="" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+  <title>Testing Angular with Karma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow"><meta name="description" content="AngularJS expert, Ben Drucker, explains why you should unit test your apps, and how to write unit tests against the various components of an AngularJS app."><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="Testing Angular with Karma"><meta property="og:description" content="AngularJS expert, Ben Drucker, explains why you should unit test your apps, and how to write unit tests against the various components of an AngularJS app."><meta property="og:image" content="https://i.imgur.com/35LlUQS.jpg"><meta property="og:url" content="https://www.airpair.com/angularjs/posts/testing-angular-with-karma"><link rel="canonical" href="https://www.airpair.com/angularjs/posts/testing-angular-with-karma">
+  <link rel="stylesheet" href="02_Testing_Angular_Karma-Dateien/fonts.css" type="text/css">
+  <link rel="stylesheet" href="02_Testing_Angular_Karma-Dateien/libs-914db4fa9b.css" type="text/css">
+  <link rel="stylesheet" href="02_Testing_Angular_Karma-Dateien/index-08a77604b7.css" type="text/css">
+  <link rel="shortcut icon" type="image/png" href="https://static.airpair.com/ico/favicon-16x16.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" type="application/rss+xml" href="https://www.airpair.com/rss" title="AirPair Rss">
+  <!-- base href="https://www.airpair.com/" -->
+<style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style><style>.ace_snippet-marker {    -moz-box-sizing: border-box;    box-sizing: border-box;    background: rgba(194, 193, 208, 0.09);    border: 1px dotted rgba(211, 208, 235, 0.62);    position: absolute;}</style><style>.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {    background-color: #CAD6FA;    z-index: 1;}.ace_editor.ace_autocomplete .ace_line-hover {    border: 1px solid #abbffe;    margin-top: -1px;    background: rgba(233,233,253,0.4);}.ace_editor.ace_autocomplete .ace_line-hover {    position: absolute;    z-index: 2;}.ace_editor.ace_autocomplete .ace_scroller {   background: none;   border: none;   box-shadow: none;}.ace_rightAlignedText {    color: gray;    display: inline-block;    position: absolute;    right: 4px;    text-align: right;    z-index: -1;}.ace_editor.ace_autocomplete .ace_completion-highlight{    color: #000;    text-shadow: 0 0 0.01em;}.ace_editor.ace_autocomplete {    width: 280px;    z-index: 200000;    background: #fbfbfb;    color: #444;    border: 1px lightgray solid;    position: fixed;    box-shadow: 2px 3px 5px rgba(0,0,0,.2);    line-height: 1.4;}</style><link media="all" href="02_Testing_Angular_Karma-Dateien/r1post.css" type="text/css" rel="stylesheet"><link media="all" href="02_Testing_Angular_Karma-Dateien/r1post_retina.css" type="text/css" rel="stylesheet"></head>
+<body>
+  <header>
+    <a href="https://www.airpair.com/" tile="airpair.com pair programming" target="_self"></a>
+    <ul>
+      <li class="ps"><a href="https://www.airpair.com/software-experts" target="_self">Software Experts</a></li>
+      <li class="bk">|</li>
+      <li class="lg"><a href="https://www.airpair.com/login" target="_self" rel="nofollow"><b>Login</b></a></li>
+    </ul>
+  </header>
+  
+
+  <div class="main-wrap">
+    <div class="notify" notifications=""><!-- ngIf: serverErrors.length > 0 -->
+<!-- <div ng-if="(!serverErrors || serverErrors.length==0) && notifications" class="alert alert-warning alert-notification">
+  <section ng-if="notifications.saveBookmarks">
+    <h3>
+      <a id="notifyBookmarksLoging" track-click="login" href='/login'>Login</a> to save your <a href='#' ng-click='openBookmarks()'>bookmarks</a>.
+    </h3>
+    <p>New to AirPair?
+      <a id="notifyBookmarksSignup" track-click="signup" ng-click="openProfile()">Create an account</a>
+    </p>
+  </section>
+  <hr />
+</div>
+-->
+</div>
+    <!-- ngView:  --><main class="ng-scope" ng-view=""><div class="sponsor sponsor-top sponsor-heroku ng-scope">
+  <a rel="nofollow" href="https://www.airpair.com/visit/heroku-160613-ruby" class="ruby banner-top" target="_blank" title="Deploy ruby on heroku">
+    <img src="02_Testing_Angular_Karma-Dateien/900x90.png">
+  </a>
+</div>
+
+
+<article class="blogpost ng-scope">
+
+
+  <h1 class="entry-title" itemprop="headline">Testing AngularJS Apps Using Karma</h1>
+
+
+  <div class="railMarker"></div>
+
+  <h4 style="position: fixed; left: 996.8px; top: 349px;" id="table-of-contents">Table of Contents</h4>
+  <ul style="position: fixed; left: 996.8px; top: 367px;">
+<li><a href="#1-unit-testing-basics">1 Unit Testing Basics</a></li>
+<li><a href="#2-getting-started-with-karma">2 Getting Started with Karma</a></li>
+<li><a href="#3-basics-of-dependency-injection">3 Basics of Dependency Injection</a></li>
+<li><a href="#4-using-ngmock-">4 Using <code>ngMock</code></a></li>
+<li><a href="#5-testing-a-service">5 Testing a Service</a></li>
+<li><a href="#6-testing-controllers">6 Testing Controllers</a></li>
+<li><a href="#7-testing-directives">7 Testing Directives</a></li>
+<li><a href="#8-advanced-karma">8 Advanced Karma</a></li>
+<li><a href="#9-conclusion">9 Conclusion</a></li>
+</ul>
+
+
+  <figure class="author">
+    <img alt="Ben Drucker" src="02_Testing_Angular_Karma-Dateien/808808.jpg">
+    <hr>
+    <div>
+      <label>Ben Drucker</label>
+      <figcaption>
+        Ben is the founder of Valet.io where he uses Angular.js to help 
+nonprofits raise money. In this walkthrough, he explains why you should 
+be unit testing your applications and how to write unit tests against 
+the various components of an Angular application.
+      </figcaption>
+    </div>
+    <hr>
+  </figure>
+
+  <p class="asset"><img src="02_Testing_Angular_Karma-Dateien/35LlUQS.jpg"></p>
+  <hr>
+
+  <post no-compile=""><p>When building a web application, one of the 
+biggest benefits of a tool like Angular is the structure it lends to 
+your application. While you can get started writing functional code 
+quickly, Angular also provides a powerful system for organizing the 
+various components of your application. Taking advantage of this 
+organization system, known as dependency injection, will make it 
+dramatically easier to manage your code base as it grows and your 
+application increases in complexity. More importantly, Angular's 
+dependency injection system makes it especially easy to test your code. </p>
+<p>Testing can be especially difficult in browser based applications. 
+Testing your application involves verifying the behavior of components 
+with very different roles. You'll need to test services that interact 
+with remote services as well as code that directly manipulates the DOM. 
+Angular's directives and use of dependency injection can be daunting for
+ beginners, but becomes incredibly valuable as you begin to write unit 
+tests against your applications.</p>
+<p>The Angular team at Google provides two tools for testing Angular applications: <a href="http://karma-runner.github.io/">Karma</a>, a test runner for unit testing, and <a href="http://angular.github.io/protractor">Protractor</a>,
+ a test framework for writing end-to-end (E2E) tests. In this article, 
+I'm going to be focusing on writing unit tests against Angular 
+applications using Karma. We'll cover some unit-testing basics, Karma 
+details, as well as Angular-specific strategies for writing unit tests 
+that help improve overall developer productivity instead of adding an 
+extra development burden to your application. </p>
+<h2 id="1-unit-testing-basics">1 Unit Testing Basics</h2>
+<p>Let's first review what unit tests are and why it's worth investing the time in writing them for web applications.</p>
+<p>Unit tests involve running code and verifying aspects of its behavior
+ such as function calls or return values. Tests can cover a scope as 
+small as a single function or test the interaction between a service and
+ its dependencies. In Angular, any code that directly verifies the 
+behavior of other code is considered a unit test. </p>
+<p>Unit tests are distinct from end-to-end (E2E) tests. End-to-end 
+testing involves using a browser automation tool like Selenium to 
+interact with your application's interface and verify high level details
+ like URLs, text, and HTML attributes. End-to-end tests are a useful 
+insurance policy and sanity-check. If something is badly broken in your 
+code, a failed end-to-end test will alert you to the need for deep 
+investigation. </p>
+<p>Unit tests span a much broader range of functionality. If approached 
+and written properly, unit tests can be a major enhancer of 
+productivity. End-to-end tests (or worse, manually verifying new 
+behavior) only tell you that something is wrong. Unit tests give you 
+more direct information about the nature of failures. There's no need to
+ adhere to a strict test-driven development (TDD) style. However, 
+keeping your test suite relatively in sync with new code is always a 
+good idea. </p>
+<h2 id="2-getting-started-with-karma">2 Getting Started with Karma</h2>
+<p>Karma is a test runner for the browser supported by the Angular.js 
+team at Google. It makes no specific assumptions about how you write 
+your tests. At its core, Karma launches instances of the web browsers 
+you choose, loads the files you specify, and reports the results of your
+ tests from the browsers back to your terminal. I'll be using <a href="http://mochajs.org/">Mocha</a> and <a href="http://chaijs.com/">Chai</a>
+ for this tutorial, both of which have available karma plugins for easy 
+integration. You could just as easily choose a different tool like 
+Jasmine. I'll be testing code in PhantomJS, a headless version of 
+WebKit. Karma can also auto-launch Chrome, Firefox, Internet Explorer, 
+and many other browsers. It will even instruct active browsers to rerun 
+tests when files change.</p>
+<p>To use Karma, you'll need to install <a href="https://nodejs.org/">Node.js</a>
+ if you don't have it on your system already. Note that you don't have 
+to write your code using Node modules. It's just required for running 
+Karma.</p>
+<p>First, install the Karma CLI globally:</p>
+<!--code lang=bash linenums=true-->
+<pre class="line-numbers  language-bash"><code data-language="bash" class="  language-bash">$ npm install <span class="token operator">-</span>g karma<span class="token operator">-</span>cli
+<span class="line-numbers-rows"><span></span></span></code></pre><p>Next, install Karma and the plugins we'll be using. These are installed locally in your project:</p>
+<!--code lang=bash linenums=true-->
+<pre class="line-numbers  language-bash"><code data-language="bash" class="  language-bash">$ npm install <span class="token operator">--</span>save<span class="token operator">-</span>dev karma karma<span class="token operator">-</span>mocha karma<span class="token operator">-</span>chai karma<span class="token operator">-</span>phantomjs<span class="token operator">-</span>launcher
+<span class="line-numbers-rows"><span></span></span></code></pre><p>Karma automatically reads a <code>karma.conf.js</code> file in your project directory. Karma can automatically walk you through creating this file:</p>
+<!--code lang=bash linenums=true-->
+<pre class="line-numbers  language-bash"><code data-language="bash" class="  language-bash">$ karma init
+<span class="line-numbers-rows"><span></span></span></code></pre><p>After initializing, you'll need to add <code>'chai'</code> to the <code>frameworks</code> section. Your final configuration should look like this:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token comment" spellcheck="true">// Karma configuration
+</span><span class="token comment" spellcheck="true">// Generated on Mon Nov 10 2014 19:13:16 GMT-0500 (EST)
+</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  config<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">// base path that will be used to resolve all patterns (eg. files, exclude)
+</span>  basePath<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// frameworks to use
+</span>  <span class="token comment" spellcheck="true">// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+</span>  frameworks<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'mocha'</span><span class="token punctuation">,</span> <span class="token string">'chai'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// list of files / patterns to load in the browser
+</span>  files<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    '<span class="token punctuation">.</span><span class="token operator">/</span>src<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js'<span class="token punctuation">,</span>
+    '<span class="token punctuation">.</span><span class="token operator">/</span>test<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js'
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// list of files to exclude
+</span>  exclude<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// preprocess matching files before serving them to the browser
+</span>  <span class="token comment" spellcheck="true">// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+</span>  preprocessors<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// test results reporter to use
+</span>  <span class="token comment" spellcheck="true">// possible values: 'dots', 'progress'
+</span>  <span class="token comment" spellcheck="true">// available reporters: https://npmjs.org/browse/keyword/karma-reporter
+</span>  reporters<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'progress'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// web server port
+</span>  port<span class="token punctuation">:</span> <span class="token number">9876</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// enable / disable colors in the output (reporters and logs)
+</span>  colors<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// level of logging
+</span>  <span class="token comment" spellcheck="true">// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+</span>  logLevel<span class="token punctuation">:</span> config<span class="token punctuation">.</span>LOG_INFO<span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// enable / disable watching file and executing tests whenever any file changes
+</span>  autoWatch<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// start these browsers
+</span>  <span class="token comment" spellcheck="true">// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+</span>  browsers<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'PhantomJS'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+
+  <span class="token comment" spellcheck="true">// Continuous Integration mode
+</span>  <span class="token comment" spellcheck="true">// if true, Karma captures browsers, runs the tests and exits
+</span>  singleRun<span class="token punctuation">:</span> <span class="token keyword">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Now that Karma is installed and configured, we're ready to start writing code and tests. </p>
+<h2 id="3-basics-of-dependency-injection">3 Basics of Dependency Injection</h2>
+<p>Before we actually dig into examples and code, I'd like to first 
+cover dependency injection as its used in Angular. Dependency injection 
+just means that your services specify which dependencies they expect to 
+receive (rather than explicitly importing them). When you want to 
+instantiate that service, an injector needs to pass the requested 
+dependencies into the service. Normally this happens automatically in 
+Angular. Consider the following, where we inject a child scope into a 
+controller:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token keyword">function</span> MyController <span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  $scope<span class="token punctuation">.</span>property <span class="token operator">=</span> <span class="token string">'value'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+MyController<span class="token punctuation">.</span>$inject <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>I'm using the <code>$inject</code> syntax here, but you can also let Angular try to guess the dependency names (won't work with minifed code) or pass an array to <code>controller</code> when you register:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token keyword">function</span> MyController <span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  $scope<span class="token punctuation">.</span>property <span class="token operator">=</span> <span class="token string">'value'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">controller<span class="token punctuation">(</span></span><span class="token string">'MyController'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token string">'$scope'</span><span class="token punctuation">,</span>
+  myController
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Regardless
+ of which style you choose, what goes on under the hood is ultimately 
+the same. You never explicitly create a new child <code>Scope</code>. Instead, Angular locates the parent scope, calls <code>scope.$new()</code> for you, and passes the result into your controller. You might also want to inject a service:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token keyword">function</span> MyService <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'hello!'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> MyController <span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  $scope<span class="token punctuation">.</span>property <span class="token operator">=</span> <span class="token string">'value'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+MyController<span class="token punctuation">.</span>$inject <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'$scope'</span><span class="token punctuation">,</span> <span class="token string">'MyService'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+angular<span class="token punctuation">.</span><span class="token function">app<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">controller<span class="token punctuation">(</span></span><span class="token string">'MyController'</span><span class="token punctuation">,</span> MyController<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">factory<span class="token punctuation">(</span></span><span class="token string">'MyService'</span><span class="token punctuation">,</span> MyService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Notice that we've now explicitly defined <code>MyService</code> ourselves, whereas <code>$scope</code>
+ is created implicitly and made available by Angular's controller 
+system. This illustrates an important distinction in dependency 
+injection between services we explicitly provide versus <code>locals</code> that are implicitly created. Locals are most commonly used with controllers which are typically invokved using the <code>ngController</code> directive or a routing library like <a href="https://docs.angularjs.org/api/ngRoute">ngRoute</a> or <a href="https://github.com/angular-ui/ui-router">AngularUI Router</a>. Locals will override globally available service and we will use them to easily test controllers.</p>
+<p>##4 Using <code>ngMock</code></p>
+<p>Before diving in, let's review one final staple of unit testing an Angular application: the <code>ngMock</code> module. <code>ngMock</code> allows you to inject and mock Angular services for unit tests. It also decorates various core services like <code>$http</code> so you can easily write readable tests without a server. You can install <code>ngMock</code> using npm, bower, or manually. I'll be using npm to install our dependencies:</p>
+<!--code lang=bash linenums=true-->
+<pre class="line-numbers  language-bash"><code data-language="bash" class="  language-bash">$ npm install <span class="token operator">--</span>save angular
+$ npm install <span class="token operator">--</span>save<span class="token operator">-</span>dev angular<span class="token operator">-</span>mocks
+<span class="line-numbers-rows"><span></span><span></span></span></code></pre><p>Then I'll edit the <code>files</code> array from <code>karma.conf.js</code> to include them:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">files<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+  <span class="token string">'node_modules/angular/angular.js'</span><span class="token punctuation">,</span>
+  <span class="token string">'node_modules/angular-mocks/angular-mocks.js'</span><span class="token punctuation">.</span>
+  '<span class="token punctuation">.</span><span class="token operator">/</span>src<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js'<span class="token punctuation">,</span>
+  '<span class="token punctuation">.</span><span class="token operator">/</span>test<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js'
+<span class="token punctuation">]</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Now we're ready to write code and begin testing!</p>
+<h2 id="5-testing-a-service">5 Testing a Service</h2>
+<p>The easiest targets for unit testing are services, since they're just
+ plain values that won't change depending on where we are in the 
+application (unlike controllers which will almost always receive <code>locals</code>). First we'll need to create a new module to hold our application:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span></span></code></pre><p>Then we'll create a simple service:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">factory<span class="token punctuation">(</span></span><span class="token string">'Person'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> Person <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Next we'll write a test verifying that calling <code>new Person('Ben')</code> will assign a property <code>name</code> with the value <code>'Ben'</code>:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token function">describe<span class="token punctuation">(</span></span><span class="token string">'Person'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">var</span> Person<span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">inject<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>_Person_<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person <span class="token operator">=</span> _Person_<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">describe<span class="token punctuation">(</span></span><span class="token string">'Constructor'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'assigns a name'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">expect<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">'Ben'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">property<span class="token punctuation">(</span></span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'Ben'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>You can run <code>karma start</code> and see that our test passed. But first, let's dissect exactly what's happening here. <code>describe</code>, <code>beforeEach</code>, and <code>it</code> are provided by Mocha for organizing our tests. <code>module</code> and <code>inject</code> are provided by <code>ngMock</code>. <code>module</code> registers the <code>ngMock</code> module on our module named <code>'myApp'</code> without us needing to explicitly include <code>'ngMock'</code> in the second argument to <code>angular.module</code>. Next we call <code>inject</code> with a function that takes an argument <code>_Person_</code>. When using <code>ngMock</code>,
+ Angular will automatically strip away leading and trailing underscores 
+from the function we pass for the injector to invoke. Declaring <code>var Person</code> in the scope of the first <code>describe</code> block means that <code>Person</code> will always be assigned to our service before each test runs. Next we create a new Person and use <code>expect</code> (from Chai) to verify that it has the name property we expected. </p>
+<p>Next we'll inject another service into our <code>Person</code> to enhance its functionality. We'll be injecting a <code>visitor</code> service with a <code>country</code>
+ property. In a real application, you might assign this information 
+using an IP geolocation API. Right now, we're only interesting in 
+testing how our code behaves based on the <code>visitor</code> and not how the <code>visitor</code> service itself works. We'd like to greet our <code>Person</code>, but more formally if they're from the UK:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">factory<span class="token punctuation">(</span></span><span class="token string">'Person'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>visitor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> Person <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>greet <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>visitor<span class="token punctuation">.</span>country <span class="token operator">===</span> <span class="token string">'UK'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'Good day to you,'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">'Hey'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>In order to test this in isolation, we'll manually provide a service called <code>visitor</code>:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token keyword">var</span> Person<span class="token punctuation">,</span> visitor<span class="token punctuation">;</span>
+<span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">module<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>$provide<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  visitor <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  $provide<span class="token punctuation">.</span><span class="token function">value<span class="token punctuation">(</span></span><span class="token string">'visitor'</span><span class="token punctuation">,</span> visitor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><a href="https://docs.angularjs.org/api/auto/service/$provide"><code>$provide</code></a> is a service that registers other services with the injector. In this case we want to provide <code>visitor</code> as an empty object to any service that tries to inject it. </p>
+<p>Now we can test our greet method:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token function">describe<span class="token punctuation">(</span></span><span class="token string">'#greet'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'greets UK visitors formally'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    visitor<span class="token punctuation">.</span>country <span class="token operator">=</span> <span class="token string">'UK'</span><span class="token punctuation">;</span>
+    <span class="token function">expect<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">'Nigel'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">greet<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">equal<span class="token punctuation">(</span></span><span class="token string">'Good day to you, Nigel.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'greets others visitors informally'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">expect<span class="token punctuation">(</span></span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">'Ben'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">greet<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">equal<span class="token punctuation">(</span></span><span class="token string">'Hey Ben!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>This is a powerful pattern that makes it easy to test individual services in isolation. <code>ngMock</code> takes a similar approach internally to decorate core services. Let's add a <code>create</code> method for sending our user's name up to a REST API and test it without a server.</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">factory<span class="token punctuation">(</span></span><span class="token string">'Person'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>visitor<span class="token punctuation">,</span> $http<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> Person <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// ...
+</span>      <span class="token keyword">this</span><span class="token punctuation">.</span>create <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> $http<span class="token punctuation">.</span><span class="token function">post<span class="token punctuation">(</span></span><span class="token string">'/people'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>First, we'll need to inject <code>$http</code>. We'll return the call to <code>$http.post</code> from <code>person.create</code> since <code>$http</code> calls return promises. Now we can test our new method:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token keyword">var</span> Person<span class="token punctuation">,</span> visitor<span class="token punctuation">,</span> $httpBackend<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...
+</span><span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">inject<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>_Person_<span class="token punctuation">,</span> _$httpBackend_<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Person <span class="token operator">=</span> _Person_<span class="token punctuation">;</span>
+  $httpBackend <span class="token operator">=</span> _$httpBackend_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// ...
+</span>
+<span class="token function">describe<span class="token punctuation">(</span></span><span class="token string">'#create'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'creates the person on the server'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $httpBackend
+    <span class="token punctuation">.</span><span class="token function">expectPOST<span class="token punctuation">(</span></span><span class="token string">'/people'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span> <span class="token string">'Ben'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">respond<span class="token punctuation">(</span></span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> succeeded<span class="token punctuation">;</span>
+    <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">'Ben'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      succeeded <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    $httpBackend<span class="token punctuation">.</span><span class="token function">flush<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">expect<span class="token punctuation">(</span></span>succeeded<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span><span class="token keyword">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Using the mocking API provided by <code>ngMock</code> through <a href="https://docs.angularjs.org/api/ngMock/service/$httpBackend"><code>$httpBackend</code></a>, we can define the request we expect to see as well as the response that will be sent. When we call <code>$httpBackend.flush</code>, Angular flushes the queue of pending requests and fulfills them with our mocked responses. </p>
+<h2 id="6-testing-controllers">6 Testing Controllers</h2>
+<p>Controllers in Angular are the glue that bind services together to 
+directives and templates. Controllers will be the first place we look at
+ <code>locals</code>, the services that we can provide at injection time. To test controllers, Angular exposes the <code>$controller</code> service. We can inject this service and then call it with two arguments:</p>
+<ol>
+<li>The name of the controller as registered with <code>app.controller</code></li>
+<li>An object containing the <code>locals</code> we wish to inject</li>
+</ol>
+<p>Note that <code>locals</code> only need to be provided for services that can't be injected normally. You'll almost always be passing a <code>$scope</code> which is a local service. </p>
+<p>First, we'll create an ultra-simple controller:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">controller<span class="token punctuation">(</span></span><span class="token string">'PersonController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">,</span> Person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>person <span class="token operator">=</span> $scope<span class="token punctuation">.</span>person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">'Ben'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>Note that I'm setting a property <code>person</code> on both <code>this</code> and <code>$scope</code>.
+ This isn't a pattern you would want to use in a real application, but 
+just an easy way to illustrate how we can test both scenarios. Now we 
+can test that both the controller and the scope that is injected into it
+ both receive a <code>person</code> property:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token function">describe<span class="token punctuation">(</span></span><span class="token string">'PersonController'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">var</span> Person<span class="token punctuation">,</span> controller<span class="token punctuation">,</span> scope<span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">module<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>$provide<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $provide<span class="token punctuation">.</span><span class="token function">value<span class="token punctuation">(</span></span><span class="token string">'visitor'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">inject<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>_Person_<span class="token punctuation">,</span> $controller<span class="token punctuation">,</span> $rootScope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person <span class="token operator">=</span> _Person_<span class="token punctuation">;</span>
+    scope <span class="token operator">=</span> $rootScope<span class="token punctuation">.</span>$<span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    controller <span class="token operator">=</span> $<span class="token function">controller<span class="token punctuation">(</span></span><span class="token string">'PersonController'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      $scope<span class="token punctuation">:</span> scope
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'assigns a person to the controller'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">expect<span class="token punctuation">(</span></span>controller<span class="token punctuation">.</span>person<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span>an<span class="token punctuation">.</span><span class="token function">instanceOf<span class="token punctuation">(</span></span>Person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'assigns a person to the scope'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">expect<span class="token punctuation">(</span></span>scope<span class="token punctuation">.</span>person<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span>an<span class="token punctuation">.</span><span class="token function">instanceOf<span class="token punctuation">(</span></span>Person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>We still need to provide a mock <code>visitor</code> since our controller injects <code>Person</code> which in turn injects <code>visitor</code>. Next we inject the <code>$controller</code> service. We also inject <code>$rootScope</code> and call <code>$rootScope.$new</code> to create a new child scope. We pass this scope as a <em>local</em> to our controller and store the controller instance for tests. Then we verify that both <code>controller.person</code> and <code>scope.person</code> are instances of <code>Person</code>. Note that in our <code>locals</code> object, the keys are the names of the services that our controller is expecting. In this case, <code>scope</code>
+ could have been an empty object and our tests would still pass. It 
+would be easy, for example, that tested behavior that was conditional on
+ some value inherited from a parent scope. </p>
+<h2 id="7-testing-directives">7 Testing Directives</h2>
+<p>Directives are the most unique and powerful API in Angular's toolkit,
+ but also one of the most difficult to fully grasp. Writing "semantic" 
+Angular involves putting any logic that manipulates the DOM inside the 
+compile/linking functions of a directive, and never in controllers. 
+Breaking this contract and failing to separate logic from DOM 
+manipulation can make testing brittle and all but impossible. However, 
+if you're diligent about using directives to organize your DOM 
+manipulation code well, testing is relatively painless. </p>
+<p>Similar to testing controllers, we'll be relying on manually 
+triggering an Angular service that would normally be fired 
+automatically. This time we'll be using <code>$compile</code>. Our directive will display a simple welcome message based on the output of <code>person.greet()</code>. We want to be able to pass it a specific person and see the message displayed in an <code>&lt;span&gt;</code> tag.</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">directive<span class="token punctuation">(</span></span><span class="token string">'welcome'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      restrict<span class="token punctuation">:</span> <span class="token string">'E'</span><span class="token punctuation">,</span>
+      scope<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        person<span class="token punctuation">:</span> <span class="token string">'='</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      template<span class="token punctuation">:</span> <span class="token string">'&lt;span&gt;{{person.greet()}} Welcome to the app!&lt;/span&gt;'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Notice
+ that we can avoid actually writing any code for this directive and 
+Angular will all the work. Now we need to test that the directive works 
+as expected.</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token function">describe<span class="token punctuation">(</span></span><span class="token string">'Welcome Directive'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">var</span> element<span class="token punctuation">,</span> scope<span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">beforeEach<span class="token punctuation">(</span></span><span class="token function">inject<span class="token punctuation">(</span></span><span class="token keyword">function</span> <span class="token punctuation">(</span>$compile<span class="token punctuation">,</span> $rootScope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    scope <span class="token operator">=</span> $rootScope<span class="token punctuation">.</span>$<span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    element <span class="token operator">=</span> $<span class="token function">compile<span class="token punctuation">(</span></span><span class="token string">'&lt;welcome person="person"&gt;&lt;/welcome&gt;'</span><span class="token punctuation">)</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'welcomes the person'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    scope<span class="token punctuation">.</span>person <span class="token operator">=</span> <span class="token punctuation">{</span>
+      greet<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'Hello!'</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    scope<span class="token punctuation">.</span>$<span class="token function">digest<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">expect<span class="token punctuation">(</span></span>element<span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">equal<span class="token punctuation">(</span></span><span class="token string">'Hello! Welcome to the app!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>In our <code>beforeEach</code> function, we inject <code>$compile</code>, the service that Angular automatically uses internally when running your app. We create a new <code>scope</code> and call <code>$compile</code>
+ on the HTML text we want to compile. That returns a function that 
+accepts a scope to bind to. In this case, we're using an isolate scope. 
+Then, in our test, we actually populate it with a person. Instead of 
+actually using an instance of <code>Person</code>, we just create a mock object that will behave the way a <code>person</code> would behave. Next, we need to call <code>scope.$digest</code>.
+ Angular normally does this automatically when running our application. 
+However, under test, we want to have granular control over digest cycle 
+so we can control how our updates are applied. To illustrate this, add 
+the following line above the <code>$digest</code> call:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token function">expect<span class="token punctuation">(</span></span>element<span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">equal<span class="token punctuation">(</span></span><span class="token string">'{{person.greet()}} Welcome to the app!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span></span></code></pre><p>You'll
+ notice that the template has been populated already (that happens in 
+the compile stage). However, because a digest cycle has not run yet, the
+ expression has not yet been replaced by its evaluated result.</p>
+<p>Now let's add some code to the directive's linking function to make 
+the text color change based on the person's favorite color when 
+hovering:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">angular<span class="token punctuation">.</span><span class="token function">module<span class="token punctuation">(</span></span><span class="token string">'myApp'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">directive<span class="token punctuation">(</span></span><span class="token string">'welcome'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      restrict<span class="token punctuation">:</span> <span class="token string">'E'</span><span class="token punctuation">,</span>
+      scope<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        person<span class="token punctuation">:</span> <span class="token string">'='</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      template<span class="token punctuation">:</span> <span class="token string">'&lt;span&gt;{{person.greet()}} Welcome to the app!&lt;/span&gt;'</span><span class="token punctuation">,</span>
+      link<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>scope<span class="token punctuation">,</span> element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> original <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">'color'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        element<span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">'mouseenter'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          element<span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">'color'</span><span class="token punctuation">,</span> scope<span class="token punctuation">.</span>person<span class="token punctuation">.</span>favoriteColor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        element<span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">'mouseleave'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          element<span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">'color'</span><span class="token punctuation">,</span> original<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>We've added a <code>link</code> function that stores the element's original color value, changes it to the person's favorite color on <code>mouseenter</code>, and reverts it on <code>mouseleave</code>.</p>
+<p>We'll also add a test against this new behavior:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript"><span class="token function">it<span class="token punctuation">(</span></span><span class="token string">'displays the person\'s favorite color on hover'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  scope<span class="token punctuation">.</span>person <span class="token operator">=</span> <span class="token punctuation">{</span>
+    greet<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token string">'Hello!'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    favoriteColor<span class="token punctuation">:</span> <span class="token string">'blue'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  scope<span class="token punctuation">.</span>$<span class="token function">digest<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  element<span class="token punctuation">.</span><span class="token function">triggerHandler<span class="token punctuation">(</span></span><span class="token string">'mouseenter'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">expect<span class="token punctuation">(</span></span>element<span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">'color'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span><span class="token function">equal<span class="token punctuation">(</span></span><span class="token string">'blue'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  element<span class="token punctuation">.</span><span class="token function">triggerHandler<span class="token punctuation">(</span></span><span class="token string">'mouseleave'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">expect<span class="token punctuation">(</span></span>element<span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">'color'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>be<span class="token punctuation">.</span>empty<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Note
+ that we only need to manually kick off a digest in our tests when we 
+change the scope. Since we're dealing with the DOM on both sides (DOM 
+events triggering DOM changes) there's no need to check the <code>scope</code> for changes.</p>
+<h2 id="8-advanced-karma">8 Advanced Karma</h2>
+<p>While we've been using a very small subset of Karma's functionality, 
+its plugin API offers many ways to use it with more advanced workflows:</p>
+<ul>
+<li><a href="http://github.com/nikku/karma-bro">karma-bro</a> Test Browserify projects with Karma</li>
+<li><a href="https://github.com/karma-runner/karma-coffee-preprocessor">karma-coffee-preprocessor</a> Test CoffeeScript</li>
+<li><a href="https://github.com/karma-runner/karma-sauce-launcher">karma-sauce-launcher</a> Launch 200+ browser and OS combinations and run your tests</li>
+<li><a href="https://github.com/karma-runner/karma-coverage">karma-coverage</a> Generate a code coverage report using Istanbul</li>
+</ul>
+<p>Karma even has an <a href="http://karma-runner.github.io/0.12/dev/public-api.html">API</a>
+ that lets you easily launch Karma servers from code. While Karma is 
+supported by the Angular team at Google, it can be used to run tests for
+ any JavaScript browser-based application. </p>
+<p>We're going to tackle adding test coverage here to make sure our unit
+ tests are covering all the different possible paths our code can take. </p>
+<p>You'll change a few keys in your <code>karma.conf.js</code> file:</p>
+<!--code lang=javascript linenums=true-->
+<pre class="line-numbers  language-javascript"><code data-language="javascript" class="  language-javascript">preprocessors<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  '<span class="token punctuation">.</span><span class="token operator">/</span>src<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js<span class="token string">': ['</span>coverage'<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+reporters<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'progress'</span><span class="token punctuation">,</span> <span class="token string">'coverage'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+coverageReporter<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  type <span class="token punctuation">:</span> <span class="token string">'html'</span><span class="token punctuation">,</span>
+  dir <span class="token punctuation">:</span> <span class="token string">'coverage/'</span>
+<span class="token punctuation">}</span>
+<span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>Now you can rerun Karma and see that it reports 100% coverage!</p>
+<h2 id="9-conclusion">9 Conclusion</h2>
+<p>While some of Angular's verbose conventions can be difficult to grasp
+ at first, I hope I've illustrated how they can help you be more 
+productive when building applications. Although it's tempting to see 
+time spent unit testing as productive time lost, you're setting yourself
+ up for long term success by testing. As your application grows in size 
+and scope, maintaining strong test coverage will make it easier to split
+ up your functionality and trust that each piece will function as 
+specified. </p>
+</post>
+
+  <div style="position: fixed; left: 996.8px; top: 0px;" class="share">
+    <div class="pw pw-widget ra1-pw-classicWidget ra1-pw_size_large pw-layout-horizontal pw-counter-horizontal" pw:twitter-via="airpair">
+      <a class="pw-button pw-button-twitter button-type-square pw-size-large"><span class="pw-icon ra1-pw-icon ra1-pw-icon-twitter"></span></a><a class="pw-button pw-button-facebook button-type-square pw-size-large"><span class="pw-icon ra1-pw-icon ra1-pw-icon-facebook"></span></a><a class="pw-button pw-button-linkedin button-type-square pw-size-large"><span class="pw-icon ra1-pw-icon ra1-pw-icon-linkedin"></span></a><a class="pw-button pw-button-googleplus button-type-square pw-size-large"><span class="pw-icon ra1-pw-icon ra1-pw-icon-googleplus"></span></a>
+      <a aria-haspopup="true" class="pw-button pw-button-post button-type-square pw-size-large pw-button-counter-horizontal"><span class="pw-icon ra1-pw-icon ra1-pw-icon-post"></span><span class="pw-button-counter"><i class="pw-button-counter__brd"></i><span class="pw-button-counter__count ra1-pw-button-counter-value">2.7K</span></span></a>
+    </div>
+  </div>
+
+
+  <div style="position: fixed; left: 996.8px; top: 66px;" class="rail1CTA">
+
+
+
+    <div class="sponsor sponsor-side sponsor-heroku">
+  <a rel="nofollow" href="https://www.airpair.com/visit/heroku-160620-ruby" class="ruby banner-side" target="_blank" title="Deploy ruby on heroku">
+    <img src="02_Testing_Angular_Karma-Dateien/220x250.png">
+  </a>
+</div>
+
+
+
+
+
+
+
+  </div>
+
+
+</article>
+
+  <div class="ng-scope ng-isolate-scope" id="reviews" post-reviews="" reviews="[{&quot;_id&quot;:&quot;566ad0bfa0e1891100d43735&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;sa&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/817360?v=3&quot;,&quot;gh&quot;:&quot;satish860&quot;},&quot;val&quot;:5,&quot;said&quot;:&quot;Crisp and to the point explanation of testing .&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;568c47321f81a911003fd85e&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Jorawar Singh&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/7203792?v=3&quot;,&quot;gh&quot;:&quot;jorawarsingh&quot;},&quot;val&quot;:5,&quot;said&quot;:&quot;great job!&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;56c4b8a7e281281100d40bc7&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Bruce&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/3074131?v=3&quot;,&quot;gh&quot;:&quot;brucemackenzie&quot;},&quot;val&quot;:4,&quot;said&quot;:&quot;Excellent examples that don't assume much existing user knowledge.&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;56c7b2ff4a46bd110080249e&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Steven Johnson&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/4691573?v=3&quot;,&quot;gh&quot;:&quot;developerings&quot;},&quot;val&quot;:5,&quot;said&quot;:&quot;I looked all over for a good article to get me started with unit testing in Angular, and this was the only one that didn't assume all sorts of background knowledge. Thanks Ben!&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;5718d846e6767c1100bede74&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Ravi Kant&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/690000?v=3&quot;,&quot;gh&quot;:&quot;rk111&quot;},&quot;val&quot;:5,&quot;said&quot;:&quot;Excellent&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;54ed6f16dc21e90c00c5e379&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;James Wright&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/1173150?v=3&quot;,&quot;gh&quot;:&quot;jwright04&quot;},&quot;val&quot;:2,&quot;said&quot;:&quot;After getting through each of the sections, I realized there was a lot of information missing that made this tutorial impossible for me to get through (as a beginner).  For example, in the \&quot;Testing a Service\&quot; section, when the instructions were given to test the service, there was no information on where that file was (it showed how to create the file) but that's it. Overall this was terribly confusing for me and I'm walking away without actually knowing how to properly test my application.&quot;,&quot;votes&quot;:[{&quot;_id&quot;:&quot;559929a624a6b81100203778&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Jordan H.&quot;,&quot;pic&quot;:&quot;//0.gravatar.com/avatar/84e1c7a7d3f6fdb00941d933e6852198&quot;},&quot;val&quot;:1}],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;5508ece21a2d210c00cef92d&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;morewry&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/1043291?v=3&quot;,&quot;gh&quot;:&quot;morewry&quot;},&quot;val&quot;:3,&quot;said&quot;:&quot;As someone who has written karma/Angular tests based off of existing tests, but never got an intro to what was going on this was useful.\n\nI think the explanations should be expanded a little since it is a from scratch tutorial.  Most of the info seems to be there, but it runs together and is a little rushed.&quot;,&quot;votes&quot;:[{&quot;_id&quot;:&quot;559929afd7603b11005ddac6&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Jordan H.&quot;,&quot;pic&quot;:&quot;//0.gravatar.com/avatar/84e1c7a7d3f6fdb00941d933e6852198&quot;},&quot;val&quot;:1}],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;55bf8b53323fab11007b6c9c&quot;,&quot;by&quot;:{&quot;pic&quot;:&quot;//0.gravatar.com/avatar/null&quot;},&quot;val&quot;:4,&quot;said&quot;:&quot;Good info. Would be nice to have more details from a beginner's perspective&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]},{&quot;_id&quot;:&quot;564a5f1e40b1891100d31c41&quot;,&quot;by&quot;:{&quot;name&quot;:&quot;Johnny Ray Pruitt&quot;,&quot;pic&quot;:&quot;https://avatars.githubusercontent.com/u/13024506?v=3&quot;,&quot;gh&quot;:&quot;Mammmoth&quot;},&quot;val&quot;:1,&quot;said&quot;:&quot;This post assumes a lot on the part of the reader. This should be stated in the beginning.&quot;,&quot;votes&quot;:[],&quot;replies&quot;:[]}]" byid="52b1eea666a6f999a465fe10"><!-- <div survey-post></div> -->
+<div class="ng-scope" post-comments=""><!-- ngIf: reviews --><div class="reviewsthread ng-scope" ng-if="reviews">
+
+  <header post-comments-header=""><h3 class="ng-binding">Reviews (9) <!-- ngIf: reviews.length > 0 --><span class="ng-binding ng-scope" style="float:right" ng-if="reviews.length &gt; 0">Rating 3.8/5</span><!-- end ngIf: reviews.length > 0 --></h3>
+
+<!-- ngIf: reviews.length == 0 -->
+</header>
+
+  <!-- ngIf: reviews.length > 0 --><ul class="reviews ng-scope" ng-if="reviews.length &gt; 0">
+    <!-- ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="54ed6f16dc21e90c00c5e379" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/1173150.jpg" ng-src="https://avatars.githubusercontent.com/u/1173150?v=3?s=40" class="user">
+  <label class="ng-binding">James Wright</label>
+  <time class="ng-binding">a year ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">After getting through each of the sections, I 
+realized there was a lot of information missing that made this tutorial 
+impossible for me to get through (as a beginner).  For example, in the 
+"Testing a Service" section, when the instructions were given to test 
+the service, there was no information on where that file was (it showed 
+how to create the file) but that's it. Overall this was terribly 
+confusing for me and I'm walking away without actually knowing how to 
+properly test my application.</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="5508ece21a2d210c00cef92d" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/1043291.jpg" ng-src="https://avatars.githubusercontent.com/u/1043291?v=3?s=40" class="user">
+  <label class="ng-binding">morewry</label>
+  <time class="ng-binding">a year ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">As someone who has written karma/Angular tests 
+based off of existing tests, but never got an intro to what was going on
+ this was useful.
+
+I think the explanations should be expanded a little since it is a from 
+scratch tutorial.  Most of the info seems to be there, but it runs 
+together and is a little rushed.</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="566ad0bfa0e1891100d43735" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/817360.jpg" ng-src="https://avatars.githubusercontent.com/u/817360?v=3?s=40" class="user">
+  <label class="ng-binding">sa</label>
+  <time class="ng-binding">8 months ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 --><li class="ng-scope" ng-if="stars &gt;= 4"></li><!-- end ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 --><li class="ng-scope" ng-if="stars &gt;= 5"></li><!-- end ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">Crisp and to the point explanation of testing .</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="568c47321f81a911003fd85e" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/7203792.jpg" ng-src="https://avatars.githubusercontent.com/u/7203792?v=3?s=40" class="user">
+  <label class="ng-binding">Jorawar Singh</label>
+  <time class="ng-binding">8 months ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 --><li class="ng-scope" ng-if="stars &gt;= 4"></li><!-- end ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 --><li class="ng-scope" ng-if="stars &gt;= 5"></li><!-- end ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">great job!</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="56c4b8a7e281281100d40bc7" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/3074131.jpg" ng-src="https://avatars.githubusercontent.com/u/3074131?v=3?s=40" class="user">
+  <label class="ng-binding">Bruce</label>
+  <time class="ng-binding">6 months ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 --><li class="ng-scope" ng-if="stars &gt;= 4"></li><!-- end ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">Excellent examples that don't assume much existing user knowledge.</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="56c7b2ff4a46bd110080249e" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/4691573.jpg" ng-src="https://avatars.githubusercontent.com/u/4691573?v=3?s=40" class="user">
+  <label class="ng-binding">Steven Johnson</label>
+  <time class="ng-binding">6 months ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 --><li class="ng-scope" ng-if="stars &gt;= 4"></li><!-- end ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 --><li class="ng-scope" ng-if="stars &gt;= 5"></li><!-- end ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">I looked all over for a good article to get me 
+started with unit testing in Angular, and this was the only one that 
+didn't assume all sorts of background knowledge. Thanks Ben!</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="5718d846e6767c1100bede74" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/690000.png" ng-src="https://avatars.githubusercontent.com/u/690000?v=3?s=40" class="user">
+  <label class="ng-binding">Ravi Kant</label>
+  <time class="ng-binding">4 months ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 --><li class="ng-scope" ng-if="stars &gt;= 4"></li><!-- end ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 --><li class="ng-scope" ng-if="stars &gt;= 5"></li><!-- end ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">Excellent</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="55bf8b53323fab11007b6c9c" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/null.jpg" ng-src="//0.gravatar.com/avatar/null?s=40" class="user">
+  <label class="ng-binding"></label>
+  <time class="ng-binding">a year ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 --><li class="ng-scope" ng-if="stars &gt;= 2"></li><!-- end ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 --><li class="ng-scope" ng-if="stars &gt;= 3"></li><!-- end ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 --><li class="ng-scope" ng-if="stars &gt;= 4"></li><!-- end ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">Good info. Would be nice to have more details from a beginner's perspective</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true --><li ng-repeat="r in reviews | orderBy : 'votes.length':true" class="564a5f1e40b1891100d31c41" post-comments-review-thread=""><header>
+  <img src="02_Testing_Angular_Karma-Dateien/13024506.jpg" ng-src="https://avatars.githubusercontent.com/u/13024506?v=3?s=40" class="user">
+  <label class="ng-binding">Johnny Ray Pruitt</label>
+  <time class="ng-binding">9 months ago <!-- ngIf: r.updated --></time>
+  <stars class="ng-isolate-scope" val="r.val"><ul class="stars">
+  <!-- ngIf: stars >= 1 --><li class="ng-scope" ng-if="stars &gt;= 1"></li><!-- end ngIf: stars >= 1 -->
+  <!-- ngIf: stars >= 1.5 && stars < 2 -->
+  <!-- ngIf: stars >= 2 -->
+  <!-- ngIf: stars >= 2.5 && stars < 3 -->
+  <!-- ngIf: stars >= 3 -->
+  <!-- ngIf: stars >= 3.5 && stars < 4 -->
+  <!-- ngIf: stars >= 4 -->
+  <!-- ngIf: stars >= 4.5 && stars < 5 -->
+  <!-- ngIf: stars >= 5 -->
+</ul>
+</stars>
+</header>
+<div class="ng-binding">This post assumes a lot on the part of the reader. This should be stated in the beginning.</div>
+<footer>
+  <menu>
+<!--
+    <li class="voting" data-role="voting">
+       <span class="updatable count" data-role="likes" ng-if="r.votes.length > 0">{{r.votes.length}} Vote<span ng-if="r.votes.length > 1">s</span></span>
+
+      <a ng-if="canVote(r)" ng-click="upVote(r._id)" class="vote-up count-0" data-action="upvote" title="Vote up">
+        <span class="control">Upvote</span>
+      </a>
+
+      <a ng-if="isEditor" ng-click="deleteReview(r._id)" class="vote-up count-0">
+        <span class="control">- Delete</span>
+      </a>
+ -->
+    <!-- <span role="button" class="vote-down  count-0" title="Vote down">
+    <span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+    <span class="tooltip">You must sign in to down-vote this post.</span>
+    </span> -->
+<!--     </li>
+    <li ng-if="r.votes.length > 0 || canVote(r)" class="bullet" aria-hidden="true">-</li>
+ -->
+    <!-- <li class="reply" data-role="reply-link">
+      <a ng-click="toggleReply(r._id)" data-action="reply">
+        <i class="icon icon-mobile icon-reply"></i>
+          <span ng-if="!replyOpen" class="text">Reply</span>
+          <span ng-if="replyOpen" class="text">Cancel reply</span>
+      </a>
+    </li> -->
+    <!-- <li class="bullet" aria-hidden="true">•</li> -->
+
+    <!-- <li class="share">
+    </li> -->
+
+  </menu>
+  <ul class="replies">
+    <!-- ngRepeat: reply in r.replies -->
+  </ul>
+  <!-- ngIf: replyOpen -->
+</footer>
+</li><!-- end ngRepeat: r in reviews | orderBy : 'votes.length':true -->
+  </ul><!-- end ngIf: reviews.length > 0 -->
+
+</div><!-- end ngIf: reviews -->
+
+</div>
+</div>
+
+
+
+<div class="sponsor sponsor-bottom sponsor-heroku ng-scope">
+  <a rel="nofollow" href="https://www.airpair.com/visit/heroku-160624-ruby" class="ruby banner-bottom" target="_blank" title="Deploy ruby on heroku">
+    <img src="02_Testing_Angular_Karma-Dateien/600x315.png">
+  </a>
+</div>
+
+
+
+
+<footer class="postfooter  ng-scope">
+  <h5>Tagged under</h5>
+  <ul class="posttags"><li><a href="https://www.airpair.com/karma" target="_self" title="karma tutorials &amp; karma guides">karma</a></li><li><a href="https://www.airpair.com/angularjs/posts" target="_self" title="AngularJS tutorials &amp; Angular guides">angularjs</a></li></ul>
+
+  <div class="share-horizontal">
+    <div class="pw pw-widget ra1-pw-classicWidget ra1-pw_size_small pw-layout-horizontal pw-counter-vertical pw-widget-look-native" pw:twitter-via="airpair">
+      <a class="pw-button pw-button-twitter button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">323</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-twitter"></span><span class="pw-button-type-looknative__txt">Tweet</span></span></a>
+      <a class="pw-button pw-button-googleplus button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">54</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-googleplus"></span><span class="pw-button-type-looknative__txt">Share</span></span></a>
+      <a class="pw-button pw-button-facebook button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">110</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-facebook"></span><span class="pw-button-type-looknative__txt">Share</span></span></a>
+      <a class="pw-button pw-button-linkedin button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">78</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-linkedin"></span><span class="pw-button-type-looknative__txt">Share</span></span></a>
+      <a class="pw-button pw-button-tumblr button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">1</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-tumblr"></span><span class="pw-button-type-looknative__txt">Tumblr</span></span></a>
+      <a class="pw-button pw-button-reddit button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">2</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-reddit"></span><span class="pw-button-type-looknative__txt">Reddit</span></span></a>
+      <a class="pw-button pw-button-email button-type-looknative pw-size-small pw-button-counter-vertical look-native"><span class="pw-button-counter-top"><i class="pw-button-counter-top__brd"></i><span class="pw-button-counter-top__count ra1-pw-button-counter-value">1</span></span><span class="pw-button-type-looknative"><span class="pw-icon ra1-pw-icon ra1-pw-icon-email"></span><span class="pw-button-type-looknative__txt">Email</span></span></a>
+    </div>
+  </div>
+</footer>
+
+
+
+</main>
+  </div>
+
+  <script src="02_Testing_Angular_Karma-Dateien/post-widget.js" async="" type="text/javascript" id="post_script"></script><script src="02_Testing_Angular_Karma-Dateien/analytics.js" async=""></script><script type="text/javascript" src="02_Testing_Angular_Karma-Dateien/index-712b3af218.js"></script>
+  <script type="text/javascript">
+
+  function bindTracking() {
+    ga('send', 'pageview')
+  }
+
+  window.viewData = {
+    session: {"authenticated":false,"id":"eyEjteaqG4Te4qidblO5eUmTV0_2XI6r"}, 
+    canonical: 'https://www.airpair.com/angularjs/posts/testing-angular-with-karma', 
+    post: {"_id":"54627ad42b05930b00d71690"}, 
+  }
+
+  </script>
+
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-40569487-1', 'auto');
+    ga('send', 'pageview');
+  
+  </script>
+  
+  <script type="text/javascript">
+    window.analytics = {};
+    window.analytics.track = function(event, props) { console.log('off.track', event, props); }
+  </script>
+  
+  
+
+
+<iframe src="//rp.gwallet.com/r1/pixel/x8208" class="ra1-pw-logImage" height="0" width="0"></iframe></body></html>
