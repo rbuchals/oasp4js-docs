@@ -141,12 +141,17 @@ e.	Add parameters to directive function: $location, $modal, currentContextPath
 
 9.	Communication (20min) [RBU]
 	a) https://docs.angularjs.org/api/ng/service/$http
-
-
+	- Data in post and put: default data to json conversion mechanism ignores all properties starting with $. In general properties signed with $ are privat in angularjs. Workaround is JSON.stringify
+	- same-origin policy restriction
+		- JSONP
+		- CORS - local server as a proxy
+	- Promise API
+		
+		
 10.	Backend Spring Boot (90min) [RBU]
 	a) 10_Spring_Overview-htm - Spring overview
 	b) 10_Spring_Web_MVC.htm - Spring Web MVC
 	c) 10_Spring_Dependency_Injection.htm - Dependency injection
-	TODO: Backend slides 
+	d) 10_Spring_Backend
 	
 

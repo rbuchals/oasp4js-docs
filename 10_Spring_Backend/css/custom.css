@@ -1,0 +1,8 @@
+.agendaEvent {
+  animation: blink-animation 1s steps(15, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    	color: red;
+  }
+}
